@@ -4,7 +4,9 @@
             <router-link to="/" class="text-blue-600 font-semibold">
                 <img src="logo.png" alt="Logo" class="h-8">
             </router-link>
-            <router-link to="/dictionary" class="text-blue-600 font-semibold">Dictionary</router-link>
+            <router-link to="/dictionary" class="text-blue-600 font-semibold ml-4">Dictionary</router-link>
+            <router-link to="/game" class="text-blue-600 font-semibold ml-4">Game</router-link>
+
         </div>
         <div class="flex items-center">
             <HeaderPersonal />

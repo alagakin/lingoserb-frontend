@@ -22,7 +22,7 @@ export default {
         remove() {
             let ids = this.$store.getters.getSavedWordsIds
             this.$store.commit('setSavedWordsIds', ids.filter(id => id !== this.id))
-          
+            
             axios.delete(this.$store.getters.getDeleteSavedEnpoint,
                     {
                         data: { word: this.id },

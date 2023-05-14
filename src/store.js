@@ -40,7 +40,8 @@ const apiModule = {
         getSavedWordsIdsEnpoint: (state) => state.apiUrl + state.savedWordsIdsEndpoint,
         getAddSavedEnpoint: (state) => state.apiUrl + state.addSavedEndpoint,
         getDeleteSavedEnpoint: (state) => state.apiUrl + '/api/v1/saved/delete/',
-        getSavedWordsIds: (state) => state.savedIds
+        getGameEndpoint: (state) => state.apiUrl + '/api/v1/game/',
+        getSavedWordsIds: (state) => state.savedIds,
     },
 };
 
