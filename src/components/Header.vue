@@ -13,14 +13,19 @@
                     <option value="es">Русский</option>
                 </select>
             </div>
-            <a href="#" class="text-blue-600">John Doe</a> <!-- Replace with user's name -->
-            <a href="#" class="ml-2 text-gray-500">Login</a> <!-- Replace with login link -->
+            <!-- <a href="#" class="text-blue-600">John Doe</a> -->
+            <Login />
         </div>
     </header>
 </template>
-
 <script>
+import Login from './Login.vue'
+import { initFlowbite } from 'flowbite'
 export default {
     name: 'Header',
+    components: {Login},
+    mounted() {
+        initFlowbite();
+    }
 }
 </script>
