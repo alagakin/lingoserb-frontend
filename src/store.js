@@ -2,8 +2,9 @@ import Vuex from 'vuex';
 
 const apiModule = {
     state: {
-        apiUrl: 'localhost',
+        apiUrl: 'http://localhost',
         loginEndpoint: '/api/v1/auth/token/login/',
+        wordsEndpoint: '/api/v1/words/',
         token: false,
         authenticated: false
 
@@ -28,6 +29,7 @@ const apiModule = {
         getLoginEndpoint: (state) => state.loginEndpoint,
         getToken: (state) => state.token,
         isAuthenticated: (state) => state.authenticated == true,
+        getWordsEndpoint: (state) => state.apiUrl + state.wordsEndpoint,
     },
 };
 
