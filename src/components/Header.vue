@@ -1,10 +1,10 @@
 <template>
     <header class="flex items-center justify-between bg-gray-200 py-4 px-6">
         <div class="flex items-center">
-            <div class="mr-4">
+            <router-link to="/" class="text-blue-600 font-semibold">
                 <img src="logo.png" alt="Logo" class="h-8">
-            </div>
-            <a href="#" class="text-blue-600 font-semibold">Dictionary</a>
+            </router-link>
+            <router-link to="/dictionary" class="text-blue-600 font-semibold">Dictionary</router-link>
         </div>
         <div class="flex items-center">
             <div class="mr-4">

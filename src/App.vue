@@ -1,6 +1,8 @@
 <template>
   <Header />
-  <HomeView />
+  <main class="container mx-auto py-8 max-w-6xl mt-10">
+    <router-view></router-view>
+  </main>
 </template>
 
 <script>
@@ -11,7 +13,7 @@ export default {
   name: 'App',
   components: {
     Header,
-    HomeView
-}
+    HomeView,
+  }
 }
 </script>
