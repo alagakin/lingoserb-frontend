@@ -7,22 +7,15 @@
             <router-link to="/dictionary" class="text-blue-600 font-semibold">Dictionary</router-link>
         </div>
         <div class="flex items-center">
-            <div class="mr-4">
-                <select class="p-2 border border-gray-300 rounded">
-                    <option value="en">English</option>
-                    <option value="es">Русский</option>
-                </select>
-            </div>
-            <!-- <a href="#" class="text-blue-600">John Doe</a> -->
-            <Login />
+            <HeaderPersonal />
         </div>
     </header>
 </template>
 <script>
-import Login from './Login.vue'
+import HeaderPersonal from './HeaderPersonal.vue'
 
 export default {
     name: 'Header',
-    components: { Login },
+    components: { HeaderPersonal },
 }
 </script>
