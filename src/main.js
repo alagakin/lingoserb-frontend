@@ -8,7 +8,7 @@ const token = localStorage.getItem('token');
 
 if (token) {
   store.commit('setToken', token);
-  store.commit('setAuthentificated', true)
+  store.commit('setAuthenticated', true)
 }
 
 const app = createApp(App)

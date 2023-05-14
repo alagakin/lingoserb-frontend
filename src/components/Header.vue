@@ -12,7 +12,7 @@
     </header>
 </template>
 <script>
-import HeaderPersonal from './HeaderPersonal.vue'
+import HeaderPersonal from './User/HeaderUser.vue'
 
 export default {
     name: 'Header',

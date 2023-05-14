@@ -5,30 +5,25 @@
             <option value="es">Русский</option>
         </select>
     </div> -->
-    <a href="#" class="pointer mr-2" v-if="this.$store.getters.isAuthentificated">
+    <a href="#" class="pointer mr-2" v-if="this.$store.getters.isAuthenticated">
         <font-awesome-icon :icon="['far', 'user']" size="xl"/>
     </a>
-    <a href="#" ref="logout" class="text-blue-600 font-semibold pointer" v-if="this.$store.getters.isAuthentificated">
-        Logout
-    </a>
-    <Login v-if="!this.$store.getters.isAuthentificated" />
+    <Logout v-if="this.$store.getters.isAuthenticated"/>
+    <Login v-if="!this.$store.getters.isAuthenticated" />
 </template>
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 
 import Login from './Login.vue'
+import Logout from './Logout.vue'
 
 export default {
     name: 'HeaderPersonal',
-    components: { Login },
+    components: { Login, Logout },
     beforeMount() {
         library.add(faUser);
     },
-    mounted() {
-        this.$refs.logout.addEventListener('click', () => {
-            this.$store.commit('logout')
-        })
-    }
+    
 }
 </script>

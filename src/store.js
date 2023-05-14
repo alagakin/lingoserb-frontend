@@ -5,18 +5,18 @@ const apiModule = {
         apiUrl: 'localhost',
         loginEndpoint: '/api/v1/auth/token/login/',
         token: false,
-        authentificated: false
+        authenticated: false
 
     },
     mutations: {
         setToken(state, payload) {
             state.token = payload
         },
-        setAuthentificated(state, payload) {
-            state.authentificated = payload
+        setAuthenticated(state, payload) {
+            state.authenticated = payload
         },
         logout(state) {
-            state.authentificated = false
+            state.authenticated = false
             state.token = false
         }
     },
@@ -27,7 +27,7 @@ const apiModule = {
         getApiUrl: (state) => state.apiUrl,
         getLoginEndpoint: (state) => state.loginEndpoint,
         getToken: (state) => state.token,
-        isAuthentificated: (state) => state.authentificated == true,
+        isAuthenticated: (state) => state.authenticated == true,
     },
 };
 
