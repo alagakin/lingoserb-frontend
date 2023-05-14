@@ -11,24 +11,21 @@
             </span>
         </div>
         <div class="absolute top-0 right-0 mt-2 mr-2">
-            <!-- <font-awesome-icon :icon="['fas', 'star']" style="color: #e6c90a;" size="lg" /> -->
-            <font-awesome-icon :icon="['far', 'star']" style="color: #e6c90a;" size="lg" class="cursor-pointer hover:scale-105 transition-transform duration-300"/>
+            <AddSaved :id="word.id" />
         </div>
     </div>
 </template>
 
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
-import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
+import AddSaved from './AddSaved.vue';
+
+
 
 export default {
-    name: 'DictCard',
-    beforeMount() {
-        library.add(farStar, fasStar);
-    },
+    name: "DictCard",
     props: {
         word: Object
-    }
+    },
+    components: { AddSaved }
 }
 </script>
