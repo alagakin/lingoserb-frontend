@@ -20,12 +20,9 @@
 </template>
 <script>
 import Login from './Login.vue'
-import { initFlowbite } from 'flowbite'
+
 export default {
     name: 'Header',
-    components: {Login},
-    mounted() {
-        initFlowbite();
-    }
+    components: { Login },
 }
 </script>

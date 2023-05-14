@@ -64,7 +64,11 @@
 </template>
 
 <script>
+import { initFlowbite } from 'flowbite'
 export default {
-    name: 'Login'
+    name: 'Login',
+    mounted() {
+        initFlowbite();
+    },
 }
 </script>
