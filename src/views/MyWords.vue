@@ -10,7 +10,7 @@ import { faL } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import DictCard from '../components/DictCard.vue';
 export default {
-  name: "CardPage",
+  name: "MyWords",
 
   components: { DictCard },
   data() {
@@ -49,7 +49,7 @@ export default {
       if (this.end) {
         return
       }
-      axios.get(this.$store.getters.getWordsEndpoint,
+      axios.get(this.$store.getters.getSavedWordsEnpoint,
         {
           headers: { Authorization: `Token ${this.$store.getters.getToken}` },
           params: {
@@ -60,7 +60,9 @@ export default {
       ).then(response => {
           if (response.data.results?.length) {
             this.offset += this.limit
-            this.items.push(...response.data.results)
+            response.data.results.forEach((item) => {
+              this.items.push(item['word'])
+            })
           } else {
             this.end = true
             return

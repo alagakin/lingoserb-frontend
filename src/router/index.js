@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Game from '../views/Game.vue'
 
 import Dictionary from '../views/Dictionary.vue'
+import MyWords from '../views/MyWords.vue'
 import store from '../store.js';
 
 const router = createRouter({
@@ -30,6 +31,19 @@ const router = createRouter({
       path: '/game',
       name: 'Game',
       component: Game,
+      beforeEnter: (to, from, next) => {
+        if (store.getters.isAuthenticated) {
+          next();
+        } else {
+          // User is not authenticated, redirect to the login page
+          next('/');
+        }
+      },
+    },
+    {
+      path: '/my-words',
+      name: 'My words',
+      component: MyWords,
       beforeEnter: (to, from, next) => {
         if (store.getters.isAuthenticated) {
           next();
