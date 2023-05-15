@@ -34,3 +34,12 @@ export default {
   }
 }
 </script>
+<style>
+body {
+  background-image: url('./assets/b1.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+}
+</style>
