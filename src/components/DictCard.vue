@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg p-4 shadow-md relative">
+    <div class="bg-white rounded-lg p-4 shadow-md relative w-64">
         <h3 class="text-xl font-bold mb-2">{{ word.title }}</h3>
         <p class="text-gray-500 mb-4">{{ word.translation[0]?.title }}</p>
         <div class="flex flex-wrap">

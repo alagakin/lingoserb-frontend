@@ -2,17 +2,19 @@
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
       <DictCard v-for="item in items" :word="item" :key="item.id"/>
+      <DictCardSkeleton v-show="isLoading" v-for="index in limit" :key="index" />
     </div>
   </div>
 </template>
 <script>
-import { faL } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import DictCard from '../components/DictCard.vue';
+import DictCardSkeleton from '../components/DictCardSkeleton.vue';
+
 export default {
   name: "CardPage",
 
-  components: { DictCard },
+  components: { DictCard, DictCardSkeleton },
   data() {
     return {
       isLoading: false,
@@ -38,7 +40,7 @@ export default {
       const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
 
       const scrollPosition = scrollTop + windowHeight;
-      const scrollThreshold = 0.95; // Adjust this threshold to your desired value
+      const scrollThreshold = 0.80; // Adjust this threshold to your desired value
 
       if (!this.isLoading && scrollPosition >= scrollThreshold * documentHeight) {
         this.loadMoreContent();
@@ -63,6 +65,7 @@ export default {
             this.items.push(...response.data.results)
           } else {
             this.end = true
+            this.isLoading = false
             return
           }
           this.isLoading = false
