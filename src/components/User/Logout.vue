@@ -12,7 +12,7 @@ export default {
         this.$refs.logout.addEventListener('click', () => {
             localStorage.removeItem('token')
             this.$store.commit('logout')
-            this.$router.push('/');
+            this.$router.push({name: 'Home'});
 
         })
     }

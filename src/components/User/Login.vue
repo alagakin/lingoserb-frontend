@@ -112,7 +112,7 @@ export default {
                 this.$store.commit('setAuthenticated', true)
 
                 // Redirect the user to the authenticated part of your application
-                this.$router.push('/dictionary');
+                this.$router.push({ name: 'Dictionary' });
             } catch (error) {
                 this.waiting = false
                 this.errorMessage = 'Invalid username or password';

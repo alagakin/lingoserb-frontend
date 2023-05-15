@@ -11,7 +11,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: HomeView
     },
     {
@@ -42,7 +42,7 @@ const router = createRouter({
     },
     {
       path: '/my-words',
-      name: 'My words',
+      name: 'MyWords',
       component: MyWords,
       beforeEnter: (to, from, next) => {
         if (store.getters.isAuthenticated) {
