@@ -47,10 +47,10 @@ export default {
       }
     },
     loadMoreContent() {
-      this.isLoading = true
       if (this.end) {
         return
       }
+      this.isLoading = true
       axios.get(this.$store.getters.getWordsEndpoint,
         {
           headers: { Authorization: `Token ${this.$store.getters.getToken}` },
