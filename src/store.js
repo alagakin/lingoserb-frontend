@@ -42,7 +42,9 @@ const apiModule = {
         getDeleteSavedEnpoint: (state) => state.apiUrl + '/api/v1/saved/delete/',
         getGameEndpoint: (state) => state.apiUrl + '/api/v1/game/',
         getSavedWordsIds: (state) => state.savedIds,
-        getSavedWordsEnpoint: (state) => state.apiUrl + '/api/v1/saved/'
+        getSavedWordsEnpoint: (state) => state.apiUrl + '/api/v1/saved/',
+        getTextForWordEndpoint: (state) => state.apiUrl + '/api/v1/text/for-word/',
+
     },
 };
 

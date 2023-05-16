@@ -1,6 +1,8 @@
 <template>
     <div class="bg-white rounded-lg p-4 shadow-md relative w-64">
-        <h3 class="text-xl font-bold mb-2">{{ word.title }}</h3>
+        <TranslationModal v-if="word.texts_count" :word="word"/>
+        <h3 class="text-xl mb-2" v-else>{{ word.title }}</h3>
+
         <p class="text-gray-500 mb-4">{{ word.translation[0]?.title }}</p>
         <div class="flex flex-wrap">
             <span class="text-sm bg-pink-200 rounded-full px-3 py-1 text-gray-700 mr-2 mb-2">
@@ -18,6 +20,7 @@
 
 <script>
 import AddSaved from './AddSaved.vue';
+import TranslationModal from './TranslationModal.vue';
 
 
 
@@ -26,6 +29,6 @@ export default {
     props: {
         word: Object
     },
-    components: { AddSaved }
+    components: { AddSaved, TranslationModal }
 }
 </script>
