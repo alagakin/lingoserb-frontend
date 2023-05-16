@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center items-center mt-5 max-w-xl m-auto text-2xl"
         v-if="gameItems?.length && !endgame">
-        <div class="mb-6">{{ currentItemId + 1 }}/{{ gameItems?.length }}</div>
+        <div class="mb-6 text-white">{{ currentItemId + 1 }}/{{ gameItems?.length }}</div>
         <div class="bg-gray-100 width-10 rounded-lg mb-4 w-2/3 h-64 flex justify-center items-center cursor-pointer ">
             <span>{{ currentWord }}</span>
         </div>
