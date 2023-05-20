@@ -2,7 +2,7 @@ import Vuex from 'vuex';
 
 const apiModule = {
     state: {
-        apiUrl: 'http://localhost',
+        domain: 'http://localhost',
         loginEndpoint: '/api/v1/auth/token/login/',
         wordsEndpoint: '/api/v1/words/',
         savedWordsIdsEndpoint: '/api/v1/saved/ids/',
@@ -32,18 +32,19 @@ const apiModule = {
        
     },
     getters: {
-        getApiUrl: (state) => state.apiUrl,
+        getDomain: (state) => state.domain,
         getLoginEndpoint: (state) => state.loginEndpoint,
         getToken: (state) => state.token,
         isAuthenticated: (state) => state.authenticated == true,
-        getWordsEndpoint: (state) => state.apiUrl + state.wordsEndpoint,
-        getSavedWordsIdsEnpoint: (state) => state.apiUrl + state.savedWordsIdsEndpoint,
-        getAddSavedEnpoint: (state) => state.apiUrl + state.addSavedEndpoint,
-        getDeleteSavedEnpoint: (state) => state.apiUrl + '/api/v1/saved/delete/',
-        getGameEndpoint: (state) => state.apiUrl + '/api/v1/game/',
+        getWordsEndpoint: (state) => state.domain + state.wordsEndpoint,
+        getSavedWordsIdsEnpoint: (state) => state.domain + state.savedWordsIdsEndpoint,
+        getAddSavedEnpoint: (state) => state.domain + state.addSavedEndpoint,
+        getDeleteSavedEnpoint: (state) => state.domain + '/api/v1/saved/delete/',
+        getGameEndpoint: (state) => state.domain + '/api/v1/game/',
         getSavedWordsIds: (state) => state.savedIds,
-        getSavedWordsEnpoint: (state) => state.apiUrl + '/api/v1/saved/',
-        getTextForWordEndpoint: (state) => state.apiUrl + '/api/v1/text/for-word/',
+        getSavedWordsEnpoint: (state) => state.domain + '/api/v1/saved/',
+        getTextForWordEndpoint: (state) => state.domain + '/api/v1/text/for-word/',
+        getTopicsListEndpoint: (state) => state.domain + '/api/v1/category/'
 
     },
 };

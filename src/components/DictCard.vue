@@ -16,6 +16,7 @@
             <AddSaved :id="word.id" />
         </div>
     </div>
+    <!-- todo: skeleton -->
 </template>
 
 <script>

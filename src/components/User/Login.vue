@@ -90,7 +90,7 @@ export default {
     },
     computed: {
         loginUrl() {
-            return this.$store.getters.getApiUrl + this.$store.getters.getLoginEndpoint
+            return this.$store.getters.getDomain + this.$store.getters.getLoginEndpoint
         }
     },
     methods: {
