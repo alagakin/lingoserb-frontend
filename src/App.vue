@@ -15,22 +15,41 @@ export default {
     Header,
     HomeView,
   },
-  created() {
-
-    axios.get(this.$store.getters.getSavedWordsIdsEnpoint,
+  methods: {
+    setSaved() {
+      axios.get(this.$store.getters.getSavedWordsIdsEnpoint,
         {
           headers: { Authorization: `Token ${this.$store.getters.getToken}` },
         }
       ).then(response => {
-          if (response.data) {
-            let savedWords = []
-            response.data.forEach(item => {
-              savedWords.push(item['id'])
-            })
-            this.$store.commit('setSavedWordsIds', savedWords)
-          }
-        })
-
+        if (response.data) {
+          let savedWords = []
+          response.data.forEach(item => {
+            savedWords.push(item['id'])
+          })
+          this.$store.commit('setSavedWordsIds', savedWords)
+        }
+      })
+    },
+    setProgress() {
+      axios.get(this.$store.getters.getProgressEndpoint,
+        {
+          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+        }
+      ).then(response => {
+        if (response.data) {
+          let progress = {}
+          response.data.forEach(item => {
+            progress[item.id] = item.cnt
+          })
+          this.$store.commit('setProgress', progress)
+        }
+      })
+    }
+  },
+  created() {
+    this.setSaved()
+    this.setProgress()
   }
 }
 </script>

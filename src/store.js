@@ -10,7 +10,8 @@ const apiModule = {
         deleteSavedEndpoint: '/api/v1/saved/add/',
         token: false,
         authenticated: false,
-        savedIds: []
+        savedIds: [],
+        progress: {}
 
     },
     mutations: {
@@ -26,6 +27,9 @@ const apiModule = {
         },
         setSavedWordsIds(state, payload) {
             state.savedIds = payload
+        },
+        setProgress(state, payload) {
+            state.progress = payload
         }
     },
     actions: {
@@ -45,7 +49,8 @@ const apiModule = {
         getSavedWordsEnpoint: (state) => state.domain + '/api/v1/saved/',
         getTextForWordEndpoint: (state) => state.domain + '/api/v1/text/for-word/',
         getTopicsListEndpoint: (state) => state.domain + '/api/v1/category/',
-
+        getProgressEndpoint: (state) => state.domain + '/api/v1/saved/progress/',
+        getProgress: (state) => state.progress
     },
 };
 
