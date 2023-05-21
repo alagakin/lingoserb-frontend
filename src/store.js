@@ -44,7 +44,7 @@ const apiModule = {
         getSavedWordsIds: (state) => state.savedIds,
         getSavedWordsEnpoint: (state) => state.domain + '/api/v1/saved/',
         getTextForWordEndpoint: (state) => state.domain + '/api/v1/text/for-word/',
-        getTopicsListEndpoint: (state) => state.domain + '/api/v1/category/'
+        getTopicsListEndpoint: (state) => state.domain + '/api/v1/category/',
 
     },
 };
