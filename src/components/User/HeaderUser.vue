@@ -5,8 +5,10 @@
             <option value="es">Русский</option>
         </select>
     </div> -->
+    <router-link v-if="this.$store.getters.isAuthenticated" :to="{name: 'Profile'}" class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-400">
+        <font-awesome-icon :icon="['far', 'user']" size="xl" class="text-gray-400 text-2xl"/>
+    </router-link>
 
-    <Logout v-if="this.$store.getters.isAuthenticated"/>
     <Login v-if="!this.$store.getters.isAuthenticated" />
 </template>
 <script>

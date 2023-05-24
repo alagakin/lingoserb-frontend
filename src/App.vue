@@ -55,8 +55,8 @@ export default {
 </script>
 <style>
 body {
-  background-image: url('./assets/bg.svg');
-  background-size: cover;
+  background-color: ghostwhite;
+    background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 

@@ -50,7 +50,8 @@ const apiModule = {
         getTextForWordEndpoint: (state) => state.domain + '/api/v1/text/for-word/',
         getTopicsListEndpoint: (state) => state.domain + '/api/v1/category/',
         getProgressEndpoint: (state) => state.domain + '/api/v1/saved/progress/',
-        getProgress: (state) => state.progress
+        getProgress: (state) => state.progress,
+        getAchievementsEndpoint: (state) => state.domain + '/api/v1/achievements/'
     },
 };
 

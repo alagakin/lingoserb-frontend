@@ -7,6 +7,7 @@ import MyWords from '../views/MyWords.vue'
 import store from '../store.js';
 import DetailTopic from '../components/DetailTopic.vue'
 import NotFound from '../views/NotFound.vue'
+import Profile from '../views/Profile.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -58,6 +59,18 @@ const router = createRouter({
       path: '/topics/:id(\\d+)',
       name: 'DetailTopic',
       component: DetailTopic,
+      beforeEnter: (to, from, next) => {
+        if (store.getters.isAuthenticated) {
+          next();
+        } else {
+          next('/');
+        }
+      },
+    },
+    {
+      path: '/profile/',
+      name: 'Profile',
+      component: Profile,
       beforeEnter: (to, from, next) => {
         if (store.getters.isAuthenticated) {
           next();
