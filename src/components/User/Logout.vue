@@ -1,5 +1,5 @@
 <template>
-    <a href="#" ref="logout" class="text-blue-600 font-semibold pointer" v-show="this.$store.getters.isAuthenticated">
+    <a href="#" ref="logout" class="text-blue-600 font-semibold pointer py-2.5" v-show="this.$store.getters.isAuthenticated">
         Logout
     </a>
 </template>

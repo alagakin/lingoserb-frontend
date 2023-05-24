@@ -5,9 +5,7 @@
             <option value="es">Русский</option>
         </select>
     </div> -->
-    <a href="#" class="pointer mr-2" v-if="this.$store.getters.isAuthenticated">
-        <font-awesome-icon :icon="['far', 'user']" size="xl"/>
-    </a>
+
     <Logout v-if="this.$store.getters.isAuthenticated"/>
     <Login v-if="!this.$store.getters.isAuthenticated" />
 </template>
