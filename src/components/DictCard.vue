@@ -6,7 +6,7 @@
         <p class="text-gray-500 mb-4">{{ word.translation[0]?.title }}</p>
         <div class="flex flex-wrap">
             <span class="text-sm bg-blue-200 rounded-full px-3 py-1 text-gray-700 mr-2 mb-2"
-                v-for="topic in word.categories">
+                v-for="topic in word.topics">
                 {{ topic.title }}
             </span>
         </div>
