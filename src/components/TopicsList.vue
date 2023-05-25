@@ -1,14 +1,41 @@
 <template>
-    <div class="flex flex-wrap -mx-4">
-        <TopicListItem v-for="item in items" :item="item"/>
+    <div class="mb-8" v-for="topic in items">
+        <h3 class="text-2xl font-bold mb-4">{{ topic.title }} - {{ topic.title_ru }}</h3>
+        <Splide :options="{ rewind: true, perPage: 3, arrows: false }" aria-label="My Favorite Images">
+            <SplideSlide v-for="subtopic in topic.subtopics">
+                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8">
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <img :src="subtopic.picture" alt="Block Picture" class="w-full h-40 object-cover mb-4 rounded-lg">
+                        <h3 class="text-lg font-bold mb-2">{{ subtopic.title }} - {{ subtopic.title_ru }}</h3>
+                        <p class="text-gray-500 mb-4">Words: {{ subtopic.words_count }}</p>
+                        <div class="flex  items-center">
+                            <div class="mr-3">1%</div>
+                            <div class="bg-gray-100 h-2 rounded-lg flex w-3/4">
+                                <div class="bg-gray-400 w-full rounded-lg" :style="{ width: `10%` }"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </SplideSlide>
+        </Splide>
     </div>
 </template>
 
 <script>
+import 'flowbite/dist/flowbite.css';
 import axios from 'axios';
 import TopicListItem from './TopicListItem.vue';
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import Subtopic from './Subtopic.vue';
+import '@splidejs/vue-splide/css';
+
 export default {
     name: "TopicsList",
+    components: {
+        Splide,
+        SplideSlide,
+        Subtopic
+    },
     data() {
         return {
             isLoading: false,
@@ -64,9 +91,9 @@ export default {
                 this.isLoading = false;
             })
                 .catch(error => {
-                this.isLoading = false;
-                console.log(error);
-            });
+                    this.isLoading = false;
+                    console.log(error);
+                });
         },
     },
     components: { TopicListItem }
