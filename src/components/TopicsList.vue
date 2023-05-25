@@ -8,12 +8,7 @@
                         <img :src="subtopic.picture" alt="Block Picture" class="w-full h-40 object-cover mb-4 rounded-lg">
                         <h3 class="text-lg font-bold mb-2">{{ subtopic.title }} - {{ subtopic.title_ru }}</h3>
                         <p class="text-gray-500 mb-4">Words: {{ subtopic.words_count }}</p>
-                        <div class="flex  items-center">
-                            <div class="mr-3">1%</div>
-                            <div class="bg-gray-100 h-2 rounded-lg flex w-3/4">
-                                <div class="bg-gray-400 w-full rounded-lg" :style="{ width: `10%` }"></div>
-                            </div>
-                        </div>
+                        <TopicProgress :percent="subtopic.learned_percent"/>
                     </div>
                 </div>
             </SplideSlide>
@@ -28,6 +23,7 @@ import TopicListItem from './TopicListItem.vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import Subtopic from './Subtopic.vue';
 import '@splidejs/vue-splide/css';
+import TopicProgress from './TopicProgress.vue';
 
 export default {
     name: "TopicsList",
@@ -96,6 +92,6 @@ export default {
                 });
         },
     },
-    components: { TopicListItem }
+    components: { TopicListItem, TopicProgress }
 }
 </script>

@@ -30,7 +30,7 @@ export default {
         },
         percent() {
             if (this.progress) {
-                return Math.round(this.progress / 6 * 100)
+                return Math.round(this.progress / 5 * 100)
             }
             return 0
         },
