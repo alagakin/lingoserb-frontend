@@ -1,5 +1,13 @@
 <template>
-  <h1 class="text-center text-4xl mb-6 text-black">{{ title }}</h1>
+  <h1 class="text-center text-4xl mb-6 text-black">{{ title }} - {{ info.title_ru }}</h1>
+  <div class="text-center text-2xl mb-6">
+    <router-link :to="{name: 'Game', params: {id: info.id}}">
+      <span class="bg-blue-500 p-2 rounded-xl">
+        <font-awesome-icon :icon="['fas', 'rocket']" class="mr-2" />
+        <span>Start!</span>
+      </span>
+    </router-link>
+  </div>
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
       <DictCard v-for="word in words" :word="word" :key="word.id" />
@@ -13,9 +21,15 @@
 import axios from 'axios';
 import DictCard from '../DictCard.vue';
 import DictCardSkeleton from '../DictCardSkeleton.vue';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faRocket } from '@fortawesome/free-solid-svg-icons';
+
 export default {
   name: 'DetailTopic',
   components: { DictCard, DictCardSkeleton },
+  beforeMount() {
+    library.add(faRocket);
+  },
   data() {
     return {
       isLoading: false,

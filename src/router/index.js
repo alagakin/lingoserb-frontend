@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Game from '../views/Game.vue'
+import Game from '../components/Game/Game.vue'
 
 import Dictionary from '../views/Dictionary.vue'
 import MyWords from '../views/MyWords.vue'
@@ -30,7 +30,7 @@ const router = createRouter({
       },
     },
     {
-      path: '/game',
+      path: '/topics/:id(\\d+)/game/',
       name: 'Game',
       component: Game,
       beforeEnter: (to, from, next) => {

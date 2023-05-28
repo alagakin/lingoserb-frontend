@@ -15,8 +15,8 @@
 
 <script>
 import axios from 'axios'
-import Option from '../components/Game/Option.vue'
-import Endgame from '../components/Game/Endgame.vue'
+import Option from './Option.vue'
+import Endgame from './Endgame.vue'
 export default {
     name: "Game",
     data() {
