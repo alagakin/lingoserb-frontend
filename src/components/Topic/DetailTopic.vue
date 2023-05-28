@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-white text-center text-4xl mb-6">{{ title }}</h1>
+  <h1 class="text-center text-4xl mb-6 text-black">{{ title }}</h1>
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
       <DictCard v-for="word in words" :word="word" :key="word.id" />
@@ -11,8 +11,8 @@
 
 
 import axios from 'axios';
-import DictCard from '../components/DictCard.vue';
-import DictCardSkeleton from '../components/DictCardSkeleton.vue';
+import DictCard from '../DictCard.vue';
+import DictCardSkeleton from '../DictCardSkeleton.vue';
 export default {
   name: 'DetailTopic',
   components: { DictCard, DictCardSkeleton },

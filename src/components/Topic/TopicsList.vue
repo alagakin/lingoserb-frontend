@@ -5,7 +5,9 @@
             <SplideSlide v-for="subtopic in topic.subtopics">
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8">
                     <div class="bg-white rounded-lg shadow p-4">
-                        <img :src="subtopic.picture" alt="Block Picture" class="w-full h-40 object-cover mb-4 rounded-lg">
+                        <router-link :to="{name: 'DetailTopic', params: {id: subtopic.id}}">
+                            <img :src="subtopic.picture" alt="Block Picture" class="w-full h-40 object-cover mb-4 rounded-lg">
+                        </router-link>
                         <h3 class="text-lg font-bold mb-2">{{ subtopic.title }} - {{ subtopic.title_ru }}</h3>
                         <p class="text-gray-500 mb-4">Words: {{ subtopic.words_count }}</p>
                         <TopicProgress :percent="subtopic.learned_percent"/>
@@ -21,7 +23,6 @@ import 'flowbite/dist/flowbite.css';
 import axios from 'axios';
 import TopicListItem from './TopicListItem.vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import Subtopic from './Subtopic.vue';
 import '@splidejs/vue-splide/css';
 import TopicProgress from './TopicProgress.vue';
 
@@ -30,7 +31,6 @@ export default {
     components: {
         Splide,
         SplideSlide,
-        Subtopic
     },
     data() {
         return {

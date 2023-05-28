@@ -5,7 +5,7 @@ import Game from '../views/Game.vue'
 import Dictionary from '../views/Dictionary.vue'
 import MyWords from '../views/MyWords.vue'
 import store from '../store.js';
-import DetailTopic from '../components/DetailTopic.vue'
+import DetailTopic from '../components/Topic/DetailTopic.vue'
 import NotFound from '../views/NotFound.vue'
 import Profile from '../views/Profile.vue'
 const router = createRouter({

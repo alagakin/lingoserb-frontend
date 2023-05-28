@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TopicsList from '../components/TopicsList.vue';
+import TopicsList from '../components/Topic/TopicsList.vue';
 
 export default {
     name: "HomeView",
