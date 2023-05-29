@@ -9,7 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 export default {
-    name: "Audio",
+    name: "AudioButton",
     beforeMount() {
         library.add(fas, faVolumeUp);
     },

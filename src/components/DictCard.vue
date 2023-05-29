@@ -14,7 +14,7 @@
             <AddSaved :id="word.id" />
         </div>
         <div v-if="word.audio_link" class="absolute top-0 right-7 mt-2 mr-2">
-            <Audio :audio_link="word.audio_link"/>
+            <AudioButton :audio_link="word.audio_link"/>
         </div>
         <Progress :wordId="word.id" />
     </div>
@@ -23,7 +23,7 @@
 
 <script>
 import AddSaved from './AddSaved.vue';
-import Audio from './Audio.vue';
+import AudioButton from './AudioButton.vue';
 import Progress from './Progress.vue';
 import TranslationModal from './TranslationModal.vue';
 
@@ -34,6 +34,6 @@ export default {
     props: {
         word: Object
     },
-    components: { AddSaved, TranslationModal, Progress, Audio }
+    components: { AddSaved, TranslationModal, Progress, AudioButton }
 }
 </script>

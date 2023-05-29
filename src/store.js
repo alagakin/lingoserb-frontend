@@ -44,14 +44,17 @@ const apiModule = {
         getSavedWordsIdsEnpoint: (state) => state.domain + state.savedWordsIdsEndpoint,
         getAddSavedEnpoint: (state) => state.domain + state.addSavedEndpoint,
         getDeleteSavedEnpoint: (state) => state.domain + '/api/v1/saved/delete/',
-        getGameEndpoint: (state) => state.domain + '/api/v1/game/',
+        getGameEndpoint: (state) => state.domain + '/api/v1/game/topic/',
+        getGameSuccessEndpoint: (state) => state.domain + '/api/v1/game/word/',
         getSavedWordsIds: (state) => state.savedIds,
         getSavedWordsEnpoint: (state) => state.domain + '/api/v1/saved/',
         getTextForWordEndpoint: (state) => state.domain + '/api/v1/text/for-word/',
         getTopicsListEndpoint: (state) => state.domain + '/api/v1/topic/',
         getProgressEndpoint: (state) => state.domain + '/api/v1/saved/progress/',
         getProgress: (state) => state.progress,
-        getAchievementsEndpoint: (state) => state.domain + '/api/v1/achievements/'
+        getAchievementsEndpoint: (state) => state.domain + '/api/v1/achievements/',
+        getLearningEndpoint: (state) => state.domain + '/api/v1/learning/',
+        getWatchedEndpoint: (state) => state.domain + '/api/v1/learning/'
     },
 };
 
