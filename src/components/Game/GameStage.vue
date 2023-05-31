@@ -2,10 +2,11 @@
     <div class="flex flex-col justify-center items-center mt-5 max-w-xl m-auto text-2xl"
         v-if="gameItems?.length && !endgame">
         <div class="mb-6 text-white">{{ currentItemId + 1 }}/{{ gameItems?.length }}</div>
-        <div class="bg-gray-100 width-10 rounded-lg mb-4 w-2/3 h-64 flex justify-center items-center cursor-pointer relative">
-            <span>{{ currentWord['word'] }}</span>
+        <div
+            class="bg-gray-100 width-10 rounded-lg mb-4 w-2/3 h-64 flex justify-center items-center cursor-pointer relative">
+            <span>{{ wordTitle }}</span>
             <div class="absolute top-4 right-4 mt-2 mr-2">
-                <AudioButton v-if="currentWord['audio_link']" :audio_link="currentWord['audio_link']" />
+                <AudioButton v-if="audio_link" :audio_link="audio_link" />
             </div>
         </div>
         <div class="flex justify-center">
@@ -26,31 +27,32 @@ export default {
     name: "GameStage",
     data() {
         return {
-            gameItems: Object,
             currentItemId: 0,
             lock: false,
             endgame: false
         }
     },
     props: {
-        topicId: Number
+        topicId: Number,
+        gameItems: Object
     },
+
     components: { Option, Endgame, AudioButton },
-    beforeMount() {
-        axios.get(this.$store.getters.getGameEndpoint + `${this.topicId}/`,
-            {
-                headers: { Authorization: `Token ${this.$store.getters.getToken}` },
-            }
-        ).then(response => {
-            if (response.data) {
-                this.gameItems = response.data
-            }
-        })
-    },
+
     computed: {
         currentWord() {
             if (this.gameItems?.length && this.gameItems[this.currentItemId]) {
                 return this.gameItems[this.currentItemId]
+            }
+        },
+        wordTitle() {
+            if (this.gameItems?.length && this.gameItems[this.currentItemId]) {
+                return this.gameItems[this.currentItemId]['word']
+            }
+        },
+        audio_link() {
+            if (this.gameItems?.length && this.gameItems[this.currentItemId]) {
+                return this.gameItems[this.currentItemId]['audio_link']
             }
         },
         currentOptions() {
@@ -70,28 +72,34 @@ export default {
         }
     },
     methods: {
+        finish() {
+            axios.post(this.$store.getters.getLearningEndpoint + `${this.topicId}/` + 'complete/',
+                {}, {
+                headers: {
+                    'Authorization': `Token ${this.$store.getters.getToken}`
+                }
+            }
+            ).then(response => {
+                this.endgame = true
+            })
+        },
         processCorrect() {
             this.lock = true
             setTimeout(() => {
                 if (this.currentItemId == this.gameItems.length - 1) {
-                    this.endgame = true
+                    this.finish()
                     return
                 }
                 if (this.currentItemId < this.gameItems.length) {
                     this.currentItemId += 1
                     this.lock = false
                 } else {
-                    this.endgame = true
+                    this.finish()
                 }
                 this.lock = false
                 this.playAudio()
 
             }, 1000)
-            axios.post(`${this.$store.getters.getGameSuccessEndpoint}${this.currentWordId}/success/`, {}, {
-                headers: {
-                    'Authorization': `Token ${this.$store.getters.getToken}`
-                }
-            })
 
         },
         processWrong() {
@@ -107,7 +115,7 @@ export default {
         playAudio() {
             if (this.gameItems[this.currentItemId]['audio_link']) {
                 const audio = new Audio(this.gameItems[this.currentItemId]['audio_link']);
-                    audio.play();
+                audio.play();
             }
         }
     }

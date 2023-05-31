@@ -54,7 +54,6 @@ const apiModule = {
         getProgress: (state) => state.progress,
         getAchievementsEndpoint: (state) => state.domain + '/api/v1/achievements/',
         getLearningEndpoint: (state) => state.domain + '/api/v1/learning/',
-        getWatchedEndpoint: (state) => state.domain + '/api/v1/learning/'
     },
 };
 

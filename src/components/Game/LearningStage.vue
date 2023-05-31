@@ -11,7 +11,8 @@ export default {
         LearningCard
     },
     props: {
-        topicId: Number
+        topicId: Number,
+        items: Object
     },
     data() {
         return {
@@ -21,20 +22,16 @@ export default {
             isGame: false
         }
     },
-    beforeMount() {
-        axios.get(this.$store.getters.getLearningEndpoint + `${this.topicId}` + '/start/',
-            {
-                headers: { Authorization: `Token ${this.$store.getters.getToken}` },
-            }
-        ).then(response => {
-            if (response.data.length) {
-                this.currentWordIndex = 0
-                this.currentWord = response.data[0]
-                this.words = response.data
-            } else{
-                this.stopLearning()
-            }
-        })
+    watch: {
+        items: {
+            handler: function (val) {
+                if (val) {
+                    this.words = val
+                    this.currentWord = this.words[this.currentWordIndex]
+                }
+            },
+            deep: true
+        }
     },
     methods: {
         stopLearning() {

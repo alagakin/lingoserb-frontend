@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import AudioButton from '../AudioButton.vue'
 
 export default {
@@ -70,14 +69,7 @@ export default {
 
     methods: {
         next() {
-            axios.post(this.$store.getters.getWatchedEndpoint + `${this.word.id}` + '/watched/',
-                {},
-                {
-                    headers: { Authorization: `Token ${this.$store.getters.getToken}` },
-                }
-            ).then(response => {
-                this.$emit('next')
-            })
+            this.$emit('next')
         },
         playAudio() {
             if (this.word.audio_link) {
