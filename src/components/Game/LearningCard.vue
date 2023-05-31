@@ -1,21 +1,28 @@
 <template>
-    <div class="flex justify-center items-center ">
-        <div class="bg-gray-500 w-96 h-64 flex justify-center items-center text-white text-center rounded-lg relative">
-            <span class="text-2xl">{{ word.title }}</span>
+     <div class="flex justify-center items-center ">
+        <div class="bg-gray-400 w-96 h-48 flex justify-center items-center text-white text-center rounded-lg relative">
+            <div>
+                <div class="text-3xl">{{ word.title }}</div>
+                <div class="text-2xl italic">{{ translation }}</div>
+            </div>
             <div v-if="word.audio_link" class="absolute top-4 right-4 mt-2 mr-2">
                 <AudioButton :audio_link="word.audio_link" />
             </div>
         </div>
-
     </div>
-    <div class="flex justify-center">
-        <div class="bg-gray-300 w-96 h-12 mt-4 rounded-lg flex justify-center items-center">
-            <span>{{ translation }}</span>
+    <div class="flex justify-center" v-for="text in word.texts">
+        <div class="bg-gray-300 w-96  mt-4 rounded-lg p-4">
+            <div>
+            {{ text.content }}
+            </div>
+            <div class="italic">
+                {{ text.translation }}
+            </div>
         </div>
     </div>
     <div class="flex justify-center">
-        <button :disabled="countingDown" :class="{'opacity-50': countingDown}"
-            class="bg-blue-500 w-64 h-12 mt-4 rounded-lg text-center text-white" v-on:click="next">
+        <button :disabled="countingDown" :class="{ 'opacity-50': countingDown }"
+            class="bg-teal-500 w-64 h-12 mt-4 rounded-lg text-center text-white" v-on:click="next">
             {{ countdown ? countdown : 'Next' }}
         </button>
     </div>
