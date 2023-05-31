@@ -1,17 +1,21 @@
 <template>
-  <h1 class="text-center text-4xl mb-6 text-black">{{ title }} - {{ info.title_ru }}</h1>
-  <div class="text-center text-2xl mb-6">
-    <router-link :to="{name: 'Game', params: {id: info.id}}">
-      <span class="bg-blue-500 p-2 rounded-xl">
-        <font-awesome-icon :icon="['fas', 'rocket']" class="mr-2" />
-        <span>Start!</span>
-      </span>
-    </router-link>
+  <div class="max-w-5xl m-auto flex justify-between" v-if="!wordsLoading">
+    <h1 class="text-center text-4xl mb-6 text-black">{{ title }} - {{ info.title_ru }}</h1>
+    <div class="text-center text-2xl mb-6">
+      <router-link :to="{ name: 'Game', params: { id: info.id } }">
+        <span class="bg-teal-500 p-4 rounded-xl text-white">
+          <font-awesome-icon :icon="['fas', 'rocket']" class="mr-2" />
+          <span>Начать изучение</span>
+        </span>
+      </router-link>
+    </div>
   </div>
+  <div class="max-w-5xl h-14 bg-gray-100 animate-pulse m-auto rounded-xl mb-2" v-if="wordsLoading"></div>
+
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
       <DictCard v-for="word in words" :word="word" :key="word.id" />
-      <DictCardSkeleton v-show="isLoading" v-for="index in limit" :key="index" />
+      <DictCardSkeleton v-show="wordsLoading" v-for="index in 24" :key="index" />
     </div>
   </div>
 </template>
@@ -32,7 +36,7 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
+      wordsLoading: true,
       words: [],
       info: Object
     };
@@ -54,7 +58,6 @@ export default {
       return word.charAt(0).toUpperCase() + word.slice(1);
     },
     loadWords() {
-      this.isLoading = true
       axios.get(this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/words/',
         {
           headers: { Authorization: `Token ${this.$store.getters.getToken}` },
@@ -65,10 +68,9 @@ export default {
         } else {
           return
         }
-        this.isLoading = false
+        this.wordsLoading = false
       })
         .catch(error => {
-          this.isLoading = false
         });
 
     },
@@ -78,16 +80,13 @@ export default {
           headers: { Authorization: `Token ${this.$store.getters.getToken}` },
         }
       ).then(response => {
-        console.log(response)
         if (response.data) {
           this.info = response.data
         } else {
           return
         }
-        this.isLoading = false
       })
         .catch(error => {
-          this.isLoading = false
         });
     }
   }
