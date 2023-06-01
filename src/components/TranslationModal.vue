@@ -4,9 +4,7 @@
     <div ref="modal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-2xl max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <!-- Modal header -->
+             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         {{ word.title }}
@@ -22,27 +20,24 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                <!-- Modal body -->
-                <div class="p-6 space-y-6">
+                 <div class="p-6 space-y-6">
                     <p class="text-lg bold leading-relaxe  dark:text-gray-400">
                         Translation:
                     </p>
                     <span v-for="translation, key in word.translation" class="italic">{{ translation.title }}{{ key <
                         word.translation.length - 1 ? ', ' : '' }}</span>
-
-                            <p v-for="text, key in texts"
-                                class="text-base leading-relaxed text-gray-500 dark:text-gray-400 border-gray-200 border p-2 rounded-lg">
-                                {{ text.content }}
-                                <br>
-                                {{ text.translation }}
-                            </p>
-                            <div class="rounded-lg border p-2" v-if="!loaded">
-                                <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
-                                <div class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</div>
-                                <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
-                                <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
-                            </div>
-
+                        <p v-for="text, key in texts"
+                            class="text-base leading-relaxed text-gray-500 dark:text-gray-400 border-gray-200 border p-2 rounded-lg">
+                            {{ text.content }}
+                            <br>
+                            {{ text.translation }}
+                        </p>
+                        <div class="rounded-lg border p-2" v-if="!loaded">
+                            <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
+                            <div class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</div>
+                            <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
+                            <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
+                        </div>
                 </div>
             </div>
         </div>
@@ -72,9 +67,14 @@ export default {
 
         this.openButton.addEventListener('click', () => this.open());
         this.closeButton.addEventListener('click', () => this.modal.hide());
-
+        
+        this.styleBodyWhenOpen()
     },
     methods: {
+        styleBodyWhenOpen() {
+            let padding = window.innerWidth - document.documentElement.clientWidth
+            document.body.style.setProperty('--paddingRight', padding + 'px')
+        },
         open() {
             this.modal.toggle()
             this.getTexts()
