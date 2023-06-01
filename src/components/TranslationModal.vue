@@ -4,7 +4,7 @@
     <div ref="modal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-2xl max-h-full">
-             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         {{ word.title }}
@@ -20,36 +20,46 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                 <div class="p-6 space-y-6">
+                <div class="p-6 space-y-6">
                     <p class="text-lg bold leading-relaxe  dark:text-gray-400">
                         Translation:
                     </p>
-                    <span v-for="translation, key in word.translation" class="italic">{{ translation.title }}{{ key <
-                        word.translation.length - 1 ? ', ' : '' }}</span>
-                        <p v-for="text, key in texts"
-                            class="text-base leading-relaxed text-gray-500 dark:text-gray-400 border-gray-200 border p-2 rounded-lg">
-                            {{ text.content }}
-                            <br>
-                            {{ text.translation }}
-                        </p>
-                        <div class="rounded-lg border p-2" v-if="!loaded">
-                            <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
-                            <div class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</div>
-                            <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
-                            <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
-                        </div>
+                    <div v-for="translation, key in word.translation" class="italic ">{{ translation.title }}{{ key <
+                        word.translation.length - 1 ? ', ' : '' }}</div>
+                            <div v-for="text, key in texts"
+                                class="text-base leading-relaxed text-gray-500 relative dark:text-gray-400 border-gray-200 border p-2 rounded-lg">
+                                <p>
+                                    {{ text.content }}
+                                </p>
+                                <p class="italic">
+                                    {{ text.translation }}
+                                </p>
+                                <div v-if="text.audio_link" class="absolute top-4 right-4 mt-2 mr-2">
+                                    <AudioButton :audio_link="text.audio_link" />
+                                </div>
+                            </div>
+                            <div class="rounded-lg border p-2 x" v-if="!loaded">
+                                <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
+                                <div class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</div>
+                                <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
+                                <p class="text-gray-500 mt-2  animate-pulse bg-gray-200 w-full rounded-full">&nbsp;</p>
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
+import AudioButton from './AudioButton.vue'
 import axios from 'axios';
 export default {
     name: "TranslationModal",
     props: {
         word: Object
+    },
+    components: {
+        AudioButton
     },
     data() {
         return {
@@ -67,7 +77,7 @@ export default {
 
         this.openButton.addEventListener('click', () => this.open());
         this.closeButton.addEventListener('click', () => this.modal.hide());
-        
+
         this.styleBodyWhenOpen()
     },
     methods: {
