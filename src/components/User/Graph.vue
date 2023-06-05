@@ -1,15 +1,25 @@
 <template>
     <div class="flex">
-        <div v-for="month in months" >
-            <span v-text="getMonthName(month[0][0])"></span>
-            <div class="flex">
-                <div v-for="(week, index) in month" :key="index" class="flex flex-col">
-                    <GraphDay v-for="day in week" :key="day.date" :day="day" />
+        <div class="flex">
+            <div v-for="month in months">
+                <span v-text="getMonthName(month[0][0])"></span>
+                <div class="flex">
+                    <div v-for="(week, index) in month" :key="index" class="flex flex-col">
+                        <GraphDay v-for="day in week" :key="day.date" :day="day" />
+                    </div>
                 </div>
+
             </div>
-
         </div>
-
+        <div class="flex flex-col text-sm pt-6 text-right ml-5">
+            <div>Mn</div>
+            <div>Tu</div>
+            <div>Wd</div>
+            <div>Th</div>
+            <div>Fr</div>
+            <div>St</div>
+            <div>Sn</div>
+        </div>
     </div>
 </template>
   
@@ -74,7 +84,7 @@ export default {
         getMonthName(day) {
             const date = new Date(day.date);
             return date.toLocaleString('default', { month: 'short' });
-        },  
+        },
         getWeekNumber(date) {
             // Create a new Date object from the provided date
             const d = new Date(date);
