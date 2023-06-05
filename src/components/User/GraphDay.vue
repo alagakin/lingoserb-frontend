@@ -1,13 +1,15 @@
 <template>
-    <div :class="classes" class="rounded-sm w-4 h-4 cursor-pointer" ref="daycell"></div>
+    <div class="flex items-center justify-center w-5 h-5 relative">
+        <div :class="classes" class="rounded-sm w-4 h-4 cursor-pointer" ref="daycell"></div>
 
-    <div :style="{ opacity: captureOpacity }" style="z-index: 10000;"
-        class="absolute top-full left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity duration-300 bg-gray-800 text-white text-xs px-1 py-0.5 rounded whitespace-nowrap pointer-events-none">
-        {{ day.date }}
-        <br>
-        <b>Lessons:</b> <span v-text="day.lessons_cnt"></span>
-        <br>
-        <b>Words:</b> <span v-text="day.words_cnt"></span>
+        <div :style="{ opacity: captureOpacity }" style="z-index: 10000;"
+            class="absolute top-full left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity duration-300 bg-gray-800 text-white text-xs px-1 py-0.5 rounded whitespace-nowrap pointer-events-none">
+            {{ day.date }}
+            <br>
+            <b>Lessons:</b> <span v-text="day.lessons_cnt"></span>
+            <br>
+            <b>Words:</b> <span v-text="day.words_cnt"></span>
+        </div>
     </div>
 </template>
   

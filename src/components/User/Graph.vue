@@ -1,10 +1,15 @@
 <template>
     <div class="flex">
-        <div v-for="(week, index) in weeks" :key="index" class="flex flex-col">
-            <div v-for="day in week" :key="day.date" class="flex items-center justify-center w-5 h-5 relative">
-                <GraphDay :day="day" />
+        <div v-for="month in months" >
+            <span v-text="getMonthName(month[0][0])"></span>
+            <div class="flex">
+                <div v-for="(week, index) in month" :key="index" class="flex flex-col">
+                    <GraphDay v-for="day in week" :key="day.date" :day="day" />
+                </div>
             </div>
+
         </div>
+
     </div>
 </template>
   
@@ -66,7 +71,10 @@ export default {
         }
     },
     methods: {
-       
+        getMonthName(day) {
+            const date = new Date(day.date);
+            return date.toLocaleString('default', { month: 'short' });
+        },  
         getWeekNumber(date) {
             // Create a new Date object from the provided date
             const d = new Date(date);
@@ -80,11 +88,11 @@ export default {
         fetchData() {
             axios.get(this.$store.getters.getLearningEndpoint + "graph/", { headers: { Authorization: `Token ${this.$store.getters.getToken}` } })
                 .then(response => {
-                Object.keys(response.data).forEach(key => {
-                    const value = response.data[key];
-                    this.days.unshift(value);
+                    Object.keys(response.data).forEach(key => {
+                        const value = response.data[key];
+                        this.days.unshift(value);
+                    });
                 });
-            });
         }
     },
     mounted() {
