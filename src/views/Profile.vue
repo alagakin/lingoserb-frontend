@@ -1,12 +1,13 @@
 <template>
-  <div class="flex justify-between">
-    <div class="w-2/3">
+  <div class="flex justify-between flex-wrap m-auto max-w-6xl">
+    <div class="mb-4">
       <ProfileInfo />
-      <Graph />
     </div>
-    <div class="w-1/3">
+    <div class="mb-8">
       <AchievementsList />
-
+    </div>
+    <div>
+      <Graph />
     </div>
   </div>
 </template>
