@@ -1,12 +1,13 @@
 <template>
   <div class="flex justify-between">
-    <div>
+    <div class="w-2/3">
       <ProfileInfo />
       <Graph />
     </div>
+    <div class="w-1/3">
+      <AchievementsList />
 
-    <AchievementsList />
-
+    </div>
   </div>
 </template>
 <script>
