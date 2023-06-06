@@ -1,9 +1,12 @@
 <template>
-    <div class="">
+    <div v-if="loaded" class="h-48">
         <h2 class="text-2xl mb-4">Achievements</h2>
         <div class="flex flex-wrap">
             <AchievementItem v-for="achievement in achievements" :key="achievement.id" :achievement="achievement" />
         </div>
+    </div>
+    <div v-else class="w-full h-48 bg-gray-200 animate-pulse rounded-xl">
+
     </div>
 </template>
   
@@ -18,6 +21,7 @@ export default {
             achievements: [
 
             ],
+            loaded: false,
         };
     },
     mounted() {
@@ -32,6 +36,7 @@ export default {
             ).then(response => {
                 this.achievements = response.data
                 this.sortItemsByAchievement();
+                this.loaded = true;
             })
         },
         sortItemsByAchievement() {
