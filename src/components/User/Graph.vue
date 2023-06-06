@@ -11,6 +11,7 @@
 
             </div>
         </div>
+
         <div class="flex flex-col text-sm pt-6 text-right ml-5">
             <div>Mn</div>
             <div>Tu</div>
@@ -31,8 +32,12 @@ export default {
     name: "Graph",
     data() {
         return {
-            days: []
+            days: [],
+            loaded: false
         };
+    },
+    created() {
+        this.fillDaysArray();
     },
     computed: {
         months() {
@@ -98,11 +103,26 @@ export default {
         fetchData() {
             axios.get(this.$store.getters.getLearningEndpoint + "graph/", { headers: { Authorization: `Token ${this.$store.getters.getToken}` } })
                 .then(response => {
+                    this.days = []
                     Object.keys(response.data).forEach(key => {
                         const value = response.data[key];
                         this.days.unshift(value);
+                        this.loaded = true;
                     });
                 });
+        },
+        fillDaysArray() {
+            const currentDate = new Date();
+            const oneYearAgo = new Date();
+            oneYearAgo.setFullYear(currentDate.getFullYear() - 1);
+
+            const day = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+            let dateIterator = new Date(oneYearAgo);
+
+            while (dateIterator <= currentDate) {
+                this.days.push({ date: new Date(dateIterator) });
+                dateIterator = new Date(dateIterator.getTime() + day);
+            }
         }
     },
     mounted() {
