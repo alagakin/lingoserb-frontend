@@ -1,19 +1,34 @@
 <template>
-    <div class="w-1/3 mb-12">
-        <h2 class="text-2xl text-center">About me</h2>
-        <div class="text-lg mt-6">
+  <div class="mb-16">
+    <h2 class="text-4xl">About me</h2>
+    <div class="flex text-xl mt-6 justify-between ">
+      <div>
+        <span class="flex items-center justify-center w-24 h-24 rounded-full border-4 border-gray-400 mb-4">
+          <font-awesome-icon :icon="['far', 'user']" size="xl" class="text-gray-400 text-6xl" />
+        </span>
+        <div>
           <p>Name</p>
           <p>Joined at ....</p>
           <p>Personal info</p>
           <Logout />
         </div>
       </div>
+      <div>
+
+      </div>
+    </div>
+  </div>
 </template>
   
 <script>
 import Logout from './Logout.vue';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 export default {
-    name: 'ProfileInfo',
-    components: { Logout }
+  name: 'ProfileInfo',
+  components: { Logout },
+  beforeMount() {
+    library.add(faUser);
+  },
 };
 </script>

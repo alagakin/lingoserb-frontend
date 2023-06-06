@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-between flex-wrap m-auto max-w-6xl">
-    <div class="mb-4">
+    <div class="mb-4 w-full">
       <ProfileInfo />
     </div>
-    <div class="mb-8">
+    <div class="mb-8 w-full">
       <AchievementsList />
     </div>
     <div>
