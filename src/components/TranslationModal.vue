@@ -1,5 +1,6 @@
 <template>
-    <h3 ref="openButton" class="text-xl italic hover:no-underline mb-2 cursor-pointer underline">{{ word.title }}</h3>
+    <h3 ref="openButton" class="text-xl italic hover:no-underline mb-2 cursor-pointer underline"
+        :class="{ 'opacity-50': skipped }">{{ word.title }}</h3>
 
     <div ref="modal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -56,7 +57,14 @@ import axios from 'axios';
 export default {
     name: "TranslationModal",
     props: {
-        word: Object
+        word: {
+            type: Object,
+            required: true
+        },
+        skipped: {
+            type: Boolean,
+            required: false
+        }
     },
     components: {
         AudioButton

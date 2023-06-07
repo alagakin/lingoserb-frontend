@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
-      <DictCard v-for="item in items" :word="item" :key="item.id"/>
+      <DictCard v-for="item in items" :word="item" :key="item.id" :skipped="item.skipped"/>
       <DictCardSkeleton v-show="isLoading" v-for="index in limit" :key="index" />
     </div>
   </div>
@@ -62,6 +62,8 @@ export default {
           if (response.data.results?.length) {
             this.offset += this.limit
             response.data.results.forEach((item) => {
+              let skipped = item.skipped
+              item['word'].skipped = skipped
               this.items.push(item['word'])
             })
           } else {
