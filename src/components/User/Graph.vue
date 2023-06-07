@@ -25,7 +25,6 @@
 </template>
   
 <script>
-import axios from 'axios';
 import GraphDay from './GraphDay.vue';
 
 export default {
@@ -35,6 +34,12 @@ export default {
             days: [],
             loaded: false
         };
+    },
+    props: {
+        stats: {
+            type: Object,
+            required: true
+        }
     },
     created() {
         this.fillDaysArray();
@@ -100,17 +105,7 @@ export default {
             const weekNumber = Math.ceil((((d - new Date(year, 0, 1)) / 86400000) + 1) / 7);
             return weekNumber;
         },
-        fetchData() {
-            axios.get(this.$store.getters.getLearningEndpoint + "graph/", { headers: { Authorization: `Token ${this.$store.getters.getToken}` } })
-                .then(response => {
-                    this.days = []
-                    Object.keys(response.data).forEach(key => {
-                        const value = response.data[key];
-                        this.days.unshift(value);
-                        this.loaded = true;
-                    });
-                });
-        },
+       
         fillDaysArray() {
             const currentDate = new Date();
             const oneYearAgo = new Date();
@@ -125,8 +120,18 @@ export default {
             }
         }
     },
-    mounted() {
-        this.fetchData();
+    watch: {
+        stats: {
+            handler() {
+                this.days = []
+                Object.keys(this.stats).forEach(key => {
+                    const value = this.stats[key];
+                    this.days.unshift(value);
+                    this.loaded = true;
+                });
+            },
+            deep: false
+        }
     },
     components: { GraphDay }
 };

@@ -6,9 +6,6 @@
 </template>
   
 <script>
-import axios from 'axios';
-
-
 export default {
     name: "Chart",
     data() {
@@ -16,29 +13,31 @@ export default {
             items: {},
         };
     },
-    mounted() {
-        this.fetchData();
+    props: {
+        stats: {
+            type: Object,
+            required: true
+        }
     },
-    methods: {
-        fetchData() {
-            axios.get(this.$store.getters.getLearningEndpoint + "graph/", { headers: { Authorization: `Token ${this.$store.getters.getToken}` } })
-                .then(response => {
-                    let count = 0;
-                    let res = {}
-                    Object.keys(response.data).forEach(key => {
-                        if (count < 30) {
-                            const value = response.data[key];
-                            res[value.date] = value.lessons_cnt;
-                            count++;
-                        }
-                    });
-                    this.loaded = true;
-                    this.items = res
-                });
-        },
-        sortItemsByAchievement() {
 
-        },
-    }
+    watch: {
+        stats: {
+            handler() {
+                let res = {};
+                let count = 0;
+                Object.keys(this.stats).forEach(key => {
+                    if (count < 30) {
+                        const value = this.stats[key];
+                        res[value.date] = value.lessons_cnt;
+                        count++;
+                    }
+                });
+                this.loaded = true;
+                this.items = res;
+            },
+            deep: false
+        }
+    },
+
 };
 </script>
