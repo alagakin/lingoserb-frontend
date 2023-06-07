@@ -1,6 +1,6 @@
 <template>
   <div class="mb-16">
-    <h2 class="text-4xl">About me</h2>
+    <h2 class="text-2xl">About me</h2>
     <div class="flex text-xl mt-6 justify-between ">
       <div>
         <span class="flex items-center justify-center w-24 h-24 rounded-full border-4 border-gray-400 mb-4">

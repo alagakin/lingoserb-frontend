@@ -4,6 +4,8 @@ import router from './router'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import store from './store'; // Import the Vuex store
 import VueSplide from '@splidejs/vue-splide';
+import VueChartkick from 'vue-chartkick'
+import 'chartkick/chart.js'
 
 const token = localStorage.getItem('token');
 
@@ -14,6 +16,7 @@ if (token) {
 
 const app = createApp(App)
 
+app.use(VueChartkick)
 app.use(VueSplide)
 app.use(router)
 app.use(store)
