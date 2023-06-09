@@ -53,7 +53,7 @@ export default {
         }
       ).then(response => {
         if (response.data) {
-          this.$store.commit('setProfile', response.data)
+          this.$store.commit('setUserProfile', response.data)
         }
       })
     }

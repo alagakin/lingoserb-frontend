@@ -1,12 +1,9 @@
 <template>
-    <!-- <div class="mr-4">
-        <select class="p-2 border border-gray-300 rounded">
-            <option value="en">English</option>
-            <option value="es">Русский</option>
-        </select>
-    </div> -->
-    <router-link v-if="this.$store.getters.isAuthenticated" :to="{name: 'Profile'}" class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-400">
-        <font-awesome-icon :icon="['far', 'user']" size="xl" class="text-gray-400 text-2xl"/>
+    <router-link v-if="this.$store.getters.isAuthenticated" :to="{ name: 'Profile' }"
+        class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-400">
+        <img :src="getUserProfile?.picture" alt="" v-if="getUserProfile?.picture"
+            class="rounded-full w-10 h-auto">
+        <font-awesome-icon v-else :icon="['far', 'user']" size="xl" class="text-gray-400 text-2xl" />
     </router-link>
 
     <Login v-if="!this.$store.getters.isAuthenticated" />
@@ -17,6 +14,7 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 
 import Login from './Login.vue'
 import Logout from './Logout.vue'
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'HeaderPersonal',
@@ -24,6 +22,8 @@ export default {
     beforeMount() {
         library.add(faUser);
     },
-    
+    computed: {
+        ...mapGetters(['getUserProfile'])
+    },
 }
 </script>
