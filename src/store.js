@@ -11,8 +11,8 @@ const apiModule = {
         token: false,
         authenticated: false,
         savedIds: [],
-        progress: {}
-
+        progress: {},
+        profile: {},
     },
     mutations: {
         setToken(state, payload) {
@@ -30,6 +30,9 @@ const apiModule = {
         },
         setProgress(state, payload) {
             state.progress = payload
+        },
+        setProfile(state, payload) {
+            state.profile = payload
         }
     },
     actions: {
@@ -54,6 +57,7 @@ const apiModule = {
         getProgress: (state) => state.progress,
         getAchievementsEndpoint: (state) => state.domain + '/api/v1/achievements/',
         getLearningEndpoint: (state) => state.domain + '/api/v1/learning/',
+        getProfileEndpoint: (state) => state.domain + '/api/v1/acconunts/profile/',
     },
 };
 

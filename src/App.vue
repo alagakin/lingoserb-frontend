@@ -45,11 +45,23 @@ export default {
           this.$store.commit('setProgress', progress)
         }
       })
+    },
+    getProfile() {
+      axios.get(this.$store.getters.getProfileEndpoint,
+        {
+          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+        }
+      ).then(response => {
+        if (response.data) {
+          this.$store.commit('setProfile', response.data)
+        }
+      })
     }
   },
   created() {
     this.setSaved()
     this.setProgress()
+    this.getProfile()
   }
 }
 </script>
