@@ -32,6 +32,9 @@ const mutations = {
     },
     setUserProfile(state, payload) {
         state.userProfile = payload
+    },
+    setUserPicture(state, payload) {
+        state.userProfile.picture = payload
     }
 };
 
