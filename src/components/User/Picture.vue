@@ -1,9 +1,11 @@
 <template>
     <span class="flex items-center justify-center w-36 h-36 rounded-full border-4 border-gray-400 mb-4">
-        <font-awesome-icon :icon="['far', 'user']" size="xl" class="text-gray-400 text-6xl" v-if="!getUserProfile" />
-        <img @click="openFileManager" :src="getUserProfile?.picture" alt="" v-else
-            class="cursor-pointer rounded-full w-full h-full object-cover ">
-        <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleFileChange">
+        <div class="w-full h-full rounded-full overflow-hidden flex cursor-pointer" @click="openFileManager">
+            <font-awesome-icon :icon="['far', 'user']" size="xl" class="w-24 h-24 m-auto text-gray-400 text-6xl" v-if="!getUserProfile.picture" />
+            <img  :src="getUserProfile?.picture" alt="" v-else
+                class="rounded-full w-full h-full object-cover ">
+            <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleFileChange">
+        </div>
     </span>
 </template>
   
