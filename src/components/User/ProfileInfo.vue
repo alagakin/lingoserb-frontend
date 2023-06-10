@@ -3,14 +3,12 @@
     <h2 class="text-2xl">About me</h2>
     <div class="flex text-xl mt-6 justify-between ">
       <div>
-        <span class="flex items-center justify-center w-24 h-24 rounded-full border-4 border-gray-400 mb-4">
+        <span class="flex items-center justify-center w-36 h-36 rounded-full border-4 border-gray-400 mb-4">
           <font-awesome-icon :icon="['far', 'user']" size="xl" class="text-gray-400 text-6xl" v-if="!getUserProfile" />
-          <img :src="getUserProfile?.picture" alt="" v-else class="rounded-full w-24 h-24 ">
+          <img :src="getUserProfile?.picture" alt="" v-else class="rounded-full w-full h-full object-cover ">
         </span>
         <div>
-          <p>Name</p>
-          <p>Joined at ....</p>
-          <p>Personal info</p>
+          <p>Edit profile</p>
           <Logout />
         </div>
       </div>
