@@ -24,7 +24,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheckCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import axios from 'axios';
 export default {
     name: 'AchievementItem',
     beforeMount() {

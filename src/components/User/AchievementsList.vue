@@ -1,13 +1,21 @@
 <template>
-    <div v-if="loaded" class="h-48">
-        <h2 class="text-2xl mb-4">Achievements</h2>
-        <div class="flex flex-wrap">
-            <AchievementItem v-for="achievement in achievements" :key="achievement.id" :achievement="achievement" />
-        </div>
+    <div v-if="loaded" class="h-72">
+        <template v-if="achievedAchievements">
+            <h2 class="text-2xl mb-4">Completed</h2>
+            <div class="flex flex-wrap mb-4">
+                <AchievementItem v-for="achievement in achievedAchievements" :key="achievement.id"
+                    :achievement="achievement" />
+            </div>
+        </template>
+        <template v-if="notAchievedAchievements">
+            <h2 class="text-2xl mb-4">Not completed</h2>
+            <div class="flex flex-wrap">
+                <AchievementItem v-for="achievement in notAchievedAchievements" :key="achievement.id"
+                    :achievement="achievement" />
+            </div>
+        </template>
     </div>
-    <div v-else class="w-full h-48 bg-gray-200 animate-pulse rounded-xl">
-
-    </div>
+    <div v-else class="w-full h-72 bg-gray-200 animate-pulse rounded-xl"></div>
 </template>
   
 <script>
@@ -26,6 +34,14 @@ export default {
     },
     mounted() {
         this.getAchievements();
+    },
+    computed: {
+        achievedAchievements() {
+            return this.achievements.filter(achievement => achievement.achieved);
+        },
+        notAchievedAchievements() {
+            return this.achievements.filter(achievement => !achievement.achieved);
+        },
     },
     methods: {
         getAchievements() {
