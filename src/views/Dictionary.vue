@@ -25,6 +25,7 @@ export default {
       page: 1,
       limit: 24,
       offset: 0,
+      filters: {},
       end: false,
       next: false,
       items: []
@@ -43,7 +44,8 @@ export default {
       this.offset = 0
       this.end = false
       this.isLoading = false
-      this.loadMoreContent(filter)
+      this.filters = filter
+      this.loadMoreContent()
     },
     handleScroll() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
@@ -57,7 +59,7 @@ export default {
         this.loadMoreContent();
       }
     },
-    loadMoreContent(filters = {}) {
+    loadMoreContent() {
       if (this.end) {
         return
       }
@@ -68,7 +70,7 @@ export default {
           params: {
             offset: this.offset,
             limit: this.limit,
-            ...filters
+            ...this.filters
           }
         }
       ).then(response => {

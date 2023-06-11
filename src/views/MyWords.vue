@@ -27,6 +27,7 @@ export default {
       offset: 0,
       end: false,
       next: false,
+      filters: {},
       items: [],
     };
   },
@@ -43,11 +44,12 @@ export default {
       this.offset = 0
       this.end = false
       this.isLoading = false
-      this.loadMoreContent(filter)
+      this.filters = filter 
+      this.loadMoreContent()
     },
 
 
-    loadMoreContent(filters = {}) {
+    loadMoreContent() {
       if (this.end) {
         return
       }
@@ -59,7 +61,7 @@ export default {
           params: {
             offset: this.offset,
             limit: this.limit,
-            ...filters
+            ...this.filters
           }
         }
       ).then(response => {
