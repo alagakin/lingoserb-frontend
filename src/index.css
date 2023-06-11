@@ -5,3 +5,6 @@
 .overflow-hidden {
     padding-right: var(--paddingRight);
 }
+body {
+    overflow-y: scroll
+}
