@@ -35,6 +35,9 @@ const mutations = {
     },
     setUserPicture(state, payload) {
         state.userProfile.picture = payload
+    },
+    setUserLang(state, payload) {
+        state.userProfile.lang = payload
     }
 };
 

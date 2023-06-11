@@ -1,4 +1,5 @@
 <template>
+    <Language />
     <router-link v-if="this.$store.getters.isAuthenticated" :to="{ name: 'Profile' }"
         class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-400">
         <img :src="getUserProfile?.picture" alt="" v-if="getUserProfile?.picture"
@@ -15,10 +16,11 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import Login from './Login.vue'
 import Logout from './Logout.vue'
 import { mapGetters } from 'vuex';
+import Language from './Language.vue';
 
 export default {
     name: 'HeaderPersonal',
-    components: { Login, Logout },
+    components: { Login, Logout, Language },
     beforeMount() {
         library.add(faUser);
     },
