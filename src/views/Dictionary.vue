@@ -1,20 +1,24 @@
 <template>
+  <Filter @filter="filter" :use="{topics: true}" />
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
       <DictCard v-for="item in items" :word="item" :key="item.id"/>
       <DictCardSkeleton v-show="isLoading" v-for="index in limit" :key="index" />
     </div>
+    <Empty v-show="!isLoading && !items.length" />
   </div>
 </template>
 <script>
 import axios from 'axios';
 import DictCard from '../components/DictCard.vue';
 import DictCardSkeleton from '../components/DictCardSkeleton.vue';
+import Filter from '../components/Filter.vue';
+import Empty from '../components/Empty.vue';
 
 export default {
   name: "CardPage",
 
-  components: { DictCard, DictCardSkeleton },
+  components: { DictCard, DictCardSkeleton, Filter, Empty },
   data() {
     return {
       isLoading: false,
@@ -34,6 +38,13 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    filter(filter) {
+      this.items = []
+      this.offset = 0
+      this.end = false
+      this.isLoading = false
+      this.loadMoreContent(filter)
+    },
     handleScroll() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
       const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -46,7 +57,7 @@ export default {
         this.loadMoreContent();
       }
     },
-    loadMoreContent() {
+    loadMoreContent(filters = {}) {
       if (this.end) {
         return
       }
@@ -56,7 +67,8 @@ export default {
           headers: { Authorization: `Token ${this.$store.getters.getToken}` },
           params: {
             offset: this.offset,
-            limit: this.limit
+            limit: this.limit,
+            ...filters
           }
         }
       ).then(response => {

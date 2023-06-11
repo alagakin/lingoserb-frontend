@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-5xl m-auto">
-    <ProgressFilter @filter="filterProgress" ref="progress" />
-    <TopicFilter @filter="filterTopics" ref="topics" />
+    <ProgressFilter @filter="filterProgress" ref="progress" v-if="use.progress"  />
+    <TopicFilter @filter="filterTopics" ref="topics" v-if="use.topics" />
     <div class="flex justify-end mb-2" v-show="filter.progress || filter.topics">
       <button class="bg-red-400 pt-1 pb-1 pl-2 pr-2 rounded-xl text-white" @click="clear">
         clear
@@ -18,6 +18,17 @@ import TopicFilter from './TopicFilter.vue';
 export default {
   name: "Filter",
   components: { ProgressFilter, TopicFilter },
+  props: {
+    use: {
+      type: Object,
+      default: () => {
+        return {
+          topics: true,
+          progress: true
+        }
+      }
+    }
+  },
   data() {
     return {
       filter: {
@@ -37,10 +48,14 @@ export default {
       this.$emit('filter', this.filter)
     },
     clear() {
-      this.$refs.topics.clear()
-      this.$refs.progress.clear()
-      this.filter.topics = ''
-      this.filter.progress = ''
+      if (this.use.progress){
+        this.$refs.progress.clear()
+        this.filter.progress = ''
+      }
+      if (this.use.topics){
+        this.$refs.topics.clear()
+        this.filter.topics = ''
+      }
       this.$emit('filter', this.filter)
     }
   }

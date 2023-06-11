@@ -28,8 +28,6 @@ export default {
       end: false,
       next: false,
       items: [],
-      topics: '',
-      progress: '',
     };
   },
   mounted() {
