@@ -27,6 +27,7 @@ export default {
     data() {
         return {
             progressList: [
+                {title: '0%', value: 0},
                 {title: '20%', value: 20},
                 {title: '40%', value: 40},
                 {title: '60%', value: 60},
