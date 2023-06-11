@@ -1,12 +1,12 @@
 <template>
-    <span class="flex items-center justify-center w-36 h-36 rounded-full border-4 border-gray-400 mb-4">
-        <div class="w-full h-full rounded-full overflow-hidden flex cursor-pointer" @click="openFileManager">
-            <font-awesome-icon :icon="['far', 'user']" size="xl" class="w-24 h-24 m-auto text-gray-400 text-6xl" v-if="!getUserProfile.picture" />
-            <img  :src="getUserProfile?.picture" alt="" v-else
+    <div class="flex items-center justify-center w-36 h-36 rounded-full border-4 border-gray-400 mb-4">
+        <div class="w-full h-full rounded-full overflow-hidden flex cursor-pointer p-0" @click="openFileManager">
+            <font-awesome-icon :icon="['far', 'user']" size="xl" class="w-24 h-24 m-auto text-gray-400 text-6xl" v-show="!getUserProfile.picture" />
+            <img  :src="getUserProfile?.picture" alt="" v-show="getUserProfile.picture"
                 class="rounded-full w-full h-full object-cover ">
             <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleFileChange">
         </div>
-    </span>
+    </div>
 </template>
   
 <script>

@@ -4,8 +4,7 @@
     <div class="flex text-xl mt-6 justify-between ">
       <div>
         <Picture />
-        <div>
-          <p>Edit profile</p>
+        <div class="text-center">
           <Logout />
         </div>
       </div>
