@@ -59,6 +59,8 @@ const getters = {
     getLearningEndpoint: (state) => state.domain + '/api/v1/learning/',
     getProfileEndpoint: (state) => state.domain + '/api/v1/acconunts/profile/',
     getUserProfile: (state) => state.userProfile,
+    getSubtopics: (state) => state.domain + '/api/v1/subtopic/',
+
 }
 
 

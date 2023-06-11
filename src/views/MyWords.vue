@@ -1,5 +1,9 @@
 <template>
-  <div class="flex justify-center">
+  <div class="max-w-5xl m-auto">
+    <TopicFilter @filter="filterTopics" />
+
+  </div>
+  <div class="flex justify-center ">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
       <DictCard v-for="item in items" :word="item" :key="item.id" :skipped="item.skipped"/>
       <DictCardSkeleton v-show="isLoading" v-for="index in limit" :key="index" />
@@ -10,10 +14,11 @@
 import axios from 'axios';
 import DictCard from '../components/DictCard.vue';
 import DictCardSkeleton from '../components/DictCardSkeleton.vue';
+import TopicFilter from '../components/TopicFilter.vue';
 export default {
   name: "MyWords",
 
-  components: { DictCard, DictCardSkeleton },
+  components: { DictCard, DictCardSkeleton, TopicFilter },
   data() {
     return {
       isLoading: false,
@@ -22,7 +27,8 @@ export default {
       offset: 0,
       end: false,
       next: false,
-      items: []
+      items: [],
+      topics: ''
     };
   },
   mounted() {
@@ -33,6 +39,19 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    filterTopics (topicsIds) {
+      this.topics = topicsIds.join(',')
+      this.restoreData()
+      this.loadMoreContent()
+    },
+    restoreData() {
+      this.isLoading = false
+      this.page = 1
+      this.offset = 0
+      this.end = false
+      this.next = false
+      this.items = []
+    },
     handleScroll() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
       const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -55,7 +74,8 @@ export default {
           headers: { Authorization: `Token ${this.$store.getters.getToken}` },
           params: {
             offset: this.offset,
-            limit: this.limit
+            limit: this.limit,
+            topics: this.topics
           }
         }
       ).then(response => {
