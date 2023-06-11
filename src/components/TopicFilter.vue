@@ -1,5 +1,5 @@
 <template>
-    <div class="flex mb-6">
+    <div class="flex mb-2">
         <span class="p-2">Topics: </span>
         <ul class=" text-sm flex">
             <li class="flex items-center mr-4" v-for="subtopic in subtopics">

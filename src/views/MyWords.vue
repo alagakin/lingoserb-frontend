@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-5xl m-auto">
+    <ProgressFilter @filter="filterProgress" />
     <TopicFilter @filter="filterTopics" />
-
   </div>
   <div class="flex justify-center ">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
@@ -15,10 +15,11 @@ import axios from 'axios';
 import DictCard from '../components/DictCard.vue';
 import DictCardSkeleton from '../components/DictCardSkeleton.vue';
 import TopicFilter from '../components/TopicFilter.vue';
+import ProgressFilter from '../components/ProgressFilter.vue';
 export default {
   name: "MyWords",
 
-  components: { DictCard, DictCardSkeleton, TopicFilter },
+  components: { DictCard, DictCardSkeleton, TopicFilter, ProgressFilter },
   data() {
     return {
       isLoading: false,
@@ -28,7 +29,8 @@ export default {
       end: false,
       next: false,
       items: [],
-      topics: ''
+      topics: '',
+      progress: ''
     };
   },
   mounted() {
@@ -41,6 +43,11 @@ export default {
   methods: {
     filterTopics (topicsIds) {
       this.topics = topicsIds.join(',')
+      this.restoreData()
+      this.loadMoreContent()
+    },
+    filterProgress (progress) {
+      this.progress = progress.join(',')
       this.restoreData()
       this.loadMoreContent()
     },
@@ -75,7 +82,8 @@ export default {
           params: {
             offset: this.offset,
             limit: this.limit,
-            topics: this.topics
+            topics: this.topics,
+            learned: this.progress
           }
         }
       ).then(response => {
