@@ -1,7 +1,12 @@
 <template>
   <div class="max-w-5xl m-auto">
-    <ProgressFilter @filter="filterProgress" />
-    <TopicFilter @filter="filterTopics" />
+    <ProgressFilter @filter="filterProgress" ref="progress"/>
+    <TopicFilter @filter="filterTopics" ref="topics"/>
+    <div class="flex justify-end mb-2" v-show="progress || topics">
+      <button class="bg-red-400 pt-1 pb-1 pl-2 pr-2 rounded-xl text-white" @click="clear">
+        clear
+      </button>
+    </div>
   </div>
   <div class="flex justify-center ">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
@@ -41,6 +46,14 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    clear() {
+      this.topics = ''
+      this.progress = ''
+      this.$refs.topics.clear()
+      this.$refs.progress.clear()
+      this.restoreData()
+      this.loadMoreContent()
+    },
     filterTopics (topicsIds) {
       this.topics = topicsIds.join(',')
       this.restoreData()
