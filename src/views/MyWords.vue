@@ -13,6 +13,7 @@
       <DictCard v-for="item in items" :word="item" :key="item.id" :skipped="item.skipped"/>
       <DictCardSkeleton v-show="isLoading" v-for="index in limit" :key="index" />
     </div>
+    <Empty v-show="!isLoading && !items.length" />
   </div>
 </template>
 <script>
@@ -21,10 +22,10 @@ import DictCard from '../components/DictCard.vue';
 import DictCardSkeleton from '../components/DictCardSkeleton.vue';
 import TopicFilter from '../components/TopicFilter.vue';
 import ProgressFilter from '../components/ProgressFilter.vue';
+import Empty from '../components/Empty.vue';
 export default {
   name: "MyWords",
-
-  components: { DictCard, DictCardSkeleton, TopicFilter, ProgressFilter },
+  components: { DictCard, DictCardSkeleton, TopicFilter, ProgressFilter, Empty },
   data() {
     return {
       isLoading: false,
