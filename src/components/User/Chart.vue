@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="text-2xl mb-4">Lessons</h2>
+        <h2 class="text-2xl mb-4">{{ $t("profile.lessons.title") }}</h2>
         <area-chart width="800px" :data="items" :colors="['#31c48d']"></area-chart>
     </div>
 </template>

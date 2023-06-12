@@ -1,14 +1,14 @@
 <template>
     <div v-if="loaded" class="h-72">
         <template v-if="achievedAchievements">
-            <h2 class="text-2xl mb-4">Completed</h2>
+            <h2 class="text-2xl mb-4">{{ $t('profile.achievements.completed') }}</h2>
             <div class="flex flex-wrap mb-4">
                 <AchievementItem v-for="achievement in achievedAchievements" :key="achievement.id"
                     :achievement="achievement" />
             </div>
         </template>
         <template v-if="notAchievedAchievements">
-            <h2 class="text-2xl mb-4">Not completed</h2>
+            <h2 class="text-2xl mb-4">{{ $t('profile.achievements.not_completed') }}</h2>
             <div class="flex flex-wrap">
                 <AchievementItem v-for="achievement in notAchievedAchievements" :key="achievement.id"
                     :achievement="achievement" />

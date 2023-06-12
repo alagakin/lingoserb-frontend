@@ -13,13 +13,13 @@
         </div>
 
         <div class="flex flex-col text-sm pt-6 text-right ml-5">
-            <div>Mn</div>
-            <div>Tu</div>
-            <div>Wd</div>
-            <div>Th</div>
-            <div>Fr</div>
-            <div>St</div>
-            <div>Sn</div>
+            <div>{{ $t('days.monday.short') }}</div>
+            <div>{{ $t('days.tuesday.short') }}</div>
+            <div>{{ $t('days.wednesday.short') }}</div>
+            <div>{{ $t('days.thursday.short') }}</div>
+            <div>{{ $t('days.friday.short') }}</div>
+            <div>{{ $t('days.saturday.short') }}</div>
+            <div>{{ $t('days.sunday.short') }}</div>
         </div>
     </div>
 </template>
@@ -93,6 +93,9 @@ export default {
     methods: {
         getMonthName(day) {
             const date = new Date(day.date);
+            if (this.$i18n.locale === 'ru') {
+                return date.toLocaleString('ru-RU', { month: 'short' });
+            }
             return date.toLocaleString('default', { month: 'short' });
         },
         getWeekNumber(date) {

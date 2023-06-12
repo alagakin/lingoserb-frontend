@@ -3,5 +3,50 @@
         "home": "Главная",
         "dictionary": "Словарь",
         "myWords": "Мои слова"
+    },
+    "auth": {
+        "logout": "Выход"
+    },
+    "profile": {
+        "about": {
+            "title": "Информация"
+        },
+        "lessons": {
+            "title": "Уроки"
+        },
+        "achievements": {
+            "completed": "Полученные",
+            "not_completed": "Не полученные"
+        }
+    },
+    "days": {
+        "monday": {
+            "title": "Понедельник",
+            "short": "Пн"
+        },
+        "tuesday": {
+            "title": "Вторник",
+            "short": "Вт"
+        },
+        "wednesday": {
+            "title": "Среда",
+            "short": "Ср"
+        },
+        "thursday": {
+            "title": "Четверг",
+            "short": "Чт"
+        },
+        "friday": {
+            "title": "Пятница",
+            "short": "Пт"
+        },
+        "saturday": {
+            "title": "Суббота",
+            "short": "Сб"
+        },
+        "sunday": {
+            "title": "Воскресенье",
+            "short": "Вс"
+        }
     }
 }

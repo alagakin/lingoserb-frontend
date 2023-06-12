@@ -3,5 +3,50 @@
         "home": "Home",
         "dictionary": "Dictionary",
         "myWords": "My words"
+    },
+    "auth": {
+        "logout": "Logout"
+    },
+    "profile": {
+        "about": {
+            "title": "About me"
+        },
+        "lessons": {
+            "title": "Lessons"
+        },
+        "achievements": {
+            "completed": "Completed",
+            "not_completed": "Not completed"
+        }
+    },
+    "days": {
+        "monday": {
+            "title": "Monday",
+            "short": "Mon"
+        },
+        "tuesday": {
+            "title": "Tuesday",
+            "short": "Tue"
+        },
+        "wednesday": {
+            "title": "Wednesday",
+            "short": "Wed"
+        },
+        "thursday": {
+            "title": "Thursday",
+            "short": "Thu"
+        },
+        "friday": {
+            "title": "Friday",
+            "short": "Fri"
+        },
+        "saturday": {
+            "title": "Saturday",
+            "short": "Sat"
+        },
+        "sunday": {
+            "title": "Sunday",
+            "short": "Sun"
+        }
     }
 }
