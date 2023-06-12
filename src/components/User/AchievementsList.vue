@@ -47,7 +47,9 @@ export default {
         getAchievements() {
             axios.get(this.$store.getters.getAchievementsEndpoint,
                 {
-                    headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+                    headers: { Authorization: `Token ${this.$store.getters.getToken}`,
+                    'Accept-Language': this.$i18n.locale
+                },
                 }
             ).then(response => {
                 this.achievements = response.data

@@ -17,6 +17,10 @@
         "achievements": {
             "completed": "Completed",
             "not_completed": "Not completed"
+        },
+        "graph": {
+            "lessons": "Lessons",
+            "words": "Words"
         }
     },
     "days": {

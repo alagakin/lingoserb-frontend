@@ -6,9 +6,9 @@
             class="absolute top-full left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity duration-300 bg-gray-800 text-white text-xs px-1 py-1 rounded whitespace-nowrap pointer-events-none">
             {{ day.date }}
             <br>
-            <b>Lessons:</b> <span v-text="day.lessons_cnt"></span>
+            <b>{{ $t('profile.graph.lessons') }}:</b> <span v-text="day.lessons_cnt"></span>
             <br>
-            <b>Words:</b> <span v-text="day.words_cnt"></span>
+            <b>{{ $t('profile.graph.words') }}:</b> <span v-text="day.words_cnt"></span>
         </div>
     </div>
 </template>

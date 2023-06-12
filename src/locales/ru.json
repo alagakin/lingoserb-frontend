@@ -17,6 +17,10 @@
         "achievements": {
             "completed": "Полученные",
             "not_completed": "Не полученные"
+        },
+        "graph": {
+            "lessons": "Уроков",
+            "words": "Слов"
         }
     },
     "days": {

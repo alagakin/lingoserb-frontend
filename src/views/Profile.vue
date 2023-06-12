@@ -5,7 +5,7 @@
       <Chart :stats="stats" />
     </div>
     <div class="mb-8 w-full">
-      <AchievementsList />
+      <AchievementsList :key="this.$i18n.locale" />
     </div>
     <div>
       <Graph :stats="stats" />
