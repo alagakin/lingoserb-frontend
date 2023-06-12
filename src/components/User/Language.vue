@@ -25,6 +25,8 @@ export default {
         }
       }).then(response => {
         this.$store.commit('setUserLang', value)
+        this.$i18n.locale = value;
+
       })
     }
   },

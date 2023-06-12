@@ -54,6 +54,7 @@ export default {
       ).then(response => {
         if (response.data) {
           this.$store.commit('setUserProfile', response.data)
+          this.$i18n.locale = response.data.lang
         }
       })
     }

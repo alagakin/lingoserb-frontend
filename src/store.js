@@ -35,9 +35,13 @@ const mutations = {
     },
     setUserPicture(state, payload) {
         state.userProfile.picture = payload
+        if (payload.lang) {
+            localStorage.setItem('lang', payload.lang)
+        }
     },
     setUserLang(state, payload) {
         state.userProfile.lang = payload
+        localStorage.setItem('lang', payload)
     }
 };
 
@@ -65,7 +69,6 @@ const getters = {
     getSubtopics: (state) => state.domain + '/api/v1/subtopic/',
 
 }
-
 
 
 const store = new Vuex.Store({
