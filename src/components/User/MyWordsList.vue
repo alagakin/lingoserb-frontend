@@ -44,7 +44,7 @@ export default {
       this.offset = 0
       this.end = false
       this.isLoading = false
-      this.filters = filter 
+      this.filters = filter
       this.loadMoreContent()
     },
 
@@ -57,7 +57,10 @@ export default {
 
       axios.get(this.$store.getters.getSavedWordsEnpoint,
         {
-          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+          headers: {
+            Authorization: `Token ${this.$store.getters.getToken}`,
+            'Accept-Language': this.$i18n.locale
+          },
           params: {
             offset: this.offset,
             limit: this.limit,

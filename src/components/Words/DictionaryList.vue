@@ -1,8 +1,8 @@
 <template>
-  <Filter @filter="filter" :use="{topics: true}" />
+  <Filter @filter="filter" :use="{ topics: true }" />
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
-      <DictCard v-for="item in items" :word="item" :key="item.id"/>
+      <DictCard v-for="item in items" :word="item" :key="item.id" />
       <DictCardSkeleton v-show="isLoading" v-for="index in limit" :key="index" />
     </div>
     <Empty v-show="!isLoading && !items.length" />
@@ -66,7 +66,10 @@ export default {
       this.isLoading = true
       axios.get(this.$store.getters.getWordsEndpoint,
         {
-          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+          headers: {
+            Authorization: `Token ${this.$store.getters.getToken}`,
+            'Accept-Language': this.$i18n.locale
+          },
           params: {
             offset: this.offset,
             limit: this.limit,
@@ -74,16 +77,16 @@ export default {
           }
         }
       ).then(response => {
-          if (response.data.results?.length) {
-            this.offset += this.limit
-            this.items.push(...response.data.results)
-          } else {
-            this.end = true
-            this.isLoading = false
-            return
-          }
+        if (response.data.results?.length) {
+          this.offset += this.limit
+          this.items.push(...response.data.results)
+        } else {
+          this.end = true
           this.isLoading = false
-        })
+          return
+        }
+        this.isLoading = false
+      })
         .catch(error => {
           this.isLoading = false
           console.log(error)
