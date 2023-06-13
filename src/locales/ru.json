@@ -1,4 +1,14 @@
 {
+    "appname": "Learn Serbian with AI",
+    "dictionary": {
+        "title": "Словарь"
+    }, 
+    "game": {
+        "title": "Игра"
+    },
+    "myWords": {
+        "title": "Мои слова"
+    },
     "header": {
         "home": "Главная",
         "dictionary": "Словарь",
@@ -8,6 +18,7 @@
         "logout": "Выход"
     },
     "profile": {
+        "title": "Личный кабинет",
         "about": {
             "title": "Информация"
         },
@@ -65,5 +76,6 @@
     },
     "learning": {
         "start": "Начать изучение"
-    }
+    },
+    "notFound": "404 Страница не найдена"
 }

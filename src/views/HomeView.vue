@@ -20,6 +20,9 @@ export default {
             return this.$i18n.locale;
         }
     },
+    created() {
+        document.title = this.$t('appname');
+    }
 }
 </script>
 

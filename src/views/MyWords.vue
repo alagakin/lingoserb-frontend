@@ -1,5 +1,5 @@
 <template>
-  <MyWordsList :key="language" />
+    <MyWordsList :key="language" />
 </template>
 <script>
 import MyWordsList from '../components/User/MyWordsList.vue';
@@ -10,6 +10,9 @@ export default {
             return this.$i18n.locale;
         }
     },
-    components: { MyWordsList }
+    components: { MyWordsList },
+    created() {
+        document.title = this.$t('myWords.title');
+    }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <DictionaryList :key="language" />
+    <DictionaryList :key="language" />
 </template>
 <script>
 import DictionaryList from '../components/Words/DictionaryList.vue';
@@ -11,6 +11,9 @@ export default {
             return this.$i18n.locale;
         }
     },
-    components: { DictionaryList }
+    components: { DictionaryList },
+    created() {
+        document.title = this.$t('dictionary.title');
+    }
 }
 </script>

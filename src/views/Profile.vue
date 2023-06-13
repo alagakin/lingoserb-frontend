@@ -37,6 +37,9 @@ export default {
   },
   mounted() {
     this.fetchData();
+  },
+  created() {
+    document.title = this.$t('profile.title');
   }
 }
 </script>

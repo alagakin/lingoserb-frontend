@@ -1,4 +1,14 @@
 {
+    "appname": "Learn Serbian with AI",
+    "dictionary": {
+        "title": "Dictionary"
+    }, 
+    "game": {
+        "title": "Game"
+    },
+    "myWords": {
+        "title": "My words"
+    },
     "header": {
         "home": "Home",
         "dictionary": "Dictionary",
@@ -8,6 +18,7 @@
         "logout": "Logout"
     },
     "profile": {
+        "title": "Profile",
         "about": {
             "title": "About me"
         },
@@ -65,5 +76,6 @@
     },
     "learning": {
         "start": "Start"
-    }
+    },
+    "notFound": "404 Not Found"
 }

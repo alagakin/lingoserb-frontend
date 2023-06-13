@@ -10,5 +10,8 @@
 
 export default {
     name: 'Not found',
+    created() {
+        document.tile = $t('notFound');
+    }
 }
 </script>
