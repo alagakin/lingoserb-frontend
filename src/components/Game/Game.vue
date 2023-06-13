@@ -1,6 +1,6 @@
 <template>
-    <LearningStage :topic-id="this.$route.params.id" @end="startGame" v-if="!game" :items="learningItems"/>
-    <GameStage v-if="game" :topic-id="this.$route.params.id" :gameItems="gameItems"/>
+    <LearningStage :topic-id="this.$route.params.id" @end="startGame" v-if="!game" :items="learningItems" />
+    <GameStage v-if="game" :topic-id="this.$route.params.id" :gameItems="gameItems" />
 </template>
 
 <script>
@@ -27,7 +27,10 @@ export default {
         loadGame() {
             axios.get(this.$store.getters.getLearningEndpoint + `${this.topicId}/` + 'start/',
                 {
-                    headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+                    headers: {
+                        Authorization: `Token ${this.$store.getters.getToken}`,
+                        'Accept-Language': this.$i18n.locale
+                    },
                 }
             ).then(response => {
                 if (response.data) {
@@ -42,7 +45,7 @@ export default {
                     } else {
                         // no game?
                     }
-                } 
+                }
             })
         }
     },
