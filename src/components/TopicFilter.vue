@@ -10,7 +10,7 @@
                             'bg-blue-400': checkedTopics.includes(subtopic.id),
                             'bg-gray-200': !checkedTopics.includes(subtopic.id)
                         }">
-                    {{ subtopic.title }}
+                    {{ getTitle(subtopic) }}
                 </span>
             </li>
         </ul>
@@ -30,15 +30,25 @@ export default {
         }
     },
     methods: {
+        getTitle(topic) {
+            if (topic?.translation[0]?.title) {
+                return topic.translation[0].title;
+            }
+            return topic.title;
+        },
         getTopics() {
             axios.get(this.$store.getters.getSubtopics,
                 {
-                    headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+                    headers: { 
+                        Authorization: `Token ${this.$store.getters.getToken}`,
+                        'Accept-Language': this.$i18n.locale
+                    },
                     params: {
                         limit: 100,
                     }
                 })
                 .then(response => {
+                    console.log(response)
                     if (response?.data?.results) {
                         this.subtopics = response.data.results
                     }
