@@ -4,7 +4,11 @@
         "title": "Dictionary"
     }, 
     "game": {
-        "title": "Game"
+        "title": "Game",
+        "endgame": {
+            "title": "Congratulations!",
+            "description": "Come in a few hours to repeat new words"
+        }
     },
     "myWords": {
         "title": "My words"
