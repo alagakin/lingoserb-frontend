@@ -5,7 +5,7 @@
             слов, а также множество примеров употребления слов.</p>
     </div>
     <div v-else>
-        <TopicsList />
+        <TopicsList :key="language" />
     </div>
 </template>
 
@@ -14,7 +14,12 @@ import TopicsList from '../components/Topic/TopicsList.vue';
 
 export default {
     name: "HomeView",
-    components: { TopicsList }
+    components: { TopicsList },
+    computed: {
+        language() {
+            return this.$i18n.locale;
+        }
+    },
 }
 </script>
 
