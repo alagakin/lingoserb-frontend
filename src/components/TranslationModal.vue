@@ -3,7 +3,7 @@
         :class="{ 'opacity-50': skipped }">{{ word.title }}</h3>
 
     <div ref="modal" tabindex="-1" aria-hidden="true"
-        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(150%)] max-h-full">
         <div class="relative w-full max-w-2xl max-h-full">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
@@ -35,7 +35,7 @@
                                 <p class="italic">
                                     {{ text.translation }}
                                 </p>
-                                <div v-if="text.audio_link" class="absolute top-4 right-4 mt-2 mr-2">
+                                <div v-if="text.audio_link" class="absolute top-0 right-4 mt-2 mr-2">
                                     <AudioButton :audio_link="text.audio_link" />
                                 </div>
                             </div>
@@ -106,10 +106,14 @@ export default {
             }
             axios.get(`${this.$store.getters.getTextForWordEndpoint}${this.word.id}/`,
                 {
-                    headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+                    headers: {
+                        Authorization: `Token ${this.$store.getters.getToken}`,
+                        'Accept-Language': this.$i18n.locale
+                    },
                 }
             ).then(response => {
                 if (response.data) {
+                    console.log(response)
                     this.loaded = true
                     this.texts = response.data.texts
                 }
