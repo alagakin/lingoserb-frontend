@@ -2,10 +2,10 @@
   <DetailTopic :key="language"/>
 </template>
 <script>
-import DetailTopic from './DetailTopic.vue';
+import DetailTopic from '../components/Topic/DetailTopic.vue'
 
 export default {
-  name: 'DetailTopicWrapper',
+  name: 'DetailTopicView',
   components: { DetailTopic },
   computed: {
     language() {

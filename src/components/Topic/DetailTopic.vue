@@ -55,6 +55,9 @@ export default {
     }
   },
   methods: {
+    setPageTitle(topic) {
+      document.title = getTopicTitle(topic)
+    },
     getLocalTitle(topic) {
       return getTopicTitle(topic)
     },
@@ -93,6 +96,7 @@ export default {
       ).then(response => {
         if (response.data) {
           this.topic = response.data
+          this.setPageTitle(this.topic)
         } else {
           return
         }
