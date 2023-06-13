@@ -7,7 +7,7 @@
         <div class="flex flex-wrap" :class="class">
             <span class="text-sm bg-blue-200 rounded-full px-3 py-1 text-gray-700 mr-2 mb-2"
                 v-for="topic in word.topics">
-                {{ topic.title }}
+                {{ getTopicTitle(topic) }}
             </span>
         </div>
      
@@ -46,5 +46,13 @@ export default {
             }
         }
     },
+    methods: {
+        getTopicTitle(topic) {
+            if (topic?.translation[0]?.title) {
+                return topic.translation[0].title;
+            }
+            return topic.title;
+        },
+    }
 }
 </script>
