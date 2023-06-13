@@ -4,7 +4,7 @@
     <TopicFilter @filter="filterTopics" ref="topics" v-if="use.topics" />
     <div class="flex justify-end mb-2" v-show="filter.progress || filter.topics">
       <button class="bg-red-400 pt-1 pb-1 pl-2 pr-2 rounded-xl text-white" @click="clear">
-        clear
+        {{ $t('filter.clear') }}
       </button>
     </div>
   </div>

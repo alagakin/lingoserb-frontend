@@ -57,5 +57,10 @@
         "words": {
             "counter": "Слов: {count}"
         }
+    },
+    "filter": {
+        "clear": "сбросить",
+        "topics": "Темы",
+        "progress": "Прогресс"
     }
 }

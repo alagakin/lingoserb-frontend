@@ -1,6 +1,6 @@
 <template>
     <div class="flex mb-2">
-        <span class="p-2">Topics: </span>
+        <span class="p-2">{{ $t('filter.topics') }}:</span>
         <ul class=" text-sm flex">
             <li class="flex items-center mr-4" v-for="subtopic in subtopics">
                 <span @click="$event => handleChange(subtopic.id)"

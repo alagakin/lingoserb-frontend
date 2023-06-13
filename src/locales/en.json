@@ -57,5 +57,10 @@
         "words": {
             "counter": "Words: {count}"
         }
+    },
+    "filter": {
+        "clear": "clear",
+        "topics": "Topics",
+        "progress": "Progress"
     }
 }
