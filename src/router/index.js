@@ -8,6 +8,10 @@ import store from '../store.js';
 import DetailTopicWrapper from '../components/Topic/DetailTopicWrapper.vue'
 import NotFound from '../views/NotFound.vue'
 import Profile from '../views/Profile.vue'
+
+import i18n from '../i18n.js';
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -82,9 +86,15 @@ const router = createRouter({
     {
       path: '/:catchAll(.*)',
       component: NotFound,
-      name: 'NotFound'
+      name: 'NotFound',
+      meta: {
+        title: i18n.global.t('notFound')
+      }
     },
   ]
 })
-
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'Default Title'; // Set the page title based on the meta field of the route
+  next();
+});
 export default router

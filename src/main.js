@@ -7,7 +7,7 @@ import store from './store'; // Import the Vuex store
 import VueSplide from '@splidejs/vue-splide';
 import VueChartkick from 'vue-chartkick'
 import 'chartkick/chart.js'
-
+import i18n from './i18n.js';
 const token = localStorage.getItem('token');
 
 if (token) {
@@ -17,21 +17,12 @@ if (token) {
 
 const app = createApp(App)
 
-import ru from "@/locales/ru.json";
-import en from "@/locales/en.json";
-
-const locale= localStorage.getItem('lang');
-const i18n = createI18n({
-  locale: locale,
-  fallbackLocale: "en",
-  messages: { ru, en },
-});
 
 app.use(VueChartkick)
 app.use(VueSplide)
+app.use(i18n)
 app.use(router)
 app.use(store)
-app.use(i18n)
 app.component('font-awesome-icon', FontAwesomeIcon);
 
 app.mount('#app')
