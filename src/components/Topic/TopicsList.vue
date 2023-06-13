@@ -1,6 +1,6 @@
 <template>
     <div class="mb-8" v-for="topic in items">
-        <h3 class="text-2xl font-bold mb-4">{{ topic.title }} - {{ topic.title_ru }}</h3>
+        <h3 class="text-2xl font-bold mb-4">{{ getTitle(topic) }}</h3>
         <Splide :options="{ rewind: true, perPage: 3, arrows: false }" aria-label="My Favorite Images">
             <SplideSlide v-for="subtopic in topic.subtopics">
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8">
@@ -8,7 +8,7 @@
                         <router-link :to="{name: 'DetailTopic', params: {id: subtopic.id}}">
                             <img :src="subtopic.picture" alt="Block Picture" class="w-full h-40 object-cover mb-4 rounded-lg">
                         </router-link>
-                        <h3 class="text-lg font-bold mb-2">{{ subtopic.title }} - {{ subtopic.title_ru }}</h3>
+                        <h3 class="text-lg font-bold mb-2">{{ getTitle(subtopic) }}</h3>
                         <p class="text-gray-500 mb-4">{{ $t('topic.words.counter', {count: subtopic.words_count}) }}</p>
                         <TopicProgress :percent="subtopic.learned_percent"/>
                     </div>
@@ -51,6 +51,12 @@ export default {
     },
     computed: {},
     methods: {
+        getTitle(topic) {
+            if (topic?.translation[0]?.title) {
+                return topic.translation[0].title;
+            }
+            return topic.title;
+        },
         handleScroll() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
             const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -67,13 +73,15 @@ export default {
             }
             this.isLoading = true;
             axios.get(this.$store.getters.getTopicsListEndpoint, {
-                headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+                headers: { 
+                    Authorization: `Token ${this.$store.getters.getToken}`,
+                    'Accept-Language': this.$i18n.locale
+                },
                 params: {
                     offset: this.offset,
                     limit: this.limit
                 }
             }).then(response => {
-                console.log(response);
                 if (response.data.results?.length) {
                     this.offset += this.limit;
                     this.items.push(...response.data.results);
