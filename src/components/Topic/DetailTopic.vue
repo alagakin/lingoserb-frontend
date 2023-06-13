@@ -1,11 +1,11 @@
 <template>
   <div class="max-w-5xl m-auto flex justify-between" v-if="!wordsLoading">
-    <h1 class="text-center text-4xl mb-6 text-black">{{ title }} - {{ info.title_ru }}</h1>
+    <h1 class="text-center text-4xl mb-6 text-black">{{ title }} - {{ getLocalTitle(topic) }}</h1>
     <div class="text-center text-2xl mb-6">
-      <router-link :to="{ name: 'Game', params: { id: info.id } }">
+      <router-link :to="{ name: 'Game', params: { id: topic.id } }">
         <span class="bg-teal-500 p-4 rounded-xl text-white">
           <font-awesome-icon :icon="['fas', 'rocket']" class="mr-2" />
-          <span>Начать изучение</span>
+          <span>{{ $t('learning.start') }}</span>
         </span>
       </router-link>
     </div>
@@ -27,6 +27,7 @@ import DictCard from '../DictCard.vue';
 import DictCardSkeleton from '../DictCardSkeleton.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
+import getTopicTitle from '../../utils/getTopicTitle';
 
 export default {
   name: 'DetailTopic',
@@ -38,31 +39,38 @@ export default {
     return {
       wordsLoading: true,
       words: [],
-      info: Object
+      topic: Object
     };
 
   },
   mounted() {
-    this.loadInfo()
+    this.loadTopic()
     this.loadWords()
   },
   computed: {
     title() {
-      if (this.info.title) {
-        return this.capitalizeWord(this.info.title)
+      if (this.topic.title) {
+        return this.capitalizeWord(this.topic.title)
       }
     }
   },
   methods: {
+    getLocalTitle(topic) {
+      return getTopicTitle(topic)
+    },
     capitalizeWord(word) {
       return word.charAt(0).toUpperCase() + word.slice(1);
     },
     loadWords() {
       axios.get(this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/words/',
         {
-          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+          headers: {
+            Authorization: `Token ${this.$store.getters.getToken}`,
+            'Accept-Language': this.$i18n.locale
+          },
         }
       ).then(response => {
+        console.log(response)
         if (response.data.words?.length) {
           this.words.push(...response.data.words)
         } else {
@@ -74,14 +82,17 @@ export default {
         });
 
     },
-    loadInfo() {
+    loadTopic() {
       axios.get(this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/',
         {
-          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
+          headers: {
+            Authorization: `Token ${this.$store.getters.getToken}`,
+            'Accept-Language': this.$i18n.locale
+          },
         }
       ).then(response => {
         if (response.data) {
-          this.info = response.data
+          this.topic = response.data
         } else {
           return
         }

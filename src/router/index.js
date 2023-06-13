@@ -5,7 +5,7 @@ import Game from '../components/Game/Game.vue'
 import Dictionary from '../views/Dictionary.vue'
 import MyWords from '../views/MyWords.vue'
 import store from '../store.js';
-import DetailTopic from '../components/Topic/DetailTopic.vue'
+import DetailTopicWrapper from '../components/Topic/DetailTopicWrapper.vue'
 import NotFound from '../views/NotFound.vue'
 import Profile from '../views/Profile.vue'
 const router = createRouter({
@@ -58,7 +58,7 @@ const router = createRouter({
     {
       path: '/topics/:id(\\d+)',
       name: 'DetailTopic',
-      component: DetailTopic,
+      component: DetailTopicWrapper,
       beforeEnter: (to, from, next) => {
         if (store.getters.isAuthenticated) {
           next();
