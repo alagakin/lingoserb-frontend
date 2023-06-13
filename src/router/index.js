@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Game from '../components/Game/Game.vue'
-
+import GameView from '../views/GameView.vue'
 import Dictionary from '../views/Dictionary.vue'
 import MyWords from '../views/MyWords.vue'
 import store from '../store.js';
@@ -33,7 +32,7 @@ const router = createRouter({
     {
       path: '/topics/:id(\\d+)/game/',
       name: 'Game',
-      component: Game,
+      component: GameView,
       beforeEnter: (to, from, next) => {
         if (store.getters.isAuthenticated) {
           next();
