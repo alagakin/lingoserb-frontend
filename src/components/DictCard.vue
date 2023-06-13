@@ -7,7 +7,7 @@
         <div class="flex flex-wrap" :class="class">
             <span class="text-sm bg-blue-200 rounded-full px-3 py-1 text-gray-700 mr-2 mb-2"
                 v-for="topic in word.topics">
-                {{ getTopicTitle(topic) }}
+                {{ getTitle(topic) }}
             </span>
         </div>
      
@@ -23,7 +23,7 @@
 import AudioButton from './AudioButton.vue';
 import Progress from './Progress.vue';
 import TranslationModal from './TranslationModal.vue';
-
+import getTopicTitle from '../utils/getTopicTitle.js';
 
 
 export default {
@@ -47,12 +47,9 @@ export default {
         }
     },
     methods: {
-        getTopicTitle(topic) {
-            if (topic?.translation[0]?.title) {
-                return topic.translation[0].title;
-            }
-            return topic.title;
-        },
+        getTitle(topic) {
+            return getTopicTitle(topic);
+        }
     }
 }
 </script>

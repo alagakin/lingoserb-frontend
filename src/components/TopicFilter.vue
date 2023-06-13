@@ -18,6 +18,7 @@
 </template>
 <script>
 import axios from 'axios';
+import getTopicTitle from '../utils/getTopicTitle';
 export default {
     name: "Filter",
     beforeMount() {
@@ -31,10 +32,7 @@ export default {
     },
     methods: {
         getTitle(topic) {
-            if (topic?.translation[0]?.title) {
-                return topic.translation[0].title;
-            }
-            return topic.title;
+            return getTopicTitle(topic)
         },
         getTopics() {
             axios.get(this.$store.getters.getSubtopics,

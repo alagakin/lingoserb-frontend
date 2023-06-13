@@ -24,7 +24,7 @@ import axios from 'axios';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 import TopicProgress from './TopicProgress.vue';
-
+import getTopicTitle from '../../utils/getTopicTitle';
 export default {
     name: "TopicsList",
     components: {
@@ -52,10 +52,7 @@ export default {
     computed: {},
     methods: {
         getTitle(topic) {
-            if (topic?.translation[0]?.title) {
-                return topic.translation[0].title;
-            }
-            return topic.title;
+            return getTopicTitle(topic);
         },
         handleScroll() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
