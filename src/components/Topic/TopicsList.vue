@@ -9,7 +9,7 @@
                             <img :src="subtopic.picture" alt="Block Picture" class="w-full h-40 object-cover mb-4 rounded-lg">
                         </router-link>
                         <h3 class="text-lg font-bold mb-2">{{ subtopic.title }} - {{ subtopic.title_ru }}</h3>
-                        <p class="text-gray-500 mb-4">Words: {{ subtopic.words_count }}</p>
+                        <p class="text-gray-500 mb-4">{{ $t('topic.words.counter', {count: subtopic.words_count}) }}</p>
                         <TopicProgress :percent="subtopic.learned_percent"/>
                     </div>
                 </div>
@@ -21,7 +21,6 @@
 <script>
 import 'flowbite/dist/flowbite.css';
 import axios from 'axios';
-import TopicListItem from './TopicListItem.vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 import TopicProgress from './TopicProgress.vue';
@@ -92,6 +91,6 @@ export default {
                 });
         },
     },
-    components: { TopicListItem, TopicProgress }
+    components: { TopicProgress }
 }
 </script>

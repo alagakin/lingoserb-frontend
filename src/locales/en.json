@@ -52,5 +52,10 @@
             "title": "Sunday",
             "short": "Sun"
         }
+    },
+    "topic": {
+        "words": {
+            "counter": "Words: {count}"
+        }
     }
 }

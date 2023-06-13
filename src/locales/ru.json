@@ -52,5 +52,10 @@
             "title": "Воскресенье",
             "short": "Вс"
         }
+    },
+    "topic": {
+        "words": {
+            "counter": "Слов: {count}"
+        }
     }
 }
