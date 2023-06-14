@@ -59,17 +59,33 @@ export default {
       })
     }
   },
+  watch: {
+    isAuthenticated(newVal) {
+      if (newVal) {
+        this.setSaved()
+        this.setProgress()
+        this.getProfile()
+      }
+    }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    }
+  },
   created() {
-    this.setSaved()
-    this.setProgress()
-    this.getProfile()
+    if (this.$store.getters.isAuthenticated) {
+      this.setSaved()
+      this.setProgress()
+      this.getProfile()
+    }
   }
 }
 </script>
 <style>
 body {
   background-color: ghostwhite;
-    background-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 
