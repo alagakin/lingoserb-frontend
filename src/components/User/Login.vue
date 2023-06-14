@@ -2,7 +2,7 @@
     <button   ref="openButton"
         class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button">
-        Login
+        {{ $t('auth.login') }}
     </button>
     <div ref="modal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -20,18 +20,16 @@
                     <span class="sr-only" ref="closeButton">Close modal</span>
                 </button>
                 <div class="px-6 py-6 lg:px-8">
-                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
+                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">{{ $t('auth.modal.login.title') }}</h3>
                     <form class="space-y-6" @submit="login">
                         <div>
-                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                                Login</label>
+                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $t('auth.modal.login.login_field') }}</label>
                             <input type="text" name="username" id="username" v-model="username"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="My Username" required>
                         </div>
                         <div>
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                                password</label>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $t('auth.modal.login.password_field') }}</label>
                             <input type="password" name="password" v-model="password" id="password" placeholder="••••••••"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 required>
@@ -46,7 +44,7 @@
                                  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 
                                  dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" v-show="waiting" />
-                            <span v-show="!waiting">Login</span>
+                            <span v-show="!waiting">{{ $t('auth.login') }}</span>
                         </button>
                         <!-- <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
                             Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create
@@ -86,7 +84,7 @@ export default {
 
         this.openButton.addEventListener('click', () => this.modal.toggle());
         this.closeButton.addEventListener('click', () => this.modal.hide());
-
+        this.styleBodyWhenOpen()
     },
     computed: {
         loginUrl() {
@@ -94,6 +92,10 @@ export default {
         }
     },
     methods: {
+        styleBodyWhenOpen() {
+            let padding = window.innerWidth - document.documentElement.clientWidth
+            document.body.style.setProperty('--paddingRight', padding + 'px')
+        },
         async login(event) {
             event.preventDefault();
             this.waiting = true

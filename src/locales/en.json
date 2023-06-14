@@ -23,7 +23,15 @@
         "myWords": "My words"
     },
     "auth": {
-        "logout": "Logout"
+        "logout": "Logout",
+        "login": "Login",
+        "modal": {
+            "login": {
+                "title": "Sign in to our platform",
+                "login_field": "Your Login",
+                "password_field": "Your password"
+            }
+        }
     },
     "profile": {
         "title": "Profile",

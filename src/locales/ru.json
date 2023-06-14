@@ -23,7 +23,15 @@
         "myWords": "Мои слова"
     },
     "auth": {
-        "logout": "Выход"
+        "logout": "Выход",
+        "login": "Вход",
+        "modal": {
+            "login": {
+                "title": "Вход на сайт",
+                "login_field": "Логин",
+                "password_field": "Пароль"
+            }
+        }
     },
     "profile": {
         "title": "Личный кабинет",
