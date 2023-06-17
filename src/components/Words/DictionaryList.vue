@@ -9,11 +9,11 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
 import DictCard from '../DictCard.vue';
 import DictCardSkeleton from '../DictCardSkeleton.vue';
 import Filter from '../Filter.vue';
 import Empty from '../Empty.vue';
+import { apiRequest } from '../../api.js';
 
 export default {
   name: "DictionaryList",
@@ -59,39 +59,29 @@ export default {
         this.loadMoreContent();
       }
     },
-    loadMoreContent() {
+    async loadMoreContent() {
       if (this.end) {
         return
       }
       this.isLoading = true
-      axios.get(this.$store.getters.getWordsEndpoint,
-        {
-          headers: {
-            Authorization: `Token ${this.$store.getters.getToken}`,
-            'Accept-Language': this.$i18n.locale
-          },
-          params: {
-            offset: this.offset,
+      try {
+        const data = await apiRequest('GET', this.$store.getters.getWordsEndpoint, {}, {
+          offset: this.offset,
             limit: this.limit,
             ...this.filters
-          }
-        }
-      ).then(response => {
-        if (response.data.results?.length) {
+        });
+        if (data.results?.length) {
           this.offset += this.limit
-          this.items.push(...response.data.results)
+          this.items.push(...data.results)
         } else {
           this.end = true
           this.isLoading = false
           return
         }
         this.isLoading = false
-      })
-        .catch(error => {
-          this.isLoading = false
-          console.log(error)
-        });
-
+      } catch (error) {
+        this.isLoading = false
+      }
     },
   }
 }

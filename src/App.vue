@@ -9,6 +9,8 @@
 import Header from './components/Header.vue';
 import HomeView from './views/HomeView.vue';
 import axios from 'axios';
+import { apiRequest } from './api.js';
+
 export default {
   name: 'App',
   components: {
@@ -46,17 +48,12 @@ export default {
         }
       })
     },
-    getProfile() {
-      axios.get(this.$store.getters.getProfileEndpoint,
-        {
-          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
-        }
-      ).then(response => {
-        if (response.data) {
-          this.$store.commit('setUserProfile', response.data)
-          this.$i18n.locale = response.data.lang
-        }
-      })
+    async getProfile() {
+      try {
+        const data = await apiRequest('GET', this.$store.getters.getProfileEndpoint);
+        this.$store.commit('setUserProfile', data)
+        this.$i18n.locale = data.lang
+      } catch (error) {}
     }
   },
   watch: {
