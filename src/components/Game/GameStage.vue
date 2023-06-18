@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { apiRequest } from '../../api'
 import Option from './Option.vue'
 import Endgame from './Endgame.vue'
 import AudioButton from '../AudioButton.vue'
@@ -72,16 +72,13 @@ export default {
         }
     },
     methods: {
-        finish() {
-            axios.post(this.$store.getters.getLearningEndpoint + `${this.topicId}/` + 'complete/',
-                {}, {
-                headers: {
-                    'Authorization': `Token ${this.$store.getters.getToken}`
-                }
-            }
-            ).then(response => {
+        async finish() {
+            try {
+                const data = await apiRequest('POST', this.$store.getters.getLearningEndpoint + `${this.topicId}/` + 'complete/')
                 this.endgame = true
-            })
+            } catch (error) {
+                console.log(error)
+            }
         },
         processCorrect() {
             this.lock = true

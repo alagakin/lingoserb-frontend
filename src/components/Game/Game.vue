@@ -4,7 +4,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { apiRequest } from '../../api'
 import LearningStage from './LearningStage.vue'
 import GameStage from './GameStage.vue'

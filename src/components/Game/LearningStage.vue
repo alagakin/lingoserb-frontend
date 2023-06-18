@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import LearningCard from './LearningCard.vue'
 export default {
     name: "LearningStage",
