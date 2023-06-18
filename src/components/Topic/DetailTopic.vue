@@ -21,13 +21,12 @@
 </template>
 <script>
 
-
-import axios from 'axios';
 import DictCard from '../DictCard.vue';
 import DictCardSkeleton from '../DictCardSkeleton.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
 import getTopicTitle from '../../utils/getTopicTitle';
+import { apiRequest } from '../../api.js';
 
 export default {
   name: 'DetailTopic',
@@ -64,45 +63,31 @@ export default {
     capitalizeWord(word) {
       return word.charAt(0).toUpperCase() + word.slice(1);
     },
-    loadWords() {
-      axios.get(this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/words/',
-        {
-          headers: {
-            Authorization: `Token ${this.$store.getters.getToken}`,
-            'Accept-Language': this.$i18n.locale
-          },
-        }
-      ).then(response => {
-        console.log(response)
-        if (response.data.words?.length) {
-          this.words.push(...response.data.words)
+    async loadWords() {
+      try {
+        const data = await apiRequest('GET', this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/words/')
+        if (data.words?.length) {
+          this.words.push(...data.words)
         } else {
           return
         }
         this.wordsLoading = false
-      })
-        .catch(error => {
-        });
-
+      } catch (error) {
+        console.log(error)
+      }
     },
-    loadTopic() {
-      axios.get(this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/',
-        {
-          headers: {
-            Authorization: `Token ${this.$store.getters.getToken}`,
-            'Accept-Language': this.$i18n.locale
-          },
-        }
-      ).then(response => {
-        if (response.data) {
-          this.topic = response.data
+    async loadTopic() {
+      try {
+        const data = await apiRequest('GET', this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/')
+        if (data) {
+          this.topic = data
           this.setPageTitle(this.topic)
         } else {
           return
         }
-      })
-        .catch(error => {
-        });
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

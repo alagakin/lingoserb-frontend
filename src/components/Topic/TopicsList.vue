@@ -5,12 +5,13 @@
             <SplideSlide v-for="subtopic in topic.subtopics">
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8">
                     <div class="bg-white rounded-lg shadow p-4">
-                        <router-link :to="{name: 'DetailTopic', params: {id: subtopic.id}}">
-                            <img :src="subtopic.picture" alt="Block Picture" class="w-full h-40 object-cover mb-4 rounded-lg">
+                        <router-link :to="{ name: 'DetailTopic', params: { id: subtopic.id } }">
+                            <img :src="subtopic.picture" alt="Block Picture"
+                                class="w-full h-40 object-cover mb-4 rounded-lg">
                         </router-link>
                         <h3 class="text-lg font-bold mb-2">{{ getTitle(subtopic) }}</h3>
-                        <p class="text-gray-500 mb-4">{{ $t('topic.words.counter', {count: subtopic.words_count}) }}</p>
-                        <TopicProgress :percent="subtopic.learned_percent"/>
+                        <p class="text-gray-500 mb-4">{{ $t('topic.words.counter', { count: subtopic.words_count }) }}</p>
+                        <TopicProgress :percent="subtopic.learned_percent" />
                     </div>
                 </div>
             </SplideSlide>
@@ -20,11 +21,12 @@
 
 <script>
 import 'flowbite/dist/flowbite.css';
-import axios from 'axios';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 import TopicProgress from './TopicProgress.vue';
 import getTopicTitle from '../../utils/getTopicTitle';
+import { apiRequest } from '../../api.js';
+
 export default {
     name: "TopicsList",
     components: {
@@ -64,24 +66,22 @@ export default {
                 this.loadMoreContent();
             }
         },
-        loadMoreContent() {
+        async loadMoreContent() {
             if (this.end) {
                 return;
             }
             this.isLoading = true;
-            axios.get(this.$store.getters.getTopicsListEndpoint, {
-                headers: { 
-                    Authorization: `Token ${this.$store.getters.getToken}`,
-                    'Accept-Language': this.$i18n.locale
-                },
-                params: {
-                    offset: this.offset,
-                    limit: this.limit
-                }
-            }).then(response => {
-                if (response.data.results?.length) {
+
+            try {
+                const data = await apiRequest('GET',
+                    this.$store.getters.getTopicsListEndpoint, {},
+                    {
+                        offset: this.offset,
+                        limit: this.limit
+                    });
+                if (data.results?.length) {
                     this.offset += this.limit;
-                    this.items.push(...response.data.results);
+                    this.items.push(...data.results);
                 }
                 else {
                     this.end = true;
@@ -89,11 +89,10 @@ export default {
                     return;
                 }
                 this.isLoading = false;
-            })
-                .catch(error => {
-                    this.isLoading = false;
-                    console.log(error);
-                });
+            } catch (error) {
+                this.isLoading = false;
+                console.log(error);
+            }
         },
     },
     components: { TopicProgress }
