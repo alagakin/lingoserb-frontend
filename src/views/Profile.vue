@@ -17,7 +17,7 @@ import AchievementsList from '../components/User/AchievementsList.vue';
 import Chart from '../components/User/Chart.vue';
 import Graph from '../components/User/Graph.vue';
 import ProfileInfo from '../components/User/ProfileInfo.vue';
-import axios from 'axios';
+import { apiRequest } from '../api.js';
 
 export default {
   name: "Profile",
@@ -28,11 +28,13 @@ export default {
     }
   },
   methods: {
-    fetchData() {
-      axios.get(this.$store.getters.getLearningEndpoint + "graph/", { headers: { Authorization: `Token ${this.$store.getters.getToken}` } })
-        .then(response => {
-          this.stats = response.data;
-        });
+    async fetchData() {
+      try{
+        const data = await apiRequest('GET', this.$store.getters.getLearningEndpoint + "graph/", {}, {})
+        this.stats = data
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
   mounted() {

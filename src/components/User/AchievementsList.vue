@@ -19,16 +19,14 @@
 </template>
   
 <script>
-import axios from 'axios';
+import { apiRequest } from '../../api.js';
 import AchievementItem from './AchievementItem.vue';
 export default {
 
     components: { AchievementItem },
     data() {
         return {
-            achievements: [
-
-            ],
+            achievements: [],
             loaded: false,
         };
     },
@@ -44,18 +42,15 @@ export default {
         },
     },
     methods: {
-        getAchievements() {
-            axios.get(this.$store.getters.getAchievementsEndpoint,
-                {
-                    headers: { Authorization: `Token ${this.$store.getters.getToken}`,
-                    'Accept-Language': this.$i18n.locale
-                },
-                }
-            ).then(response => {
-                this.achievements = response.data
+        async getAchievements() {
+            try {
+                const data = await apiRequest('GET', this.$store.getters.getAchievementsEndpoint, {}, {})
+                this.achievements = data
                 this.sortItemsByAchievement();
                 this.loaded = true;
-            })
+            } catch (error) {
+                console.log(error)
+            }
         },
         sortItemsByAchievement() {
             this.achievements.sort((a, b) => {
