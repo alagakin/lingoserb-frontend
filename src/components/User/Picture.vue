@@ -14,6 +14,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { mapGetters } from 'vuex';
 import axios from 'axios';
+import { apiRequest } from '../../api.js';
 
 export default {
     name: 'Picture',
@@ -27,23 +28,19 @@ export default {
         openFileManager() {
             this.$refs.fileInput.click();
         },
-        handleFileChange(event) {
+        async handleFileChange(event) {
             const file = event.target.files[0];
             if (file && file.type.startsWith('image/')) {
                 const formData = new FormData();
                 formData.append('picture', file);
-
-                axios.patch(this.$store.getters.getProfileEndpoint, formData, {
-                    headers: {
-                        'Authorization': `Token ${this.$store.getters.getToken}`,
+                try {
+                    const data = await apiRequest('PATCH', this.$store.getters.getProfileEndpoint, formData)
+                    if (data?.picture) {
+                        this.$store.commit('setUserPicture', data.picture)
                     }
-                }).then(response => {
-                    if (response.data?.picture) {
-                        this.$store.commit('setUserPicture', response.data.picture)
-                    }
-                }).catch(error => {
-                    console.error('Upload failed:', error);
-                });
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
     }
