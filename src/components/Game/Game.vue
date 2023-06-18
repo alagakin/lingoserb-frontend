@@ -5,6 +5,7 @@
 
 <script>
 import axios from 'axios'
+import { apiRequest } from '../../api'
 import LearningStage from './LearningStage.vue'
 import GameStage from './GameStage.vue'
 export default {
@@ -24,29 +25,25 @@ export default {
         startGame() {
             this.game = true
         },
-        loadGame() {
-            axios.get(this.$store.getters.getLearningEndpoint + `${this.topicId}/` + 'start/',
-                {
-                    headers: {
-                        Authorization: `Token ${this.$store.getters.getToken}`,
-                        'Accept-Language': this.$i18n.locale
-                    },
-                }
-            ).then(response => {
-                if (response.data) {
-                    if (response.data.learning.length) {
-                        this.learningItems = response.data.learning
+        async loadGame() {
+            try {
+                const data = await apiRequest('GET', this.$store.getters.getLearningEndpoint + `${this.topicId}/` + 'start/')
+                if (data) {
+                    if (data.learning.length) {
+                        this.learningItems = data.learning
                     } else {
                         this.game = true
                     }
 
-                    if (response.data.game.length) {
-                        this.gameItems = response.data.game
+                    if (data.game.length) {
+                        this.gameItems = data.game
                     } else {
                         // no game?
                     }
                 }
-            })
+            } catch (error) {
+                console.log(error)
+            }
         }
     },
     computed: {
