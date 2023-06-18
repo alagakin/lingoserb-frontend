@@ -16,6 +16,8 @@ import TopicFilter from '../TopicFilter.vue';
 import ProgressFilter from '../ProgressFilter.vue';
 import Empty from '../Empty.vue';
 import Filter from '../Filter.vue';
+import { apiRequest } from '../../api.js';
+
 export default {
   name: "MyWordsList",
   components: { DictCard, DictCardSkeleton, TopicFilter, ProgressFilter, Empty, Filter },
@@ -48,30 +50,20 @@ export default {
       this.loadMoreContent()
     },
 
-
-    loadMoreContent() {
+    async loadMoreContent() {
       if (this.end) {
         return
       }
       this.isLoading = true
-
-      axios.get(this.$store.getters.getSavedWordsEnpoint,
-        {
-          headers: {
-            Authorization: `Token ${this.$store.getters.getToken}`,
-            'Accept-Language': this.$i18n.locale
-          },
-          params: {
-            offset: this.offset,
+      try {
+        const data = await apiRequest('GET', this.$store.getters.getSavedWordsEnpoint, {}, {
+          offset: this.offset,
             limit: this.limit,
             ...this.filters
-          }
-        }
-      ).then(response => {
-        if (response.data.results?.length) {
-          console.log(response.data)
+        });
+        if (data.results?.length) {
           this.offset += this.limit
-          response.data.results.forEach((item) => {
+          data.results.forEach((item) => {
             let skipped = item.skipped
             item['word'].skipped = skipped
             this.items.push(item['word'])
@@ -82,11 +74,9 @@ export default {
           return
         }
         this.isLoading = false
-      })
-        .catch(error => {
-          this.isLoading = false
-        });
-
+      } catch (error) {
+        this.isLoading = false
+      }
     },
     handleScroll() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
