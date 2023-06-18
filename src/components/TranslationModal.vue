@@ -54,6 +54,8 @@
 <script>
 import AudioButton from './AudioButton.vue'
 import axios from 'axios';
+import { apiRequest } from '../api';
+
 export default {
     name: "TranslationModal",
     props: {
@@ -97,27 +99,22 @@ export default {
             this.modal.toggle()
             this.getTexts()
         },
-        getTexts() {
+        async getTexts() {
             if (this.word.texts_count <= 0) {
                 return
             }
             if (this.loaded) {
                 return
             }
-            axios.get(`${this.$store.getters.getTextForWordEndpoint}${this.word.id}/`,
-                {
-                    headers: {
-                        Authorization: `Token ${this.$store.getters.getToken}`,
-                        'Accept-Language': this.$i18n.locale
-                    },
-                }
-            ).then(response => {
-                if (response.data) {
-                    console.log(response)
+            try {
+                const data = await apiRequest('GET', `${this.$store.getters.getTextForWordEndpoint}${this.word.id}/`)
+                if (data) {
                     this.loaded = true
-                    this.texts = response.data.texts
+                    this.texts = data.texts
                 }
-            })
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 }
