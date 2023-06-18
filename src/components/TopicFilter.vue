@@ -19,6 +19,7 @@
 <script>
 import axios from 'axios';
 import getTopicTitle from '../utils/getTopicTitle';
+import { apiRequest } from '../api';
 export default {
     name: "Filter",
     beforeMount() {
@@ -34,23 +35,19 @@ export default {
         getTitle(topic) {
             return getTopicTitle(topic)
         },
-        getTopics() {
-            axios.get(this.$store.getters.getSubtopics,
-                {
-                    headers: { 
-                        Authorization: `Token ${this.$store.getters.getToken}`,
-                        'Accept-Language': this.$i18n.locale
-                    },
+        async getTopics() {
+            try {
+                const data = await apiRequest('GET', this.$store.getters.getSubtopics, {
                     params: {
                         limit: 100,
                     }
                 })
-                .then(response => {
-                    console.log(response)
-                    if (response?.data?.results) {
-                        this.subtopics = response.data.results
-                    }
-                })
+                if (data?.results) {
+                    this.subtopics = data.results
+                }
+            } catch (error) {
+                console.log(error)
+            }
         },
         handleChange(id) {
             if (this.checkedTopics.includes(id)) {
