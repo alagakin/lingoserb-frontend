@@ -11,22 +11,24 @@
 
 import { mapGetters } from 'vuex';
 import axios from 'axios';
-
+import { apiRequest } from '../../api.js';
 export default {
   name: "Empty",
   methods: {
-    change(event) {
+    async change(event) {
       const value = event.target.value
       this.$store.commit('setUserLang', value)
       this.$i18n.locale = value
+
       if (this.$store.getters.isAuthenticated) {
         const formData = new FormData();
         formData.append('lang', value);
-        axios.patch(this.$store.getters.getProfileEndpoint, formData, {
-          headers: {
-            'Authorization': `Token ${this.$store.getters.getToken}`,
-          }
-        })
+
+        try {
+          apiRequest('PATCH', this.$store.getters.getProfileEndpoint, formData)
+        } catch (error) {
+          console.log(error)
+        }
       }
     }
   },
