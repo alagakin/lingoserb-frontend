@@ -47,7 +47,7 @@ const mutations = {
 
 const getters = {
     getDomain: (state) => state.domain,
-    getLoginEndpoint: (state) => state.loginEndpoint,
+    getLoginEndpoint: (state) => state.domain + state.loginEndpoint,
     getToken: (state) => state.token,
     isAuthenticated: (state) => state.authenticated == true,
     getWordsEndpoint: (state) => state.domain + state.wordsEndpoint,

@@ -10,7 +10,6 @@
 <script>
 
 import { mapGetters } from 'vuex';
-import axios from 'axios';
 import { apiRequest } from '../../api.js';
 export default {
   name: "Empty",

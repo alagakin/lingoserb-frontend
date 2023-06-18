@@ -59,11 +59,10 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSpinner, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
-import { initFlowbite } from 'flowbite'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'flowbite'
+import { apiLogin } from '../../api';
 
-import axios from 'axios';
 export default {
     name: 'Login',
     data() {
@@ -86,11 +85,6 @@ export default {
         this.closeButton.addEventListener('click', () => this.modal.hide());
         this.styleBodyWhenOpen()
     },
-    computed: {
-        loginUrl() {
-            return this.$store.getters.getDomain + this.$store.getters.getLoginEndpoint
-        }
-    },
     methods: {
         styleBodyWhenOpen() {
             let padding = window.innerWidth - document.documentElement.clientWidth
@@ -101,13 +95,13 @@ export default {
             this.waiting = true
             this.errorMessage = false
             try {
-                const response = await axios.post('http://localhost/api/v1/auth/token/login/', {
+                const response = await apiLogin(this.$store.getters.getLoginEndpoint, {
                     username: this.username,
                     password: this.password,
                 });
                 this.waiting = false
                 this.modal.hide()
-                const token = response.data.auth_token;
+                const token = response.auth_token;
                 localStorage.setItem('token', token);
 
                 this.$store.commit('setToken', token);
@@ -116,6 +110,7 @@ export default {
                 // Redirect the user to the authenticated part of your application
                 this.$router.push({ name: 'Dictionary' });
             } catch (error) {
+                console.log(error)
                 this.waiting = false
                 this.errorMessage = 'Invalid username or password';
             }

@@ -22,3 +22,17 @@ export const apiRequest = async (method, url, data, params) => {
     throw error;
   }
 };
+
+export const apiLogin = async (url, data) => {
+  try {
+    const response = await axios.request({
+      method: "POST",
+      url,
+      data,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('API request error:', error);
+    throw error;
+  }
+};
