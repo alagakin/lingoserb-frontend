@@ -17,7 +17,6 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
 import getTopicTitle from '../utils/getTopicTitle';
 import { apiRequest } from '../api';
 export default {
