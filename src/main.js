@@ -10,6 +10,8 @@ import 'chartkick/chart.js'
 import i18n from './i18n.js';
 const token = localStorage.getItem('token');
 
+
+
 if (token) {
   store.commit('setToken', token);
   store.commit('setAuthenticated', true)

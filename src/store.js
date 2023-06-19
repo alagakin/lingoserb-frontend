@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 const state = {
     domain: 'http://localhost',
     loginEndpoint: '/api/v1/auth/token/login/',
+    googleLoginEndpoint: '/api/v1/auth/google/',
     wordsEndpoint: '/api/v1/words/',
     savedWordsIdsEndpoint: '/api/v1/saved/ids/',
     addSavedEndpoint: '/api/v1/saved/add/',
@@ -48,6 +49,7 @@ const mutations = {
 const getters = {
     getDomain: (state) => state.domain,
     getLoginEndpoint: (state) => state.domain + state.loginEndpoint,
+    getGoogleLoginEndpoint: (state) => state.domain + state.googleLoginEndpoint,
     getToken: (state) => state.token,
     isAuthenticated: (state) => state.authenticated == true,
     getWordsEndpoint: (state) => state.domain + state.wordsEndpoint,
