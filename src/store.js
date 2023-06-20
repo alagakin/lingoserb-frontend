@@ -25,9 +25,6 @@ const mutations = {
         state.authenticated = false
         state.token = false
     },
-    setSavedWordsIds(state, payload) {
-        state.savedIds = payload
-    },
     setProgress(state, payload) {
         state.progress = payload
     },
@@ -53,12 +50,10 @@ const getters = {
     getToken: (state) => state.token,
     isAuthenticated: (state) => state.authenticated == true,
     getWordsEndpoint: (state) => state.domain + state.wordsEndpoint,
-    getSavedWordsIdsEnpoint: (state) => state.domain + state.savedWordsIdsEndpoint,
     getAddSavedEnpoint: (state) => state.domain + state.addSavedEndpoint,
     getDeleteSavedEnpoint: (state) => state.domain + '/api/v1/saved/delete/',
     getGameEndpoint: (state) => state.domain + '/api/v1/game/topic/',
     getGameSuccessEndpoint: (state) => state.domain + '/api/v1/game/word/',
-    getSavedWordsIds: (state) => state.savedIds,
     getSavedWordsEnpoint: (state) => state.domain + '/api/v1/saved/',
     getTextForWordEndpoint: (state) => state.domain + '/api/v1/text/for-word/',
     getTopicsListEndpoint: (state) => state.domain + '/api/v1/topic/',

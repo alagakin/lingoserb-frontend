@@ -10,7 +10,6 @@
 <script>
 import Header from './components/Header.vue';
 import HomeView from './views/HomeView.vue';
-import axios from 'axios';
 import { apiRequest } from './api.js';
 
 export default {
@@ -20,35 +19,20 @@ export default {
     HomeView,
   },
   methods: {
-    setSaved() {
-      axios.get(this.$store.getters.getSavedWordsIdsEnpoint,
-        {
-          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
-        }
-      ).then(response => {
-        if (response.data) {
-          let savedWords = []
-          response.data.forEach(item => {
-            savedWords.push(item['id'])
-          })
-          this.$store.commit('setSavedWordsIds', savedWords)
-        }
-      })
-    },
-    setProgress() {
-      axios.get(this.$store.getters.getProgressEndpoint,
-        {
-          headers: { Authorization: `Token ${this.$store.getters.getToken}` },
-        }
-      ).then(response => {
-        if (response.data) {
+    async setProgress() {
+      try {
+        const data = await apiRequest('GET', this.$store.getters.getProgressEndpoint);
+        if (data) {
           let progress = {}
-          response.data.forEach(item => {
+          data.forEach(item => {
             progress[item.id] = item.cnt
           })
           this.$store.commit('setProgress', progress)
         }
-      })
+      } catch (error) {
+        console.log(error)
+      }
+     
     },
     async getProfile() {
       try {
@@ -61,7 +45,6 @@ export default {
   watch: {
     isAuthenticated(newVal) {
       if (newVal) {
-        this.setSaved()
         this.setProgress()
         this.getProfile()
       }
@@ -74,7 +57,6 @@ export default {
   },
   created() {
     if (this.$store.getters.isAuthenticated) {
-      this.setSaved()
       this.setProgress()
       this.getProfile()
     }
