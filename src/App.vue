@@ -1,8 +1,10 @@
 <template>
-  <Header />
-  <main class="container mx-auto py-8 max-w-6xl mt-10">
-    <router-view></router-view>
-  </main>
+  <div :key="isAuthenticated">
+    <Header />
+    <main class="container mx-auto py-8 max-w-6xl mt-10">
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -53,7 +55,7 @@ export default {
         const data = await apiRequest('GET', this.$store.getters.getProfileEndpoint);
         this.$store.commit('setUserProfile', data)
         this.$i18n.locale = data.lang
-      } catch (error) {}
+      } catch (error) { }
     }
   },
   watch: {
