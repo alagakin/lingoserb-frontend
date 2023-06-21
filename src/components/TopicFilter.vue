@@ -19,6 +19,7 @@
 <script>
 import getTopicTitle from '../utils/getTopicTitle';
 import { apiRequest } from '../api';
+import { mapGetters } from 'vuex';
 export default {
     name: "Filter",
     beforeMount() {
@@ -30,13 +31,16 @@ export default {
             checkedTopics: []
         }
     },
+    computed: {
+        ...mapGetters(['subtopicsEndpoint'])
+    },
     methods: {
         getTitle(topic) {
             return getTopicTitle(topic)
         },
         async getTopics() {
             try {
-                const data = await apiRequest('GET', this.$store.getters.getSubtopics, {
+                const data = await apiRequest('GET', this.subtopicsEndpoint(), {
                     params: {
                         limit: 100,
                     }
