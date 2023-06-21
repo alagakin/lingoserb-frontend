@@ -18,6 +18,7 @@ import Chart from '../components/User/Chart.vue';
 import Graph from '../components/User/Graph.vue';
 import ProfileInfo from '../components/User/ProfileInfo.vue';
 import { apiRequest } from '../api.js';
+import { mapGetters } from 'vuex';
 
 export default {
   name: "Profile",
@@ -27,10 +28,13 @@ export default {
       stats: {},
     }
   },
+  computed: {
+    ...mapGetters(['graphEndpoint']),
+  },
   methods: {
     async fetchData() {
       try{
-        const data = await apiRequest('GET', this.$store.getters.getLearningEndpoint + "graph/", {}, {})
+        const data = await apiRequest('GET', this.graphEndpoint(), {}, {})
         this.stats = data
       } catch (error) {
         console.log(error)
