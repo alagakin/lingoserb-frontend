@@ -29,7 +29,9 @@
             "login": {
                 "title": "Вход на сайт",
                 "login_field": "Логин",
-                "password_field": "Пароль"
+                "password_field": "Пароль",
+                "login_field_placeholder": "Логин",
+                "google_auth_button": "Войти через Google"
             }
         }
     },

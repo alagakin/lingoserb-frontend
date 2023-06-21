@@ -29,7 +29,9 @@
             "login": {
                 "title": "Sign in to our platform",
                 "login_field": "Your Login",
-                "password_field": "Your password"
+                "password_field": "Your password",
+                "login_field_placeholder": "My login",
+                "google_auth_button": "Sign in with Google"
             }
         }
     },
