@@ -53,8 +53,8 @@
 
 <script>
 import AudioButton from './AudioButton.vue'
-import axios from 'axios';
 import { apiRequest } from '../api';
+import { mapGetters } from 'vuex';
 
 export default {
     name: "TranslationModal",
@@ -70,6 +70,9 @@ export default {
     },
     components: {
         AudioButton
+    },
+    computed: {
+        ...mapGetters(['textForWordEndpoint'])
     },
     data() {
         return {
@@ -107,7 +110,7 @@ export default {
                 return
             }
             try {
-                const data = await apiRequest('GET', `${this.$store.getters.getTextForWordEndpoint}${this.word.id}/`)
+                const data = await apiRequest('GET', this.textForWordEndpoint(this.word.id))
                 if (data) {
                     this.loaded = true
                     this.texts = data.texts
