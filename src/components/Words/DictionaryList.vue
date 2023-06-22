@@ -14,6 +14,7 @@ import DictCardSkeleton from '../DictCardSkeleton.vue';
 import Filter from '../Filter.vue';
 import Empty from '../Empty.vue';
 import { apiRequest } from '../../api.js';
+import { mapGetters } from 'vuex';
 
 export default {
   name: "DictionaryList",
@@ -30,6 +31,9 @@ export default {
       next: false,
       items: []
     };
+  },
+  computed: {
+    ...mapGetters(['wordsEndpoint'])
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
@@ -53,7 +57,7 @@ export default {
       const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
 
       const scrollPosition = scrollTop + windowHeight;
-      const scrollThreshold = 0.80; // Adjust this threshold to your desired value
+      const scrollThreshold = 0.80;
 
       if (!this.isLoading && scrollPosition >= scrollThreshold * documentHeight) {
         this.loadMoreContent();
@@ -65,7 +69,7 @@ export default {
       }
       this.isLoading = true
       try {
-        const data = await apiRequest('GET', this.$store.getters.getWordsEndpoint, {}, {
+        const data = await apiRequest('GET', this.wordsEndpoint(), {}, {
           offset: this.offset,
             limit: this.limit,
             ...this.filters
