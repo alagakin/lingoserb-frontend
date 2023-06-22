@@ -21,6 +21,8 @@
 <script>
 import { apiRequest } from '../../api.js';
 import AchievementItem from './AchievementItem.vue';
+import { mapGetters } from 'vuex';
+
 export default {
 
     components: { AchievementItem },
@@ -40,11 +42,12 @@ export default {
         notAchievedAchievements() {
             return this.achievements.filter(achievement => !achievement.achieved);
         },
+        ...mapGetters(['achievementsEndpoint'])
     },
     methods: {
         async getAchievements() {
             try {
-                const data = await apiRequest('GET', this.$store.getters.getAchievementsEndpoint, {}, {})
+                const data = await apiRequest('GET', this.achievementsEndpoint(), {}, {})
                 this.achievements = data
                 this.sortItemsByAchievement();
                 this.loaded = true;
