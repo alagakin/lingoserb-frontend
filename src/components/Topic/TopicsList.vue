@@ -26,6 +26,7 @@ import '@splidejs/vue-splide/css';
 import TopicProgress from './TopicProgress.vue';
 import getTopicTitle from '../../utils/getTopicTitle';
 import { apiRequest } from '../../api.js';
+import { mapGetters } from 'vuex';
 
 export default {
     name: "TopicsList",
@@ -51,7 +52,9 @@ export default {
     beforeUnmount() {
         window.removeEventListener("scroll", this.handleScroll);
     },
-    computed: {},
+    computed: {
+        ...mapGetters(['topicListEndpoint'])
+    },
     methods: {
         getTitle(topic) {
             return getTopicTitle(topic);
@@ -61,7 +64,7 @@ export default {
             const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
             const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
             const scrollPosition = scrollTop + windowHeight;
-            const scrollThreshold = 0.8; // Adjust this threshold to your desired value
+            const scrollThreshold = 0.8;
             if (!this.isLoading && scrollPosition >= scrollThreshold * documentHeight) {
                 this.loadMoreContent();
             }
@@ -73,8 +76,7 @@ export default {
             this.isLoading = true;
 
             try {
-                const data = await apiRequest('GET',
-                    this.$store.getters.getTopicsListEndpoint, {},
+                const data = await apiRequest('GET', this.topicListEndpoint(), {},
                     {
                         offset: this.offset,
                         limit: this.limit
