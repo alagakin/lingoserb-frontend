@@ -9,7 +9,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
 import DictCard from '../DictCard.vue';
 import DictCardSkeleton from '../DictCardSkeleton.vue';
 import TopicFilter from '../TopicFilter.vue';
@@ -17,6 +16,7 @@ import ProgressFilter from '../ProgressFilter.vue';
 import Empty from '../Empty.vue';
 import Filter from '../Filter.vue';
 import { apiRequest } from '../../api.js';
+import { mapGetters } from 'vuex';
 
 export default {
   name: "MyWordsList",
@@ -32,6 +32,9 @@ export default {
       filters: {},
       items: [],
     };
+  },
+  computed: {
+    ...mapGetters(['savedWordsEnpoint'])
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
@@ -56,7 +59,7 @@ export default {
       }
       this.isLoading = true
       try {
-        const data = await apiRequest('GET', this.$store.getters.getSavedWordsEnpoint, {}, {
+        const data = await apiRequest('GET', this.savedWordsEnpoint(), {}, {
           offset: this.offset,
             limit: this.limit,
             ...this.filters
