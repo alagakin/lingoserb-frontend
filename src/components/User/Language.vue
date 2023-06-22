@@ -11,6 +11,7 @@
 
 import { mapGetters } from 'vuex';
 import { apiRequest } from '../../api.js';
+
 export default {
   name: "Empty",
   methods: {
@@ -24,7 +25,7 @@ export default {
         formData.append('lang', value);
 
         try {
-          apiRequest('PATCH', this.$store.getters.getProfileEndpoint, formData)
+          apiRequest('PATCH', this.profileEndpoint(), formData)
         } catch (error) {
           console.log(error)
         }
@@ -32,7 +33,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getUserProfile']),
+    ...mapGetters(['getUserProfile', 'profileEndpoint']),
     lang() {
       return this.$i18n.locale;
     }
