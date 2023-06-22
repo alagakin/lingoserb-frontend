@@ -27,6 +27,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
 import getTopicTitle from '../../utils/getTopicTitle';
 import { apiRequest } from '../../api.js';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'DetailTopic',
@@ -51,7 +52,8 @@ export default {
       if (this.topic.title) {
         return this.capitalizeWord(this.topic.title)
       }
-    }
+    },
+    ...mapGetters(['wordsForTopicEndpoint', 'topicEndpoint'])
   },
   methods: {
     setPageTitle(topic) {
@@ -65,7 +67,7 @@ export default {
     },
     async loadWords() {
       try {
-        const data = await apiRequest('GET', this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/words/')
+        const data = await apiRequest('GET', this.wordsForTopicEndpoint(this.$route.params.id))
         if (data.words?.length) {
           this.words.push(...data.words)
         } else {
@@ -78,7 +80,7 @@ export default {
     },
     async loadTopic() {
       try {
-        const data = await apiRequest('GET', this.$store.getters.getTopicsListEndpoint + this.$route.params.id + '/')
+        const data = await apiRequest('GET', this.topicEndpoint(this.$route.params.id))
         if (data) {
           this.topic = data
           this.setPageTitle(this.topic)
