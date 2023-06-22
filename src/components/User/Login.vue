@@ -98,7 +98,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'flowbite'
 import { apiLogin } from '../../api';
 import { googleSdkLoaded } from "vue3-google-login"
-
+import { mapGetters } from 'vuex';
 
 
 export default {
@@ -111,6 +111,9 @@ export default {
             errorMessage: '',
             waiting: false
         };
+    },
+    computed: {
+        ...mapGetters(['googleLoginEndpoint', 'loginEndpoint']),
     },
     mounted() {
         const modalOptions = {
@@ -135,14 +138,13 @@ export default {
                         if (response['code']) {
                             this.googleLogin(response['code'])
                         }
-                        console.log("Handle the response", response)
                     }
                 }).requestCode()
             })
         },
         async googleLogin(code) {
             try {
-                const response = await apiLogin(this.$store.getters.getGoogleLoginEndpoint, {
+                const response = await apiLogin(this.googleLoginEndpoint(), {
                     code: code,
                 });
                 this.modal.hide()
@@ -153,8 +155,7 @@ export default {
                     this.$store.commit('setToken', token);
                     this.$store.commit('setAuthenticated', true)
 
-                    // Redirect the user to the authenticated part of your application
-                    this.$router.push({ name: 'Dictionary' });
+                    this.$router.push({ name: 'Profile' });
                 }
 
             } catch (error) {
@@ -174,7 +175,7 @@ export default {
             this.waiting = true
             this.errorMessage = false
             try {
-                const response = await apiLogin(this.$store.getters.getLoginEndpoint, {
+                const response = await apiLogin(this.loginEndpoint(), {
                     username: this.username,
                     password: this.password,
                 });
@@ -187,7 +188,7 @@ export default {
                 this.$store.commit('setAuthenticated', true)
 
                 // Redirect the user to the authenticated part of your application
-                this.$router.push({ name: 'Dictionary' });
+                this.$router.push({ name: 'Profile' });
             } catch (error) {
                 console.log(error)
                 this.waiting = false
