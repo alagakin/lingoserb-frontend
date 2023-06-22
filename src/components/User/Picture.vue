@@ -13,7 +13,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { mapGetters } from 'vuex';
-import axios from 'axios';
 import { apiRequest } from '../../api.js';
 
 export default {
@@ -22,7 +21,7 @@ export default {
         library.add(faUser);
     },
     computed: {
-        ...mapGetters(['getUserProfile'])
+        ...mapGetters(['getUserProfile', 'profileEndpoint'])
     },
     methods: {
         openFileManager() {
@@ -34,7 +33,7 @@ export default {
                 const formData = new FormData();
                 formData.append('picture', file);
                 try {
-                    const data = await apiRequest('PATCH', this.$store.getters.getProfileEndpoint, formData)
+                    const data = await apiRequest('PATCH', this.profileEndpoint(), formData)
                     if (data?.picture) {
                         this.$store.commit('setUserPicture', data.picture)
                     }
