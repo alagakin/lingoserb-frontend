@@ -2,7 +2,7 @@
     <Language />
     <router-link v-if="isAuthenticated" :to="{ name: 'Profile' }"
         class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-400">
-        <img :src="getUserProfile?.picture" alt="" v-if="getUserProfile?.picture"
+        <img :src="userProfile?.picture" alt="" v-if="userProfile?.picture"
             class="rounded-full w-full h-full object-cover">
         <font-awesome-icon v-else :icon="['far', 'user']" size="xl" class="text-gray-400 text-2xl" />
     </router-link>
@@ -25,7 +25,7 @@ export default {
         library.add(faUser);
     },
     computed: {
-        ...mapGetters(['getUserProfile', 'isAuthenticated'])
+        ...mapGetters(['userProfile', 'isAuthenticated'])
     },
 }
 </script>

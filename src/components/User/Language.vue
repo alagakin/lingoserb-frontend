@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getUserProfile', 'profileEndpoint', 'isAuthenticated']),
+    ...mapGetters(['profileEndpoint', 'isAuthenticated']),
     lang() {
       return this.$i18n.locale;
     }
