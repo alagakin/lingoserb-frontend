@@ -20,7 +20,7 @@ export default {
       this.$store.commit('setUserLang', value)
       this.$i18n.locale = value
 
-      if (this.$store.getters.isAuthenticated) {
+      if (this.isAuthenticated) {
         const formData = new FormData();
         formData.append('lang', value);
 
@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getUserProfile', 'profileEndpoint']),
+    ...mapGetters(['getUserProfile', 'profileEndpoint', 'isAuthenticated']),
     lang() {
       return this.$i18n.locale;
     }
