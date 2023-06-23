@@ -7,6 +7,7 @@
 import { apiRequest } from '../../api'
 import LearningStage from './LearningStage.vue'
 import GameStage from './GameStage.vue'
+import { mapGetters } from 'vuex'
 export default {
     name: "Game",
     data() {
@@ -26,7 +27,7 @@ export default {
         },
         async loadGame() {
             try {
-                const data = await apiRequest('GET', this.$store.getters.getLearningEndpoint + `${this.topicId}/` + 'start/')
+                const data = await apiRequest('GET', this.startTopicLearningEndpoint(this.topicId))
                 if (data) {
                     if (data.learning.length) {
                         this.learningItems = data.learning
@@ -48,7 +49,8 @@ export default {
     computed: {
         topicId() {
             return this.$route.params.id
-        }
+        },
+        ...mapGetters(['startTopicLearningEndpoint'])
     }
 }
 </script>
