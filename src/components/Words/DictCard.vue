@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import AudioButton from './AudioButton.vue';
-import Progress from './Progress.vue';
-import TranslationModal from './TranslationModal.vue';
-import getTopicTitle from '../utils/getTopicTitle.js';
+import AudioButton from '../AudioButton.vue';
+import Progress from '../Progress.vue';
+import TranslationModal from '../TranslationModal.vue';
+import getTopicTitle from '../../utils/getTopicTitle.js';
 
 
 export default {

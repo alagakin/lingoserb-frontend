@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import DictCard from '../DictCard.vue';
+import DictCard from './DictCard.vue';
 import DictCardSkeleton from '../DictCardSkeleton.vue';
 import Filter from '../Filter.vue';
 import Empty from '../Empty.vue';

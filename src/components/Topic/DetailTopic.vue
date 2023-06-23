@@ -21,7 +21,7 @@
 </template>
 <script>
 
-import DictCard from '../DictCard.vue';
+import DictCard from '../Words/DictCard.vue';
 import DictCardSkeleton from '../DictCardSkeleton.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
