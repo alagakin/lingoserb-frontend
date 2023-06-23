@@ -1,9 +1,10 @@
 <template>
-    <div class="flex flex-wrap">
-        <span class="text-sm rounded-full px-3 py-1 text-gray-700 mr-2 mb-2" :class="getColor(topic)"
-            v-for="topic in topics">
-            {{ getTitle(topic) }}
-        </span>
+    <div class="flex flex-wrap mb-3">
+        <router-link v-for="topic in topics" :to="{ name: 'DetailTopic', params: { id: topic.id } }">
+            <span class="text-sm rounded-full px-3 py-1 text-gray-700 mr-2 mb-2" :class="getColor(topic)">
+                {{ getTitle(topic) }}
+            </span>
+        </router-link>
     </div>
 </template>
 

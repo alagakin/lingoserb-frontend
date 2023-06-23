@@ -55,6 +55,14 @@ export default {
     },
     ...mapGetters(['wordsForTopicEndpoint', 'topicEndpoint'])
   },
+  watch: {
+    '$route.params.id': function (newId) {
+      this.loadTopic()
+      this.loadWords()
+      this.wordsLoading = true
+      this.words = []
+    },
+  },
   methods: {
     setPageTitle(topic) {
       document.title = getTopicTitle(topic)
