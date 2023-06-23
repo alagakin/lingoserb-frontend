@@ -22,6 +22,7 @@ import { apiRequest } from '../../api'
 import Option from './Option.vue'
 import Endgame from './Endgame.vue'
 import AudioButton from '../AudioButton.vue'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "GameStage",
@@ -69,12 +70,15 @@ export default {
             if (this.gameItems?.length && this.gameItems[this.currentItemId]) {
                 return this.gameItems[this.currentItemId]['word_id']
             }
-        }
+        },
+        ...mapGetters(['finishTopicLearningEndpoint'])
     },
     methods: {
         async finish() {
             try {
-                const data = await apiRequest('POST', this.$store.getters.getLearningEndpoint + `${this.topicId}/` + 'complete/')
+                const data = await apiRequest('POST', this.finishTopicLearningEndpoint(this.topicId), {
+                    game: this.gameItems
+                })
                 this.endgame = true
             } catch (error) {
                 console.log(error)
