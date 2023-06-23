@@ -4,12 +4,8 @@
         <h3 class="text-xl mb-2" v-else>{{ word.title }}</h3>
 
         <p class="text-gray-500 mb-4" :class="class">{{ word.translation[0]?.title }}</p>
-        <div class="flex flex-wrap" :class="class">
-            <span class="text-sm bg-blue-200 rounded-full px-3 py-1 text-gray-700 mr-2 mb-2"
-                v-for="topic in word.topics">
-                {{ getTitle(topic) }}
-            </span>
-        </div>
+     
+        <TopicButtons :topics="word.topics" :class="class" />
      
         <div v-if="word.audio_link" class="absolute top-0 right-0 mt-2 mr-2" :class="class">
             <AudioButton :audio_link="word.audio_link"/>
@@ -24,6 +20,7 @@ import AudioButton from '../AudioButton.vue';
 import Progress from '../Progress.vue';
 import TranslationModal from '../TranslationModal.vue';
 import getTopicTitle from '../../utils/getTopicTitle.js';
+import TopicButtons from './TopicButtons.vue';
 
 
 export default {
@@ -38,7 +35,7 @@ export default {
             default: false
         }
     },
-    components: { TranslationModal, Progress, AudioButton },
+    components: { TranslationModal, Progress, AudioButton, TopicButtons },
     computed: {
         class() {
             return {
