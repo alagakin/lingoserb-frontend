@@ -26,7 +26,7 @@
     <div class="flex justify-center">
         <button :disabled="countingDown" :class="{ 'opacity-50': countingDown }"
             class="bg-teal-500 w-64 h-12 mt-4 rounded-lg text-center text-white" v-on:click="next">
-            {{ countdown ? countdown : 'Next' }}
+            {{ countdown ? countdown : $t('game.next') }}
         </button>
     </div>
 </template>

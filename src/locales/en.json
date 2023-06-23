@@ -9,6 +9,7 @@
     }, 
     "game": {
         "title": "Game",
+        "next": "Next",
         "endgame": {
             "title": "Congratulations!",
             "description": "Come in a few hours to repeat new words"
