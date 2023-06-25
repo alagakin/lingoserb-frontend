@@ -1,6 +1,5 @@
 <template>
-    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">{{ $t('auth.modal.login.title') }}
-    </h3>
+
     <form class="space-y-4" @submit="login">
         <div>
             <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
@@ -21,7 +20,7 @@
             </p>
         </div>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-            Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create
+            Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500" @click="signup">Create
                 account</a>
         </div>
 
@@ -70,7 +69,6 @@
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { Modal } from 'flowbite'
 import { apiLogin } from '../../api';
 import { googleSdkLoaded } from "vue3-google-login"
 import { mapGetters } from 'vuex';
@@ -90,6 +88,9 @@ export default {
         ...mapGetters(['googleLoginEndpoint', 'loginEndpoint']),
     },
     methods: {
+        signup() {
+            this.$emit('showSignup');
+        },
         google(e) {
             e.preventDefault()
             googleSdkLoaded((google) => {
@@ -143,7 +144,7 @@ export default {
                     password: this.password,
                 });
                 this.waiting = false
-                this.modal.hide()
+                this.$emit('authenticated')
                 const token = response.auth_token;
                 localStorage.setItem('token', token);
 

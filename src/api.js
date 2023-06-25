@@ -27,6 +27,9 @@ export const apiLogin = async (url, data) => {
       method: "POST",
       url,
       data,
+      headers: {
+        'Accept-Language': i18n.global.locale,
+      }
     });
     return response.data;
   } catch (error) {

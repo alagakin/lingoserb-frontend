@@ -79,7 +79,7 @@ const getters = {
     skippedWordsIdsEndpoint: (state) => () => state.domain + '/api/v1/learning/skipped/ids/',
     skippedWordsIds: (state) => () => state.skippedWordsIds,
     searchWordsEndpoint: (state) => () => state.domain + '/api/v1/words/search/',
-
+    signupEndpoint: (state) => () => state.domain + '/api/v1/auth/users/',
 }
 
 
