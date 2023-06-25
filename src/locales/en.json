@@ -1,5 +1,8 @@
 {
     "appname": "Learn Serbian with AI",
+    "search": {
+        "placeholder": "Search words"
+    },
     "index": {
         "h1": "Learn Serbian with AI",
         "description": "Learn Serbian with AI is a free online service for learning Serbian. The service is based on the spaced repetition method and artificial intelligence. The service is designed for people who want to learn Serbian from scratch or improve their knowledge of Serbian."
