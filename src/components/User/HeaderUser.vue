@@ -7,20 +7,20 @@
         <font-awesome-icon v-else :icon="['far', 'user']" size="xl" class="text-gray-400 text-2xl" />
     </router-link>
 
-    <Login v-if="!isAuthenticated" />
+    <AuthModal v-if="!isAuthenticated" />
 </template>
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 
-import Login from './Login.vue'
+import AuthModal from './AuthModal.vue'
 import Logout from './Logout.vue'
 import { mapGetters } from 'vuex';
 import Language from './Language.vue';
 
 export default {
     name: 'HeaderPersonal',
-    components: { Login, Logout, Language },
+    components: { AuthModal, Logout, Language },
     beforeMount() {
         library.add(faUser);
     },
