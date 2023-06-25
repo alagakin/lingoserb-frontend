@@ -62,6 +62,7 @@ const getters = {
     topicListEndpoint: (state) => () => state.domain + '/api/v1/topic/',
     startTopicLearningEndpoint: (state) => (topicId) => state.domain + `/api/v1/learning/${topicId}/start/`,
     finishTopicLearningEndpoint: (state) => (topicId) => state.domain + `/api/v1/learning/${topicId}/complete/`,
+    skipWordEndpoint: (state) => (wordId) => state.domain + `/api/v1/learning/${wordId}/skip/`,
 }
 
 

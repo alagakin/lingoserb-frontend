@@ -77,6 +77,7 @@ export default {
       try {
         const data = await apiRequest('GET', this.wordsForTopicEndpoint(this.$route.params.id))
         if (data.words?.length) {
+          console.log(data.words)
           this.words.push(...data.words)
         } else {
           return
