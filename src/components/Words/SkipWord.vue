@@ -1,7 +1,7 @@
 <template>
-    <span class="cursor-pointer inline p-1 hover:bg-gray-200 rounded-lg">
-        <font-awesome-icon :icon="['fas', 'eye-slash']" v-if="skipped" @click="skipWord" />
-        <font-awesome-icon :icon="['fas', 'eye']" v-else @click="skipWord" />
+    <span class="cursor-pointer inline p-1 hover:bg-gray-200 rounded-lg" @click="skipWord">
+        <font-awesome-icon :icon="['fas', 'eye-slash']" v-if="skipped" />
+        <font-awesome-icon :icon="['fas', 'eye']" v-else/>
     </span>
 </template>
 <script>
