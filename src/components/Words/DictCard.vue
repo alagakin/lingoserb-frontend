@@ -24,6 +24,7 @@ import TranslationModal from '../TranslationModal.vue';
 import getTopicTitle from '../../utils/getTopicTitle.js';
 import TopicButtons from './TopicButtons.vue';
 import SkipWord from './SkipWord.vue';
+import { mapGetters } from 'vuex';
 
 export default {
     name: "DictCard",
@@ -31,18 +32,21 @@ export default {
         word: {
             type: Object,
             required: true
-        },
-        skipped: {
-            type: Boolean,
-            default: false
         }
     },
     components: { TranslationModal, Progress, AudioButton, TopicButtons, SkipWord },
     computed: {
+        ...mapGetters(['skippedWordsIds']),
         class() {
             return {
                 'opacity-50': this.skipped,
             }
+        },
+        skipped() {
+            if (this.skippedWordsIds().includes(this.word.id)){
+                return true;
+            }
+            return false
         }
     },
     methods: {
@@ -50,7 +54,11 @@ export default {
             return getTopicTitle(topic);
         },
         skipWord(skipped) {
-            this.word.skipped = skipped;
+            if (skipped) {
+                this.$store.commit('addSkippedWordId', this.word.id);
+            } else {
+                this.$store.commit('removeSkippedWordId', this.word.id);
+            }
         }
     }
 }

@@ -41,23 +41,41 @@ export default {
         this.$store.commit('setUserProfile', data)
         this.$i18n.locale = data.lang
       } catch (error) { }
+    },
+    async getSkippedWords() {
+      try {
+        const data = await apiRequest('GET', this.skippedWordsIdsEndpoint());
+        if (data) {
+          this.$store.commit('setSkippedWordsIds', data)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    fetchData() {
+      this.setProgress()
+      this.getProfile()
+      this.getSkippedWords()
     }
   },
   watch: {
     isAuthenticated(newVal) {
       if (newVal) {
-        this.setProgress()
-        this.getProfile()
+        this.fetchData()
       }
     }
   },
   computed: {
-    ...mapGetters(['profileEndpoint', 'progressEndpoint', 'isAuthenticated']),
+    ...mapGetters([
+      'profileEndpoint', 
+      'progressEndpoint', 
+      'isAuthenticated', 
+      'skippedWordsIdsEndpoint'
+    ]),
   },
   created() {
     if (this.isAuthenticated) {
-      this.setProgress()
-      this.getProfile()
+      this.fetchData()
     }
   }
 }

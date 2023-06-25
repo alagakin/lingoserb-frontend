@@ -9,9 +9,9 @@ const state = {
     deleteSavedEndpoint: '/api/v1/saved/add/',
     token: false,
     authenticated: false,
-    savedIds: [],
     progress: {},
     userProfile: {},
+    skippedWordsIds: [],
 };
 
 const mutations = { 
@@ -40,6 +40,19 @@ const mutations = {
     setUserLang(state, payload) {
         state.userProfile.lang = payload
         localStorage.setItem('lang', payload)
+    },
+    setSkippedWordsIds(state, payload) {
+        state.skippedWordsIds = payload
+    },
+    addSkippedWordId(state, payload) {
+        if (!state.skippedWordsIds.includes(payload)) {
+            state.skippedWordsIds.push(payload)
+        }
+    },
+    removeSkippedWordId(state, payload) {
+        if (state.skippedWordsIds.includes(payload)) {
+            state.skippedWordsIds = state.skippedWordsIds.filter(wordId => wordId != payload)
+        }
     }
 };
 
@@ -63,6 +76,9 @@ const getters = {
     startTopicLearningEndpoint: (state) => (topicId) => state.domain + `/api/v1/learning/${topicId}/start/`,
     finishTopicLearningEndpoint: (state) => (topicId) => state.domain + `/api/v1/learning/${topicId}/complete/`,
     skipWordEndpoint: (state) => (wordId) => state.domain + `/api/v1/learning/${wordId}/skip/`,
+    skippedWordsIdsEndpoint: (state) => () => state.domain + '/api/v1/learning/skipped/ids/',
+    skippedWordsIds: (state) => () => state.skippedWordsIds,
+
 }
 
 

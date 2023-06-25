@@ -2,7 +2,7 @@
   <Filter @filter="filter" />
   <div class="flex justify-center ">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
-      <DictCard v-for="item in items" :word="item" :key="item.id" :skipped="item.skipped" />
+      <DictCard v-for="item in items" :word="item" :key="item.id" />
       <DictCardSkeleton v-show="isLoading" v-for="index in limit" :key="index" />
     </div>
     <Empty v-show="!isLoading && !items.length" />
