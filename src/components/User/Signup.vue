@@ -1,26 +1,29 @@
 <template>
     <form class="space-y-4 md:space-y-6" @submit="signup">
         <div>
-            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your username</label>
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
+                $t('auth.modal.signup.username_title') }}</label>
             <input type="username" name="username" id="username" v-model="username"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="my username" required="">
+                :placeholder="$t('auth.modal.signup.username_title')" required="">
         </div>
         <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
+                $t('auth.modal.signup.email_title') }}</label>
             <input type="email" name="email" id="email" v-model="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@company.com" required="">
         </div>
         <div>
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
+                $t('auth.modal.signup.password_title') }}</label>
             <input type="password" name="password" id="password" v-model="password" placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required="">
         </div>
         <div>
-            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
-                password</label>
+            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{
+                $t('auth.modal.signup.confirm_title') }}</label>
             <input type="password" v-model="confirm" name="confirm-password" id="confirm-password" placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required="">
@@ -34,12 +37,13 @@
                                  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 
                                  dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" v-show="waiting" />
-            <span v-show="!waiting">Create an account</span>
+            <span v-show="!waiting">{{ $t('auth.modal.signup.button') }}</span>
         </button>
 
         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Already have an account? <a href="#" @click="showLogin"
-                class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+            {{ $t('auth.modal.signup.already_have') }} <a href="#" @click="showLogin"
+                class="font-medium text-primary-600 hover:underline dark:text-primary-500">{{ $t('auth.modal.signup.login')
+                }}</a>
         </p>
     </form>
 </template>

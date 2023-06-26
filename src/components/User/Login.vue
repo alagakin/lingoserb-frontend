@@ -20,8 +20,7 @@
             </p>
         </div>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-            Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500" @click="signup">Create
-                account</a>
+            {{ $t('auth.modal.not_registered') }} <a href="#" class="text-blue-700 hover:underline dark:text-blue-500" @click="signup">{{ $t('auth.modal.create_account') }}</a>
         </div>
 
         <button type="submit" :disabled="waiting" class="w-full text-white bg-blue-700

@@ -32,10 +32,22 @@
         "modal": {
             "login": {
                 "title": "Sign in to our platform",
-                "login_field": "Your Login",
+                "login_field": "Your Username",
                 "password_field": "Your password",
                 "login_field_placeholder": "My login",
                 "google_auth_button": "Sign in with Google"
+            },
+            "not_registered": "Not registered yet?",
+            "create_account": "Create an account",
+            "signup": {
+                "username_title": "Your Username",
+                "username_placeholder": "Your Username",
+                "password_title": "Password",
+                "confirm_title": "Confirm password",
+                "email_title": "Your Email",
+                "button": "Create an account",
+                "already_have": "Already have an account?",
+                "login": "Login here"
             }
         }
     },

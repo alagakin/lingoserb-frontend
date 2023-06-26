@@ -32,10 +32,22 @@
         "modal": {
             "login": {
                 "title": "Вход на сайт",
-                "login_field": "Логин",
+                "login_field": "Имя пользователя",
                 "password_field": "Пароль",
-                "login_field_placeholder": "Логин",
+                "login_field_placeholder": "Имя пользователя",
                 "google_auth_button": "Войти через Google"
+            },
+            "not_registered": "Еще не зарегистрированы?",
+            "create_account": "Создать аккаунт",
+            "signup": {
+                "username_title": "Имя пользователя",
+                "username_placeholder": "Имя пользователя",
+                "password_title": "Пароль",
+                "confirm_title": "Повторите пароль",
+                "email_title": "Email",
+                "button": "Зарегистрироваться",
+                "already_have": "Уже есть аккаунт?",
+                "login": "Войти"
             }
         }
     },
