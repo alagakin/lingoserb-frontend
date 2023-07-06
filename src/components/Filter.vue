@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-5xl m-auto">
-    <ProgressFilter @filter="filterProgress" ref="progress" v-if="use.progress"  />
     <TopicFilter @filter="filterTopics" ref="topics" v-if="use.topics" />
+    <ProgressFilter @filter="filterProgress" ref="progress" v-if="use.progress"  />
     <div class="flex justify-end mb-2" v-show="filter.progress || filter.topics">
       <button class="bg-red-400 pt-1 pb-1 pl-2 pr-2 rounded-xl text-white" @click="clear">
         {{ $t('filter.clear') }}

@@ -1,14 +1,14 @@
 <template>
     <div class="flex mb-2">
-        <span class="p-2">{{ $t('filter.topics') }}:</span>
-        <ul class=" text-sm flex">
-            <li class="flex items-center mr-4" v-for="subtopic in subtopics">
+        <ul class=" text-sm flex flex-wrap">
+            <li class="flex items-center mr-2 mb-2" v-for="subtopic in subtopics">
                 <span @click="$event => handleChange(subtopic.id)"
-                    class="cursor-pointer ml-2 text-sm font-medium text-gray-900 pl-4 pr-4 pt-2 pb-2  rounded-3xl"
+                    class="cursor-pointer ml-2 text-sm font-medium text-gray-900 pl-4 pr-4 pt-2 pb-2  rounded-2xl"
                     :class="
                         {
                             'bg-blue-400': checkedTopics.includes(subtopic.id),
-                            'bg-gray-200': !checkedTopics.includes(subtopic.id)
+                            'bg-gray-100': !checkedTopics.includes(subtopic.id),
+                            'text-white': checkedTopics.includes(subtopic.id),
                         }">
                     {{ getTitle(subtopic) }}
                 </span>

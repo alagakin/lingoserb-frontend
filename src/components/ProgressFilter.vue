@@ -1,6 +1,5 @@
 <template>
     <div class="flex mb-2">
-        <span class="p-2">{{ $t('filter.progress') }}:</span>
         <ul class=" text-sm flex">
             <li class="flex items-center mr-4" v-for="progress in progressList">
                 <span :for="'progress' +  progress.value" @click="$event => handleChange(progress.value)" 
