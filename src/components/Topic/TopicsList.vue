@@ -3,17 +3,7 @@
         <h3 class="text-2xl font-bold mb-4">{{ getTitle(topic) }}</h3>
         <Splide :options="{ rewind: true, perPage: 3, arrows: false }" aria-label="My Favorite Images">
             <SplideSlide v-for="subtopic in topic.subtopics">
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8">
-                    <div class="bg-white rounded-lg shadow p-4">
-                        <router-link :to="{ name: 'DetailTopic', params: { id: subtopic.id } }">
-                            <img :src="subtopic.picture" alt="Block Picture"
-                                class="w-full h-40 object-cover mb-4 rounded-lg">
-                        </router-link>
-                        <h3 class="text-lg font-bold mb-2">{{ getTitle(subtopic) }}</h3>
-                        <p class="text-gray-500 mb-4">{{ $t('topic.words.counter', { count: subtopic.words_count }) }}</p>
-                        <TopicProgress :percent="subtopic.learned_percent" />
-                    </div>
-                </div>
+                <Slide :subtopic="subtopic"/>
             </SplideSlide>
         </Splide>
     </div>
@@ -27,6 +17,7 @@ import TopicProgress from './TopicProgress.vue';
 import getTopicTitle from '../../utils/getTopicTitle';
 import { apiRequest } from '../../api.js';
 import { mapGetters } from 'vuex';
+import Slide from './Slide.vue';
 
 export default {
     name: "TopicsList",
@@ -56,6 +47,7 @@ export default {
         ...mapGetters(['topicListEndpoint'])
     },
     methods: {
+        //todo: get rid of that?
         getTitle(topic) {
             return getTopicTitle(topic);
         },
@@ -97,6 +89,6 @@ export default {
             }
         },
     },
-    components: { TopicProgress }
+    components: { TopicProgress, Slide }
 }
 </script>
