@@ -2,8 +2,8 @@
   <div class="max-w-5xl m-auto mb-4">
     <TopicFilter @filter="filterTopics" ref="topics" v-if="use.topics" />
     <ProgressFilter @filter="filterProgress" ref="progress" v-if="use.progress"  />
-    <div class="flex justify-end mb-2" v-show="filter.progress || filter.topics">
-      <button class="bg-red-400 pt-1 pb-1 pl-2 pr-2 rounded-xl text-white" @click="clear">
+    <div class="fixed right-0 top-3/4" v-show="filter.progress || filter.topics">
+      <button class="bg-red-500 pt-2 pb-2 pl-2 pr-8 text-white rounded-l-lg" @click="clear">
         {{ $t('filter.clear') }}
       </button>
     </div>

@@ -104,7 +104,7 @@
         }
     },
     "filter": {
-        "clear": "clear",
+        "clear": "Clear filter",
         "topics": "Topics",
         "progress": "Progress"
     },
