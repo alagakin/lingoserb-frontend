@@ -1,14 +1,19 @@
 <template>
     <div>
-      <img src="/src/assets/er.png" alt="" class="opacity-60">
+      <img :src="noResult" alt="" class="opacity-60">
     </div>
 </template>
 
 <script>
 
-
+import noResult from '@/assets/er.png'
 
 export default {
     name: "Empty",
+    data() {
+      return {
+        noResult: noResult
+      }
+    }
 }
 </script>
