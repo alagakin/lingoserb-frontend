@@ -11,7 +11,7 @@
             <div :class="class">
                 <SkipWord :skipped="skipped" :wordId="word.id" @skipWord="skipWord" />
             </div>
-            <div v-if="!word.audio_link" class="" :class="class">
+            <div v-if="word.audio_link" class="" :class="class">
                 <AudioButton :audio_link="word.audio_link" />
             </div>
         </div>
