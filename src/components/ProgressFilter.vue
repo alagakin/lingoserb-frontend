@@ -6,8 +6,8 @@
                     class="cursor-pointer ml-2 text-sm font-medium text-gray-900 pl-4 pr-4 pt-2 pb-2  rounded-2xl"
                     :class="
                         {
-                            'bg-blue-600': checkedProgress.includes(progress.value),
-                            'bg-gray-200': !checkedProgress.includes(progress.value),
+                            'bg-gray-400': checkedProgress.includes(progress.value),
+                            'bg-gray-100': !checkedProgress.includes(progress.value),
                             'text-white': checkedProgress.includes(progress.value),
                         }">
                     {{ progress.title }}

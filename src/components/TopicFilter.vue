@@ -6,7 +6,7 @@
                     class="cursor-pointer ml-2 text-sm font-medium text-gray-900 pl-4 pr-4 pt-2 pb-2  rounded-2xl"
                     :class="
                         {
-                            'bg-blue-400': checkedTopics.includes(subtopic.id),
+                            'bg-gray-400': checkedTopics.includes(subtopic.id),
                             'bg-gray-100': !checkedTopics.includes(subtopic.id),
                             'text-white': checkedTopics.includes(subtopic.id),
                         }">

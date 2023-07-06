@@ -3,7 +3,7 @@
     <TopicFilter @filter="filterTopics" ref="topics" v-if="use.topics" />
     <ProgressFilter @filter="filterProgress" ref="progress" v-if="use.progress"  />
     <div class="fixed right-0 top-3/4" v-show="filter.progress || filter.topics">
-      <button class="bg-red-500 pt-2 pb-2 pl-2 pr-8 text-white rounded-l-lg" @click="clear">
+      <button class="bg-red-400 pt-2 pb-2 pl-2 pr-8 text-white rounded-l-lg" @click="clear">
         {{ $t('filter.clear') }}
       </button>
     </div>
