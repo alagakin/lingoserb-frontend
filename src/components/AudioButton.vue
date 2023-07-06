@@ -1,6 +1,6 @@
 <template>
     <div class="inline p-1 hover:bg-gray-200 rounded-lg">
-        <font-awesome-icon :icon="['fasr', 'volume-up']" @click="playAudio" class="cursor-pointer "/>
+        <font-awesome-icon :icon="['fasr', 'volume-up']" @click="playAudio" class="cursor-pointer " style="color: #555555;"/>
     </div>
 </template>
   
