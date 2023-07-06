@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-5xl m-auto">
+  <div class="max-w-5xl m-auto mb-4">
     <TopicFilter @filter="filterTopics" ref="topics" v-if="use.topics" />
     <ProgressFilter @filter="filterProgress" ref="progress" v-if="use.progress"  />
     <div class="flex justify-end mb-2" v-show="filter.progress || filter.topics">
