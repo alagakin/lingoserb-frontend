@@ -1,6 +1,6 @@
 <template>
     <div>
-      <img :src="noResult" alt="" class="opacity-60">
+      <img :src="noResult" alt="" class="opacity-60 w-48 mt-12">
     </div>
 </template>
 
