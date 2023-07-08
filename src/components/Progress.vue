@@ -35,9 +35,6 @@ export default {
             return 0
         },
         color() {
-            if (this.percent > 90) {
-                return 'bg-green-600'
-            }
             if (this.percent > 80) {
                 return 'bg-green-400'
             }
@@ -48,10 +45,10 @@ export default {
                 return 'bg-green-200'
             }
             if (this.percent > 20) {
-                return 'bg-yellow-100'
+                return 'bg-green-100'
             }
             if (this.percent > 0) {
-                return 'bg-red-300'
+                return 'bg-green-50'
             }
         },
         ...mapGetters(['progress'])
