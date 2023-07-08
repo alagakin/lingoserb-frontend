@@ -20,9 +20,10 @@
 
 <script>
 import getTopicTitle from '../../utils/getTopicTitle';
-
+import TopicProgress from './TopicProgress.vue'
 export default {
     name: "Slide",
+    components: {TopicProgress},
     props: {
         subtopic: {
             type: Object,
