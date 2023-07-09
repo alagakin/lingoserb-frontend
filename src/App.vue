@@ -1,9 +1,13 @@
 <template>
   <div :key="isAuthenticated">
-    <Header />
-    <main class="container mx-auto py-8 max-w-6xl mt-10">
-      <router-view></router-view>
-    </main>
+    <div class="flex flex-col min-h-screen">
+      <Header />
+      <main class="container mx-auto py-8 max-w-6xl mt-10">
+        <router-view></router-view>
+      </main>
+    </div>
+
+    <Footer />
   </div>
 </template>
 
@@ -12,12 +16,14 @@ import Header from './components/Header.vue';
 import HomeView from './views/HomeView.vue';
 import { apiRequest } from './api.js';
 import { mapGetters } from 'vuex';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
     HomeView,
+    Footer
   },
   methods: {
     async setProgress() {
@@ -33,7 +39,7 @@ export default {
       } catch (error) {
         console.log(error)
       }
-     
+
     },
     async getProfile() {
       try {
@@ -67,9 +73,9 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'profileEndpoint', 
-      'progressEndpoint', 
-      'isAuthenticated', 
+      'profileEndpoint',
+      'progressEndpoint',
+      'isAuthenticated',
       'skippedWordsIdsEndpoint'
     ]),
   },
