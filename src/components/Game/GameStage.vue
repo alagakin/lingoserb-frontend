@@ -3,7 +3,7 @@
         v-if="gameItems?.length && !endgame">
         <div class="mb-6 text-white">{{ currentItemId + 1 }}/{{ gameItems?.length }}</div>
         <div
-            class="bg-gray-100 width-10 rounded-lg mb-4 w-2/3 h-64 flex justify-center items-center cursor-pointer relative">
+            class="bg-blue-400 text-4xl width-10 text-white rounded-lg mb-12 w-2/3 h-64 flex justify-center items-center cursor-pointer relative">
             <span>{{ wordTitle }}</span>
             <div class="absolute top-4 right-4 mt-2 mr-2">
                 <AudioButton v-if="audio_link" :audio_link="audio_link" />

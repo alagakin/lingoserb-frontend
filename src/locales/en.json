@@ -111,7 +111,8 @@
         "progress": "Progress"
     },
     "learning": {
-        "start": "Learn"
+        "start": "Learn",
+        "back": "Back to topic"
     },
     "notFound": "404 Not Found"
 }

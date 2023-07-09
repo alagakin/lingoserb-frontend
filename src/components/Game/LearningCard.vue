@@ -1,9 +1,9 @@
 <template>
     <div class="flex justify-center items-center ">
-        <div class="bg-gray-400 w-96 h-48 flex justify-center items-center text-white text-center rounded-lg relative">
+        <div class="bg-blue-400 w-4/12 h-48 flex justify-center items-center text-white text-center rounded-lg relative">
             <div>
-                <div class="text-3xl">{{ word.title }}</div>
-                <div class="text-2xl italic">{{ translation }}</div>
+                <div class="text-4xl mb-4">{{ word.title }}</div>
+                <div class="text-xl italic">{{ translation }}</div>
             </div>
             <div v-if="word.audio_link" class="absolute top-4 right-4 mt-2 mr-2">
                 <AudioButton :audio_link="word.audio_link" />
@@ -25,7 +25,7 @@
     </div>
     <div class="flex justify-center">
         <button :disabled="countingDown" :class="{ 'opacity-50': countingDown }"
-            class="bg-teal-500 w-64 h-12 mt-4 rounded-lg text-center text-white" v-on:click="next">
+            class="bg-blue-400 w-64 h-12 mt-4 rounded-lg text-center text-white" v-on:click="next">
             {{ countdown ? countdown : $t('game.next') }}
         </button>
     </div>

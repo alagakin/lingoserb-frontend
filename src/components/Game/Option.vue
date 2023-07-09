@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col items-center mx-4">
-        <div v-on:click="submit" :class="{ 'bg-red-500': redBg, 'bg-green-500': greenBg, 'animate-shake': shake }"
-            class="w-64 h-32 bg-gray-100 rounded-lg p-4 flex justify-center items-center cursor-pointer hover:scale-105 transform transition-transform duration-300">
+        <div v-on:click="submit" :class="{ 'bg-red-400': redBg, 'bg-green-400': greenBg, 'animate-shake': shake }"
+            class="w-64 h-32 bg-gray-200 rounded-lg p-4 flex justify-center items-center cursor-pointer hover:scale-105 transform transition-transform duration-300">
             <span>{{ option.title }}</span>
         </div>
     </div>
