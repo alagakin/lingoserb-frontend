@@ -1,10 +1,9 @@
 <template>
   <div class="max-w-5xl m-auto flex justify-between" v-if="!wordsLoading">
     <h1 class="text-center text-4xl mb-6 text-black">{{ title }} - {{ getLocalTitle(topic) }}</h1>
-    <div class="text-center text-2xl mb-6">
+    <div class="text-center text-xl mb-6">
       <router-link :to="{ name: 'Game', params: { id: topic.id } }">
-        <span class="bg-teal-500 p-4 rounded-xl text-white">
-          <font-awesome-icon :icon="['fas', 'rocket']" class="mr-2" />
+        <span class="bg-blue-400 pt-3 pb-3 pl-6 pr-6 rounded-xl text-white">
           <span>{{ $t('learning.start') }}</span>
         </span>
       </router-link>
