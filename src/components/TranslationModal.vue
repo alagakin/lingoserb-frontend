@@ -22,10 +22,7 @@
                     </button>
                 </div>
                 <div class="p-6 space-y-6">
-                    <p class="text-lg bold leading-relaxe  dark:text-gray-400">
-                        Translation:
-                    </p>
-                    <div v-for="translation, key in word.translation" class="italic ">{{ translation.title }}{{ key <
+                    <div v-for="translation, key in word.translation" class="italic text-xl">{{ translation.title }}{{ key <
                         word.translation.length - 1 ? ', ' : '' }}</div>
                             <div v-for="text, key in texts"
                                 class="text-base leading-relaxed text-gray-500 relative dark:text-gray-400 border-gray-200 border p-2 rounded-lg">
