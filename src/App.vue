@@ -1,8 +1,8 @@
 <template>
   <div :key="isAuthenticated">
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen bg-cover" :style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
       <Header />
-      <main class="container mx-auto py-8 max-w-6xl mt-10">
+      <main class="container mx-auto py-8 max-w-6xl mt-10" >
         <router-view></router-view>
       </main>
     </div>
@@ -17,6 +17,7 @@ import HomeView from './views/HomeView.vue';
 import { apiRequest } from './api.js';
 import { mapGetters } from 'vuex';
 import Footer from './components/Footer.vue';
+import bg from '@/assets/bg.svg'
 
 export default {
   name: 'App',
@@ -78,6 +79,13 @@ export default {
       'isAuthenticated',
       'skippedWordsIdsEndpoint'
     ]),
+    backgroundImage() {
+      if (this.$route.name == 'Home') {
+        return bg
+      } else {
+        return false
+      }
+    }
   },
   created() {
     if (this.isAuthenticated) {
