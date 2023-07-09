@@ -24,7 +24,8 @@
     "header": {
         "home": "Главная",
         "dictionary": "Словарь",
-        "myWords": "Мои слова"
+        "myWords": "Мои слова",
+        "topics": "Категории"
     },
     "auth": {
         "logout": "Выход",

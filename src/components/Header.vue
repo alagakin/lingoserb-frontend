@@ -4,6 +4,8 @@
             <router-link :to="{ name: 'Home' }" class="text-blue-600 font-semibold" exact active-class="underline">
                 <img :src="logo" class="h-12 border-2 rounded-full" alt=""> </router-link>
 
+            <router-link :to="{ name: 'Topics' }" class="text-blue-600 font-semibold ml-4" exact
+                active-class="underline">{{ $t("header.topics") }}</router-link>
 
             <router-link :to="{ name: 'Dictionary' }" class="text-blue-600 font-semibold ml-4" exact
                 active-class="underline">{{ $t("header.dictionary") }}</router-link>

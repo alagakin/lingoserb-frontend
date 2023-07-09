@@ -7,6 +7,7 @@ import store from '../store.js';
 import DetailTopicView from '../views/DetailTopicView.vue'
 import NotFound from '../views/NotFound.vue'
 import Profile from '../views/Profile.vue'
+import TopicsView from '../views/TopicsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,19 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: HomeView
+    },
+    {
+      path: '/topics',
+      name: 'Topics',
+      component: TopicsView,
+      beforeEnter: (to, from, next) => {
+        if (store.getters.isAuthenticated) {
+          next();
+        } else {
+          // User is not authenticated, redirect to the login page
+          next('/');
+        }
+      },
     },
     {
       path: '/dictionary',

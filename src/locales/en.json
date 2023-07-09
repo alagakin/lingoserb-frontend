@@ -24,7 +24,8 @@
     "header": {
         "home": "Home",
         "dictionary": "Dictionary",
-        "myWords": "My words"
+        "myWords": "My words",
+        "topics": "Topics"
     },
     "auth": {
         "logout": "Logout",
