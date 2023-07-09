@@ -1,29 +1,32 @@
 <template>
-    <div class="mb-8" v-for="topic in items">
+    <div class="mb-8" v-for="topic in items" v-if="loaded">
         <h3 class="text-2xl font-bold mb-4">{{ getTitle(topic) }}</h3>
         <Splide :options="{ rewind: true, perPage: 3, arrows: false }" aria-label="My Favorite Images">
             <SplideSlide v-for="subtopic in topic.subtopics">
-                <Slide :subtopic="subtopic"/>
+                <Slide :subtopic="subtopic" />
             </SplideSlide>
         </Splide>
     </div>
+    <TopicsListSkeleton v-else />
 </template>
 
 <script>
 import 'flowbite/dist/flowbite.css';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
-import TopicProgress from './TopicProgress.vue';
 import getTopicTitle from '../../utils/getTopicTitle';
 import { apiRequest } from '../../api.js';
 import { mapGetters } from 'vuex';
 import Slide from './Slide.vue';
+import TopicsListSkeleton from './TopicsListSkeleton.vue';
 
 export default {
     name: "TopicsList",
     components: {
         Splide,
         SplideSlide,
+        TopicsListSkeleton,
+        Slide
     },
     data() {
         return {
@@ -33,7 +36,8 @@ export default {
             offset: 0,
             end: false,
             next: false,
-            items: []
+            items: [],
+            loaded: false
         };
     },
     mounted() {
@@ -73,6 +77,8 @@ export default {
                         offset: this.offset,
                         limit: this.limit
                     });
+                    this.loaded = true
+
                 if (data.results?.length) {
                     this.offset += this.limit;
                     this.items.push(...data.results);
@@ -89,6 +95,5 @@ export default {
             }
         },
     },
-    components: { TopicProgress, Slide }
 }
 </script>
