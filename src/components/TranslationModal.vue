@@ -1,6 +1,6 @@
 <template>
     <h3 ref="openButton" class="text-xl italic hover:no-underline mb-2 cursor-pointer underline"
-        :class="{ 'opacity-50': skipped }">{{ word.title }}</h3>
+        :class="{ 'opacity-50': skipped }">{{ word.title }} <font-awesome-icon :icon="['fas', 'spinner']" spin v-show="loading"/></h3>
 
     <div ref="modal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(150%)] max-h-full">
@@ -52,6 +52,10 @@
 </template>
 
 <script>
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 import AudioButton from './AudioButton.vue'
 import { apiRequest } from '../api';
 import { mapGetters } from 'vuex';
@@ -77,10 +81,12 @@ export default {
     data() {
         return {
             loaded: false,
-            texts: Array
+            texts: Array,
+            loading: false
         }
     },
     mounted() {
+        library.add(fas)
         const modalOptions = {
             backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40'
         }
@@ -99,7 +105,6 @@ export default {
             document.body.style.setProperty('--paddingRight', padding + 'px')
         },
         open() {
-            this.modal.toggle()
             this.getTexts()
         },
         async getTexts() {
@@ -107,10 +112,15 @@ export default {
                 return
             }
             if (this.loaded) {
+                this.modal.show()
                 return
             }
             try {
+                this.loading = true
                 const data = await apiRequest('GET', this.textForWordEndpoint(this.word.id))
+                this.modal.show()
+                this.loading = false
+
                 if (data) {
                     this.loaded = true
                     this.texts = data.texts
