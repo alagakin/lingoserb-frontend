@@ -6,13 +6,13 @@
                     class="text-gray-300" />
                 <circle cx="18" cy="18" r="15.7" stroke="currentColor" stroke-width="5" fill="transparent"
                     :stroke-dasharray="circumference"
-                    :stroke-dashoffset="circumference - achievement.percent / 100 * circumference" class="text-blue-700 " />
+                    :stroke-dashoffset="circumference - achievement.percent / 100 * circumference" class="text-blue-400 " />
             </svg>
             <span class="flex items-center justify-center">{{ achievement.title }}</span>
         </div>
         <div v-else class="flex">
             <font-awesome-icon :icon="achievement.achieved ? 'check-circle' : 'circle'"
-                :class="{ 'text-green-500': achievement.achieved, 'text-gray-500': !achievement.achieved }"
+                :class="{ 'text-green-400': achievement.achieved, 'text-gray-500': !achievement.achieved }"
                 class="mr-3 text-lg w-9 h-9" />
             <span class="flex items-center justify-center">{{ achievement.title }}</span>
 

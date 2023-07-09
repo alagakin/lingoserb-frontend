@@ -2,14 +2,14 @@
     <header class="flex items-center justify-between bg-white py-4 px-6">
         <div class="flex items-center text-xl">
             <router-link :to="{ name: 'Home' }">
-                <img :src="logo" class="h-12 border-2 rounded-full" alt=""> </router-link>
+                <img :src="logo" class="h-12 border-2 rounded-full " alt=""> </router-link>
 
-            <router-link :to="{ name: 'Topics' }" class="text-blue-400 font-semibold ml-6" exact
+            <router-link :to="{ name: 'Topics' }" class="text-blue-400 font-semibold ml-6 hover:text-blue-600" exact
                 active-class="text-blue-600">{{ $t("header.topics") }}</router-link>
 
-            <router-link :to="{ name: 'Dictionary' }" class="text-blue-400 font-semibold ml-6" exact
+            <router-link :to="{ name: 'Dictionary' }" class="text-blue-400 font-semibold ml-6 hover:text-blue-600" exact
                 active-class="text-blue-600">{{ $t("header.dictionary") }}</router-link>
-            <router-link :to="{ name: 'MyWords' }" class="text-blue-400 font-semibold ml-6" exact active-class="text-blue-600">
+            <router-link :to="{ name: 'MyWords' }" class="text-blue-400 font-semibold ml-6 hover:text-blue-600" exact active-class="text-blue-600">
                 {{ $t("header.myWords") }}</router-link>
         </div>
         <div class="flex items-center">

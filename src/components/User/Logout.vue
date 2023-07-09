@@ -1,5 +1,5 @@
 <template>
-    <a href="#" ref="logout" class="text-blue-600 font-semibold pointer py-2.5" v-show="isAuthenticated">
+    <a href="#" ref="logout" class="text-blue-400 font-semibold pointer py-2.5 hover:text-blue-600" v-show="isAuthenticated">
         {{ $t('auth.logout')  }}
     </a>
 </template>
