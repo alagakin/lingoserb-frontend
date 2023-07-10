@@ -2,7 +2,7 @@
   <div class="max-w-5xl m-auto mb-4">
     <TopicFilter @filter="filterTopics" ref="topics" v-if="use.topics" />
     <ProgressFilter @filter="filterProgress" ref="progress" v-if="use.progress"  />
-    <div class="fixed right-0 top-3/4" v-show="filter.progress || filter.topics">
+    <div class="fixed right-0 top-3/4" v-show="filter.progress || filter.topics" style="z-index: 20;">
       <button class="bg-gray-400 pt-2 pb-2 pl-2 pr-3 text-white rounded-l-lg" @click="clear">
         {{ $t('filter.clear') }}
       </button>
