@@ -1,6 +1,6 @@
 <template>
   <div :key="isAuthenticated">
-    <div class="flex flex-col min-h-screen bg-cover bg-fixed" :style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
+    <div class="flex flex-col min-h-screen" :class="indexPageClasses" :style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
       <Header />
       <main class="container mx-auto py-8 max-w-6xl mt-10" >
         <router-view></router-view>
@@ -86,6 +86,14 @@ export default {
         return bg
       } else {
         return false
+      }
+    },
+    indexPageClasses() {
+      if (this.$route.name == 'Home') {
+        return {
+          'bg-cover': true,
+          'bg-fixed': true,
+        }
       }
     },
     language() {
