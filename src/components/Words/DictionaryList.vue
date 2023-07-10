@@ -77,8 +77,6 @@ export default {
         if (data?.length) {
           this.offset += this.limit
           this.items.push(...data)
-          console.log(this.items)
-
         } else {
           this.end = true
           this.isLoading = false
