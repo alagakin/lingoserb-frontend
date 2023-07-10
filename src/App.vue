@@ -8,6 +8,7 @@
     </div>
     <Footer />
     <BetaWarningModal :key="language" />
+    <NoMobile />
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import Header from './components/Header.vue';
 import HomeView from './views/HomeView.vue';
 import { apiRequest } from './api.js';
 import { mapGetters } from 'vuex';
+import NoMobile from './components/NoMobile.vue'
 import Footer from './components/Footer.vue';
 import bg from '@/assets/bg.svg'
 
@@ -26,7 +28,8 @@ export default {
     Header,
     HomeView,
     Footer,
-    BetaWarningModal
+    BetaWarningModal,
+    NoMobile
 },
   methods: {
     async setProgress() {
