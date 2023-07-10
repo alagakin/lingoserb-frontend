@@ -5,8 +5,19 @@
     },
     "index": {
         "h1": "Learn Serbian with AI",
-        "first": "Use the power of artificial intelligence to expand your knowledge of the Serbian language. Our application provides you with the opportunity to learn Serbian through interactive flashcards.",
-        "second": "Each flashcard contains a Serbian word or phrase accompanied by its translation in your native language. Simply flip through the flashcards, read and memorize new words and phrases, and then test your knowledge with built-in quizzes and exercises."
+        "block1": {
+            "title": "Flashcards",
+            "text1": "Use the power of artificial intelligence to expand your knowledge of the Serbian language. Our application provides you with the opportunity to learn Serbian through interactive flashcards.",
+            "text2": "Each flashcard contains a Serbian word or phrase accompanied by its translation in your native language. Simply flip through the flashcards, read and memorize new words and phrases, and then test your knowledge with built-in quizzes and exercises."
+        },
+        "block2": {
+            "title":"Word Usage Examples",
+            "text1": "With the \"Word Usage Examples\" feature, language learning becomes an immersive experience, enabling you to absorb and internalize the correct usage of words in a natural and meaningful way."
+        },
+        "block3": {
+            "title":"Spaced Repetition",
+            "text1": "LingoSerb incorporates the powerful technique of spaced repetition, ensuring optimal word retention by intelligently scheduling the presentation of vocabulary flashcards at strategic intervals."
+        }
     },
     "dictionary": {
         "title": "Dictionary"
