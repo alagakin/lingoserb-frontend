@@ -114,5 +114,9 @@
         "start": "Learn",
         "back": "Back to topic"
     },
-    "notFound": "404 Not Found"
+    "notFound": "404 Not Found",
+    "betaWarning": {
+        "title": "Attention!",
+        "text": "<p>Dear users! The project is currently in the beta testing phase, so words and phrases may be translated incorrectly, and errors may occur. For any questions, suggestions, or feedback, please contact me on <a href=\"https://t.me/alagakin\" target=\"_blank\" class=\"text-blue-500 hover:text-blue-700\">Telegram</a>. I would greatly appreciate your feedback!</p>"
+    }
 }

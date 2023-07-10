@@ -6,12 +6,13 @@
         <router-view></router-view>
       </main>
     </div>
-
     <Footer />
+    <BetaWarningModal :key="language" />
   </div>
 </template>
 
 <script>
+import BetaWarningModal from './components/BetaWarningModal.vue';
 import Header from './components/Header.vue';
 import HomeView from './views/HomeView.vue';
 import { apiRequest } from './api.js';
@@ -24,8 +25,9 @@ export default {
   components: {
     Header,
     HomeView,
-    Footer
-  },
+    Footer,
+    BetaWarningModal
+},
   methods: {
     async setProgress() {
       try {
@@ -85,6 +87,9 @@ export default {
       } else {
         return false
       }
+    },
+    language() {
+      return this.$i18n.locale
     }
   },
   created() {
