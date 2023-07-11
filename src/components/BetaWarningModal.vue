@@ -27,7 +27,7 @@
 export default {
     name: "BetaWarningModal",
     props: {
-
+        lang: String
     },
     data() {
         return {
@@ -38,10 +38,9 @@ export default {
     },
     mounted() {
         const modalOptions = {
-            backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40'
+            backdropClasses: 'bg-gray-800 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40'
         }
         this.modal = new Modal(this.$refs.modal, modalOptions);
-        this.openButton = this.$refs.openButton
         this.closeButton = this.$refs.closeButton
 
         this.closeButton.addEventListener('click', () => this.modal.hide());
@@ -57,6 +56,14 @@ export default {
         open() {
             this.modal.show()
         },
+    },
+    watch: {
+        lang: {
+            handler: function () {
+                this.modal.hide()
+                this.modal.show()
+            },
+        }
     }
 }
 </script>

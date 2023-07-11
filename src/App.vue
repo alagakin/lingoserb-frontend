@@ -7,7 +7,7 @@
       </main>
     </div>
     <Footer />
-    <BetaWarningModal :key="language" />
+    <BetaWarningModal :lang="language" />
     <NoMobile />
   </div>
 </template>
