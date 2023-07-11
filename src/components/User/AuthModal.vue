@@ -1,6 +1,6 @@
 <template>
     <button ref="openButton"
-        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="block text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button">
         {{ $t('auth.login') }}
     </button>
@@ -40,6 +40,7 @@ import Login from './Login.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import eventBus from '../../eventBus'
 
 export default {
     name: "AuthModal",
@@ -64,7 +65,11 @@ export default {
         this.openButton.addEventListener("click", () => this.modal.toggle());
         this.closeButton.addEventListener("click", () => this.modal.hide());
         this.styleBodyWhenOpen();
+
+        eventBus.$on('show-auth-modal', () => this.modal.show());
+        
     },
+
     methods: {
         styleBodyWhenOpen() {
             let padding = window.innerWidth - document.documentElement.clientWidth;

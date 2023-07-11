@@ -20,13 +20,13 @@
             </p>
         </div>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-            {{ $t('auth.modal.not_registered') }} <a href="#" class="text-blue-700 hover:underline dark:text-blue-500" @click="signup">{{ $t('auth.modal.create_account') }}</a>
+            {{ $t('auth.modal.not_registered') }} <a href="#" class="text-blue-400 hover:underline dark:text-blue-500" @click="signup">{{ $t('auth.modal.create_account') }}</a>
         </div>
 
-        <button type="submit" :disabled="waiting" class="w-full text-white bg-blue-700
+        <button type="submit" :disabled="waiting" class="w-full text-white bg-blue-500
                                  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
                                  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 
-                                 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                 dark:hover:bg-blue-500 dark:focus:ring-blue-800">
             <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" v-show="waiting" />
             <span v-show="!waiting">{{ $t('auth.login') }}</span>
         </button>

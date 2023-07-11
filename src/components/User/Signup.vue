@@ -32,7 +32,7 @@
             <p class="mt-2 text-sm text-red-600 dark:text-red-500" v-for="error in errors" v-text="error">
             </p>
         </div>
-        <button type="submit" :disabled="waiting" class="w-full text-white bg-blue-700
+        <button type="submit" :disabled="waiting" class="w-full text-white bg-blue-500
                                  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
                                  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 
                                  dark:hover:bg-blue-700 dark:focus:ring-blue-800">

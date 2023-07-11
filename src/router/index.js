@@ -8,6 +8,7 @@ import DetailTopicView from '../views/DetailTopicView.vue'
 import NotFound from '../views/NotFound.vue'
 import Profile from '../views/Profile.vue'
 import TopicsView from '../views/TopicsView.vue'
+import eventBus from '../eventBus';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +26,7 @@ const router = createRouter({
         if (store.getters.isAuthenticated) {
           next();
         } else {
-          // User is not authenticated, redirect to the login page
+          eventBus.$emit('show-auth-modal');
           next('/');
         }
       },
@@ -38,8 +39,8 @@ const router = createRouter({
         if (store.getters.isAuthenticated) {
           next();
         } else {
-          // User is not authenticated, redirect to the login page
           next('/');
+          eventBus.$emit('show-auth-modal');
         }
       },
     },
@@ -51,8 +52,8 @@ const router = createRouter({
         if (store.getters.isAuthenticated) {
           next();
         } else {
-          // User is not authenticated, redirect to the login page
           next('/');
+          eventBus.$emit('show-auth-modal');
         }
       },
     },
@@ -64,8 +65,8 @@ const router = createRouter({
         if (store.getters.isAuthenticated) {
           next();
         } else {
-          // User is not authenticated, redirect to the login page
           next('/');
+          eventBus.$emit('show-auth-modal');
         }
       },
     },
@@ -78,6 +79,7 @@ const router = createRouter({
           next();
         } else {
           next('/');
+          eventBus.$emit('show-auth-modal');
         }
       },
     },
@@ -90,6 +92,7 @@ const router = createRouter({
           next();
         } else {
           next('/');
+          eventBus.$emit('show-auth-modal');
         }
       },
     },
