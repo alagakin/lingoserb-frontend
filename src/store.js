@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 const state = {
-    domain: 'http://localhost',
+    domain: import.meta.env.VITE_API_HOST,
     loginEndpoint: '/api/v1/auth/token/login/',
     googleLoginEndpoint: '/api/v1/auth/google/',
     wordsEndpoint: '/api/v1/words/',
