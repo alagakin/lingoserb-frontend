@@ -1,14 +1,15 @@
-# lear_serbian_front
+# 🇷🇸 LingoSerb (backend)
+#### This is the frontend part of LingoSerb project.
 
-This template should help get you started developing with Vue 3 in Vite.
+[Backend Repo](https://github.com/alagakin/lingoserb-frontend)
 
-## Recommended IDE Setup
+The idea of writing something like LingoSerb came to me when I found out that there is few resources which can provide most used Serbian words and use context. Moreover, online translators tend to provide inaccurate information.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+One day I tried ChatGPT to get some most used Serbian words and translations, and it did it greate. It provided good use context as well. I thought that this source of language content can be packed in more handy box, something like LingoSerb.
 
-## Customize configuration
+Now LingoSerb provides flashcards for memorization and uses spaced repetition system. Also, it can help with use context of a word. It's quite important when It comes to language learning.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+At the moment I'm working on improving content generation accuracy and content filtering system - there is a lot to do.
 
 ## Project Setup
 
@@ -26,10 +27,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
 ```
