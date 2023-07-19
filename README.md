@@ -1,4 +1,4 @@
-# 🇷🇸 LingoSerb (backend)
+# 🇷🇸 LingoSerb
 #### This is the frontend part of LingoSerb project.
 
 [Backend Repo](https://github.com/alagakin/lingoserb-frontend)
