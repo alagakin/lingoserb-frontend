@@ -1,5 +1,6 @@
 <template>
-  <div :key="isAuthenticated">
+  <UnderConstruction />
+  <div :key="isAuthenticated && false">
     <div class="flex flex-col min-h-screen" :class="indexPageClasses" :style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
       <Header />
       <main class="container mx-auto py-8 max-w-6xl mt-10" >
@@ -21,6 +22,7 @@ import { mapGetters } from 'vuex';
 import NoMobile from './components/NoMobile.vue'
 import Footer from './components/Footer.vue';
 import bg from '@/assets/bg.svg'
+import UnderConstruction from './components/UnderConstruction.vue';
 
 export default {
   name: 'App',
@@ -29,7 +31,8 @@ export default {
     HomeView,
     Footer,
     BetaWarningModal,
-    NoMobile
+    NoMobile,
+    UnderConstruction
 },
   methods: {
     async setProgress() {
