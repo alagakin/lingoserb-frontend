@@ -1,6 +1,5 @@
 <template>
-  <UnderConstruction />
-  <div :key="isAuthenticated && false">
+  <div :key="isAuthenticated">
     <div class="flex flex-col min-h-screen" :class="indexPageClasses" :style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
       <Header />
       <main class="container mx-auto py-8 max-w-6xl mt-10" >
