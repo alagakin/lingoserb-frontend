@@ -1,0 +1,15 @@
+# Use the official Node.js image as the base image
+FROM node:lts
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install development dependencies
+COPY /app .
+RUN npm install
+
+# Expose the port used by the development server
+EXPOSE 5000
+
+# Start the development server
+CMD ["npm", "run", "dev"]

@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  frontend:
+    container_name: learn_serbian_frontend
+    command: ["sh", "-c", "npm run build && npx http-server dist --port 80"]
+    env_file:
+      - app/.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "51000:80"
+    volumes:
+      - ./app:/app
+    restart: always
+    networks:
+      - learn_serbian_frontend_network
+
+networks:
+  learn_serbian_frontend_network:
